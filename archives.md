@@ -9,7 +9,6 @@ title: Archives
         <main class="lg:w-0 lg:flex-1">
             <!-- Header -->
             <header class="mb-12 pb-8 border-b border-gray-200">
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Archives</h1>
                 <p class="text-gray-600 text-xl leading-relaxed">
                     Browse blog posts by month
                 </p>
