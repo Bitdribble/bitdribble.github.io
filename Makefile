@@ -1,5 +1,8 @@
 .PHONY: dev build clean
 
+install:
+	bundle install
+
 # Development target - Jekyll server only (Tailwind via CDN)
 dev:
 	@echo "Starting development environment..."
