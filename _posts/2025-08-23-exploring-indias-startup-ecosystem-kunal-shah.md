@@ -5,7 +5,7 @@ date: 2025-08-23
 categories: [entrepreneurship]
 ---
 
-In a recent episode of Lenny's podcast, Lenny had the pleasure of sitting down with Kunal Shah, the CEO and founder of CRED, a leading FinTech startup in India valued at over $6 billion. Kunal is a renowned entrepreneur and product leader with a massive following on social media, where he shares profound insights on business, product development, and life. With a background in philosophy, Kunal brings a unique perspective to the tech world, which was evident throughout their conversation. They dove deep into the nuances of building successful products in India, the success of Indian CEOs in the U.S., and the unique challenges and opportunities within the Indian startup ecosystem.
+In a recent episode of Lenny's podcast, Lenny sat down with Kunal Shah, the CEO and founder of CRED, a leading FinTech startup in India valued at over $6 billion. Kunal is a renowned entrepreneur and product leader with a massive following on social media, where he shares profound insights on business, product development, and life. With a background in philosophy, Kunal brings a unique perspective to the tech world, which was evident throughout their conversation. They dove deep into the nuances of building successful products in India, the success of Indian CEOs in the U.S., and the unique challenges and opportunities within the Indian startup ecosystem.
 
 ## The Delta 4 Framework: A Blueprint for Success
 
