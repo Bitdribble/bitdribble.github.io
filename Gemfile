@@ -9,4 +9,5 @@ gem "github-pages", group: :jekyll_plugins
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
   gem "jekyll-pdf-embed", "1.1.2.1" # Per example at https://github.com/MihajloNesic/minimal-mistakes-pdf-example/
+  gem "jekyll-paginate-v2", "~> 3.0"
 end

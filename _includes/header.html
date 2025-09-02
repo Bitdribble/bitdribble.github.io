@@ -30,7 +30,11 @@
                 </div>
               </div>
             {%- else -%}
-              <a class="inline-block px-4 py-2 text-gray-600 no-underline font-medium transition-all duration-200 hover:text-blue-600 hover:bg-gray-50 rounded-md whitespace-nowrap" href="{{ item.url | relative_url }}">{{ item.title | escape }}</a>
+              {%- if item.button_style == "solid" -%}
+                <a class="inline-block px-4 py-2 text-white !text-white no-underline font-medium transition-all duration-200 bg-blue-600 hover:bg-blue-700 rounded-md whitespace-nowrap" href="{{ item.url | relative_url }}">{{ item.title | escape }}</a>
+              {%- else -%}
+                <a class="inline-block px-4 py-2 text-gray-600 no-underline font-medium transition-all duration-200 hover:text-blue-600 hover:bg-gray-50 rounded-md whitespace-nowrap" href="{{ item.url | relative_url }}">{{ item.title | escape }}</a>
+              {%- endif -%}
             {%- endif -%}
           {%- endfor -%}
         </nav>
@@ -71,7 +75,11 @@
               </div>
             </div>
           {%- else -%}
-            <a class="block px-4 py-3 text-gray-700 no-underline font-medium active:text-blue-600 active:bg-blue-50 focus:text-blue-600 focus:bg-gray-50 rounded-md transition-all duration-200 touch-manipulation" href="{{ item.url | relative_url }}">{{ item.title | escape }}</a>
+            {%- if item.button_style == "solid" -%}
+              <a class="block px-4 py-3 text-white !text-white no-underline font-medium active:text-white active:bg-blue-700 focus:text-white focus:bg-blue-700 bg-blue-600 rounded-md transition-all duration-200 touch-manipulation" href="{{ item.url | relative_url }}">{{ item.title | escape }}</a>
+            {%- else -%}
+              <a class="block px-4 py-3 text-gray-700 no-underline font-medium active:text-blue-600 active:bg-blue-50 focus:text-blue-600 focus:bg-gray-50 rounded-md transition-all duration-200 touch-manipulation" href="{{ item.url | relative_url }}">{{ item.title | escape }}</a>
+            {%- endif -%}
           {%- endif -%}
         {%- endfor -%}
       </div>
@@ -98,6 +106,30 @@
 
 .dropdown-toggle.active svg {
   transform: rotate(180deg);
+}
+
+/* Hover effects for desktop dropdowns */
+@media (min-width: 768px) {
+  .dropdown-container:hover .dropdown-menu {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+  }
+  
+  .dropdown-container:hover .dropdown-toggle svg {
+    transform: rotate(180deg);
+  }
+  
+  /* Ensure dropdown stays open when hovering over the menu */
+  .dropdown-menu:hover {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+  }
 }
 
 /* Mobile menu styles */
@@ -146,6 +178,20 @@
 #nav-menu a:hover:visited,
 #mobile-menu a:hover:visited {
   color: #2563eb !important; /* text-blue-600 */
+}
+
+/* Ensure solid button style keeps white text even when visited */
+#nav-menu a.bg-blue-600:visited,
+#mobile-menu a.bg-blue-600:visited {
+  color: white !important;
+}
+
+/* Light blue text on hover for solid buttons */
+#nav-menu a.bg-blue-600:hover,
+#nav-menu a.bg-blue-600:hover:visited,
+#mobile-menu a.bg-blue-600:hover,
+#mobile-menu a.bg-blue-600:hover:visited {
+  color: #93c5fd !important; /* text-blue-300 */
 }
 
 /* Smooth transitions for all interactive elements */
@@ -213,13 +259,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Handle desktop dropdown toggle clicks
+  // Handle desktop dropdown toggle clicks and hover
   dropdownContainers.forEach(container => {
     const toggle = container.querySelector('.dropdown-toggle');
     const menu = container.querySelector('.dropdown-menu');
     
     console.log('Setting up desktop dropdown:', toggle.textContent.trim());
     
+    // Click handler for desktop dropdowns
     toggle.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -240,6 +287,31 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Desktop dropdown opened:', toggle.textContent.trim());
       }
     });
+    
+    // Hover handlers for desktop dropdowns
+    if (window.innerWidth >= 768) {
+      container.addEventListener('mouseenter', function() {
+        // Close other dropdowns when hovering over a new one
+        closeAllDropdowns();
+        toggle.classList.add('active');
+        menu.classList.add('active');
+      });
+      
+      container.addEventListener('mouseleave', function() {
+        // Small delay to allow moving mouse to dropdown menu
+        setTimeout(() => {
+          if (!container.matches(':hover') && !menu.matches(':hover')) {
+            toggle.classList.remove('active');
+            menu.classList.remove('active');
+          }
+        }, 100);
+      });
+      
+      menu.addEventListener('mouseleave', function() {
+        toggle.classList.remove('active');
+        menu.classList.remove('active');
+      });
+    }
   });
   
   // Handle mobile dropdown toggle clicks
@@ -302,6 +374,11 @@ document.addEventListener('DOMContentLoaded', function() {
         closeIcon.classList.add('hidden');
         closeAllMobileDropdowns();
       }
+      // Close all dropdowns on resize to prevent hover issues
+      closeAllDropdowns();
+    } else {
+      // On mobile, ensure all dropdowns are closed
+      closeAllDropdowns();
     }
   });
 });

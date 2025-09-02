@@ -117,6 +117,20 @@ plugins:
  - jekyll-feed
  - jekyll-seo-tag
  - jekyll-pdf-embed # Per example at https://github.com/MihajloNesic/minimal-mistakes-pdf-example/
+ - jekyll-paginate-v2
+
+# Pagination configuration for jekyll-paginate-v2
+pagination:
+  enabled: true
+  per_page: 10
+  permalink: '/page/:num/'
+  title: ':title - Page :num'
+  limit: 0
+  trail:
+    before: 2
+    after: 2
+  sort_field: 'date'
+  sort_reverse: true
 
 future: true
 
