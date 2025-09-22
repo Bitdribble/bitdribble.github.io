@@ -14,6 +14,7 @@ title: AI Code Editors
 #### [Cursor](https://cursor.com)
 * Lex Fridman Podcast
   * [Cursor Team: Future of Programming with AI](https://www.youtube.com/watch?v=oFfVt3S51T4) (2024)
+* [Cursor Rules](https://cursor.com/docs/context/rules): a way to steer the model. See [Quotient MCP](https://docs.quotientai.co/steering/quotient-mcp) for how Cursor Rules can be used for evaluation.
 * Blog
   * Arvid: [Shadow Workspace: Iterating on Code in the Background](https://www.cursor.com/blog/shadow-workspace) (2024)
   * [Our Problems](https://www.cursor.com/blog/problems-2023) (Oct 2023)
