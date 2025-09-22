@@ -20,7 +20,7 @@ title: AI Code Editors
   * [Our Problems (cont'd)](https://www.cursor.com/blog/problems-2024) (Apr 2024)
     * Yi Tay et al: [Transformer Memory as a Differentiable Search Index](https://arxiv.org/pdf/2202.06991) (2022)
 
-#### Amp
+#### [Amp](https://ampcode.com)
 * VSCode add-on similar to Claude Dev
 * Developed by Sourcegraph (China)
 * [Owner's Manual](https://ampcode.com/manual)
