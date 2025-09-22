@@ -24,6 +24,7 @@ title: AI Code Editors
 * VSCode add-on similar to Claude Dev
 * Developed by Sourcegraph (China)
 * [Owner's Manual](https://ampcode.com/manual)
+* [Amp - Code Editor by Sourcegraph](/2025/09/22/amp-code-editor-by-sourcegraph.html)
 
 
 #### Other
