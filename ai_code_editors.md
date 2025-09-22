@@ -4,7 +4,12 @@ mathjax: true
 title: AI Code Editors
 ---
 
-#### Claude Dev
+#### Claude Code
+* [Claude Code SDK](https://docs.anthropic.com/en/docs/claude-code/sdk/sdk-overview)
+  * [Claude Code Monitoring Dashboard](https://github.com/aws-solutions-library-samples/guidance-for-claude-code-with-amazon-bedrock/blob/main/assets/docs/MONITORING.md)
+* [Inside Claude Code: Prompt Engineering Masterpiece](https://beyondthehype.dev/p/inside-claude-code-prompt-engineering-masterpiece)
+* APIDog: [A Comprehensive Guide to the Claude Code SDK](https://apidog.com/blog/a-comprehensive-guide-to-the-claude-code-sdk/)
+
 
 #### [Cursor](https://cursor.com)
 * Lex Fridman Podcast
@@ -14,6 +19,11 @@ title: AI Code Editors
   * [Our Problems](https://www.cursor.com/blog/problems-2023) (Oct 2023)
   * [Our Problems (cont'd)](https://www.cursor.com/blog/problems-2024) (Apr 2024)
     * Yi Tay et al: [Transformer Memory as a Differentiable Search Index](https://arxiv.org/pdf/2202.06991) (2022)
+
+#### Amp
+* VSCode add-on similar to Claude Dev
+* Developed by Sourcegraph (China)
+* [Owner's Manual](https://ampcode.com/manual)
 
 
 #### Other
