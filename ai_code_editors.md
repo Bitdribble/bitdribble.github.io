@@ -15,6 +15,9 @@ title: AI Code Editors
   * [Our Problems (cont'd)](https://www.cursor.com/blog/problems-2024) (Apr 2024)
     * Yi Tay et al: [Transformer Memory as a Differentiable Search Index](https://arxiv.org/pdf/2202.06991) (2022)
 
+#### Copilot
+* John Berryman, Shawn Simister: [The Evals That Made GitHub Copilot](https://www.youtube.com/watch?v=LwLxlEwrtRA) (2021)
+
 
 #### Other
 * [AI Code Editors](/ai_code_editors)
