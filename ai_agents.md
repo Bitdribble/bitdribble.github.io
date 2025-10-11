@@ -55,12 +55,6 @@ title: AI Agents
 * OpenAI [Codex](https://github.com/openai/codex)
 * Amazon Nova: [Act](https://nova.amazon.com/act) scraper model, [github](https://github.com/aws/nova-act), [AI Tinkerers](https://boston.aitinkerers.org/talks/rsvp_ispYtI58Gpk)
 
-#### Claude Code
-* [Claude Code SDK](https://docs.anthropic.com/en/docs/claude-code/sdk/sdk-overview)
-  * [Claude Code Monitoring Dashboard](https://github.com/aws-solutions-library-samples/guidance-for-claude-code-with-amazon-bedrock/blob/main/assets/docs/MONITORING.md)
-* [Inside Claude Code: Prompt Engineering Masterpiece](https://beyondthehype.dev/p/inside-claude-code-prompt-engineering-masterpiece)
-* APIDog: [A Comprehensive Guide to the Claude Code SDK](https://apidog.com/blog/a-comprehensive-guide-to-the-claude-code-sdk/)
-
 #### Demos
 * [Flowiseai.com](https://flowiseai.com/)
   * Fork [lowiseAI/Flowise](https://github.com/FlowiseAI/Flowise)
