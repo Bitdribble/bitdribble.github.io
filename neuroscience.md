@@ -16,6 +16,9 @@ title: Neuroscience
 * G.M.Edelman, G. Tononi: [A Universe Of Consciousness: How Matter Becomes Imagination](https://www.amazon.com/Universe-Consciousness-Matter-Becomes-Imagination/dp/0465013775)
 * Michio Kaku: [The Future of the Mind: The Scientific Quest to Understand, Enhance, and Empower the Mind](https://www.amazon.com/Future-Mind-Scientific-Understand-Enhance/dp/038553082X) (2014)
 * Seek Yoshua Bengio's lectures on Consciousness and ML
+* Roger Penrose: 
+  * [Consciousness is Not a Computation](https://www.youtube.com/watch?v=hXgqik6HXc0) (2020)
+  * Full interview: [Physics of Consciousness and the Infinite Universe](https://www.youtube.com/watch?v=orMtwOz6Db0) (2020)
 
 #### Articles
 * [Dendritic Computation](https://neurophysics.ucsd.edu/courses/physics_171/annurev.neuro.28.061604.135703.pdf), M.London and M. Hausser (2005)
