@@ -19,7 +19,9 @@ title: Neuroscience
 * Roger Penrose: 
   * [Consciousness is Not a Computation](https://www.youtube.com/watch?v=hXgqik6HXc0) (2020)
   * Full interview: [Physics of Consciousness and the Infinite Universe](https://www.youtube.com/watch?v=orMtwOz6Db0) (2020)
-* [Quantum mysteries and a profound new theory of consciousness](https://www.youtube.com/watch?v=TOoiabb0Hq4), interview with Stuart Hameroff (2025)
+* Stuart Hameroff:
+  * [Quantum mysteries and a profound new theory of consciousness](https://www.youtube.com/watch?v=TOoiabb0Hq4), interview with Stuart Hameroff (2025)
+  * [The Strange Science of Quantum-Consciousness](https://www.youtube.com/watch?v=SOiC3X6-Tco) (2025)
 
 #### Articles
 * [Dendritic Computation](https://neurophysics.ucsd.edu/courses/physics_171/annurev.neuro.28.061604.135703.pdf), M.London and M. Hausser (2005)
