@@ -19,6 +19,7 @@ title: Neuroscience
 * Roger Penrose: 
   * [Consciousness is Not a Computation](https://www.youtube.com/watch?v=hXgqik6HXc0) (2020)
   * Full interview: [Physics of Consciousness and the Infinite Universe](https://www.youtube.com/watch?v=orMtwOz6Db0) (2020)
+  * [The Emperor’s New Mind: Consciousness & Computer](https://www.youtube.com/watch?v=5Ag6jpvIa2w) (2023)
 * Stuart Hameroff:
   * [Quantum mysteries and a profound new theory of consciousness](https://www.youtube.com/watch?v=TOoiabb0Hq4), interview with Stuart Hameroff (2025)
   * [The Strange Science of Quantum-Consciousness](https://www.youtube.com/watch?v=SOiC3X6-Tco) (2025)
