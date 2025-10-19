@@ -9,6 +9,8 @@ title: AI Code Editors
   * [Claude Code Monitoring Dashboard](https://github.com/aws-solutions-library-samples/guidance-for-claude-code-with-amazon-bedrock/blob/main/assets/docs/MONITORING.md)
 * [Inside Claude Code: Prompt Engineering Masterpiece](https://beyondthehype.dev/p/inside-claude-code-prompt-engineering-masterpiece)
 * APIDog: [A Comprehensive Guide to the Claude Code SDK](https://apidog.com/blog/a-comprehensive-guide-to-the-claude-code-sdk/)
+* Plugins
+  * Leon van Zyl: [ Claude Code Plugins Changed Everything for Me ](https://www.youtube.com/watch?v=-KusSduAP1A) (2025)
 
 
 #### [Cursor](https://cursor.com)
