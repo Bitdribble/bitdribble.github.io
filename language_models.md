@@ -96,6 +96,8 @@ title: Language Models
   * [LinkedIn post on Evaluating LLMs](https://www.linkedin.com/feed/update/urn:li:activity:7188220212880592896/) (2024)
   * [Using LLMs for Evaluation](https://cameronrwolfe.substack.com/p/llm-as-a-judge)
 * Y. Chang et al: [A Survey on Evaluation of Large Language Models](https://arxiv.org/pdf/2307.03109) (2023)
+* [Langchain Open Evals](https://github.com/langchain-ai/openevals)
+* [NVidia Ragas metrics](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/nvidia_metrics/)
 
 #### Tech stack
 *  Matt Bornstein, Rajko Radovanovic: [Emerging Architectures for LLM Applications](https://a16z.com/2023/06/20/emerging-architectures-for-llm-applications/) (2023)
