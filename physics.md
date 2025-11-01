@@ -5,6 +5,7 @@ title: Physics
 ---
 #### General
 * [The Road to Reality](https://www.amazon.com/Road-Reality-Complete-Guide-Universe/dp/0679776311), Roger Penrose (2007). Great companion to other more in-depth books, explains how all the parts of physics 'fit together' in the larger theory. Requires simple understanding of differential geometry (and is in fact a great companion to any rigorous book on differential geometry). I've started with the chapter on Lagrangian and Hamiltonian mechanics, and paired it with the Taylor textbook.
+* [The Emperor's New Mind](https://www.amazon.com/Emperors-New-Mind-Concerning-Computers/dp/0198519737), Roger Penrose (1989)
 * [Inward Bound: Of Matter and Forces in the Physical World](https://www.amazon.com/Inward-Bound-Matter-Forces-Physical/dp/0198519710), A. Pais (1986)
 * [Group Theory and Physics](https://www.amazon.com/Group-Theory-Physics-S-Sternberg/dp/0521558859), S. Sternberg (1994)
 * [From Strange Simplicity to Complex Familiarity](https://www.amazon.com/Strange-Simplicity-Complex-Familiarity-Information/dp/0198841949/ref=sr_1_2?crid=DEMFFI3TDU0V&keywords=manfred+eigen&qid=1655433188&sprefix=manfred+eigen%2Caps%2C78&sr=8-2), Manfred Eigen (2013). High level yet dense and covering Physics, Chemistry, Biology. More depth than [101 Quantum Questions](https://www.amazon.com/101-Quantum-Questions-About-World/dp/0674066073).
