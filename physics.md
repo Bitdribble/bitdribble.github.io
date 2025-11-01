@@ -151,6 +151,8 @@ title: Physics
 * [Physics with Elliot](https://www.youtube.com/@PhysicswithElliot)
   * [To Understand the Fourier Transform, Start From Quantum Mechanics](https://www.youtube.com/watch?v=W8QZ-yxebFA)
 * [Scott Aaronson - Meaning of Life - Quantum Computing](https://www.youtube.com/watch?v=w2PXd46ExiM&list=PLypiXJdtIca7i8IrNye4IenjnUCP9LF35&index=9) (2019)
+* Roger Penrose:
+  * [Quantum Theory Is Wrong, Not Einstein](https://www.youtube.com/watch?v=sGm505TFMbU), interview by Curt Jaimungal (2024)
 
 #### AI in Physics
 * Silviu-Marian Udrescu, Max Tegmark: [AI Feynman: a Physics-Inspired Method for Symbolic Regression](https://arxiv.org/pdf/1905.11481.pdf) (2020)
