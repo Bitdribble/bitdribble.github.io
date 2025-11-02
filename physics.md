@@ -147,6 +147,7 @@ title: Physics
  * PBS Space Time - higher level but explains big picture particularly well
    * [Noether's Theorem and The Symmetries of Reality](https://www.youtube.com/watch?v=04ERSb06dOg&list=PLsPUh22kYmNAnurqRx9JlDGukZCsYcLhF&index=1) (2018)
    * [Electrons DO NOT Spin](https://www.youtube.com/watch?v=pWlk1gLkF2Y) (2021)
+   * [Why Did Quantum Entanglement Win the Nobel Prize in Physics?](https://www.youtube.com/watch?v=US7fEkBsy4A) (2022)
 * Sabine Hossenfelder [blog](http://backreaction.blogspot.com/), [youtube](https://www.youtube.com/c/SabineHossenfelder)
 * [Physics with Elliot](https://www.youtube.com/@PhysicswithElliot)
   * [To Understand the Fourier Transform, Start From Quantum Mechanics](https://www.youtube.com/watch?v=W8QZ-yxebFA)
