@@ -97,8 +97,8 @@ title: Physics
     
   * [Quantum Entanglement](https://theoreticalminimum.com/courses/quantum-entanglement/2006/fall) (2006)
     * [Lecture 1](https://www.youtube.com/watch?v=0Eeuqh9QfNI) Classical bits. States in classical Physics. Transformations. Reversibility. Computability of states and transformations. Vectors, matrices.
-    * [Lecture 2](https://www.youtube.com/watch?v=VtBRKw1Ab7E&list=PL6i60qoDQhQGaGbbg-4aSwXJvxOqO6o5e&index=21): Electron spin. Complex vector spaces. Bra-kets. Quantum bit. Hermitian matrices as observables.
-    * [Lecture 3](https://www.youtube.com/watch?v=CaTF4QZ94Fk&list=PLF1A950040024A1ED&index=3) Pauli matrices. Spin. Probabilistic interpretation. Each spin corresponds to a spin direction in space.
+    * [Lecture 2](https://www.youtube.com/watch?v=VtBRKw1Ab7E&list=PL6i60qoDQhQGaGbbg-4aSwXJvxOqO6o5e&index=21): Electron spin. Complex vector spaces. Bra-kets. Basis $$\ket{u}, \ket{d}$$. Quantum bit. Invariance to multiplication by complex scalar. Hermitian matrices as observables.
+    * [Lecture 3](https://www.youtube.com/watch?v=CaTF4QZ94Fk&list=PLF1A950040024A1ED&index=3) Pauli matrices $$\sigma_1, \sigma_2, \sigma_3$$. Spin. Pauli matrices action on basis: $$\sigma_1 \ket{u} = \ket{d}$$, $$\sigma_1 \ket{d} = \ket{u}$$, $$\sigma_2 \ket{u} = i \ket{d}$$, $$\sigma_2 \ket{d} = - i \ket{u}$$, $$\sigma_3 \ket{u} = \ket{u}$$, $$\sigma_3 \ket{d} = - \ket{d}$$. Probabilistic interpretation. Each spin corresponds to a spin direction in space.
     * [Lecture 4](https://www.youtube.com/watch?v=5vfo512fvlE&t=3220s) Probabilities between any two spin directions. There always exist a direction for which a vector is an eigenvector of measuring spin in that direction. Spin state of two electrons. They have six not four degrees of freedom. Product spins. Quantum entagled pair of electrons. How to create an entangled pair - the singlet state.
     * [Lecture 5](https://www.youtube.com/watch?v=XlLsTaJn9AQ)
     * [Lecture 6](https://www.youtube.com/watch?v=xXBx8_19nyw)
