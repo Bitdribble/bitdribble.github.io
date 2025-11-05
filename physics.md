@@ -100,7 +100,7 @@ title: Physics
     * [Lecture 2](https://www.youtube.com/watch?v=VtBRKw1Ab7E&list=PL6i60qoDQhQGaGbbg-4aSwXJvxOqO6o5e&index=21): Electron spin. Complex vector spaces. Bra-kets. Basis $$\ket{u}, \ket{d}$$. Quantum bit. Invariance to multiplication by complex scalar. Hermitian matrices as observables.
     * [Lecture 3](https://www.youtube.com/watch?v=CaTF4QZ94Fk&list=PLF1A950040024A1ED&index=3) Pauli matrices $$\sigma_1, \sigma_2, \sigma_3$$. Spin. Pauli matrices action on basis: $$\sigma_1 \ket{u} = \ket{d}$$, $$\sigma_1 \ket{d} = \ket{u}$$, $$\sigma_2 \ket{u} = i \ket{d}$$, $$\sigma_2 \ket{d} = - i \ket{u}$$, $$\sigma_3 \ket{u} = \ket{u}$$, $$\sigma_3 \ket{d} = - \ket{d}$$. Probabilistic interpretation. Each spin corresponds to a spin direction in space.
     * [Lecture 4](https://www.youtube.com/watch?v=5vfo512fvlE&t=3220s) Probabilities between any two spin directions. There always exist a direction for which a vector is an eigenvector of measuring spin in that direction. Spin state of two electrons. They have six not four degrees of freedom. Product spins. Quantum entagled pair of electrons. How to create an entangled pair - the singlet state.
-    * [Lecture 5](https://www.youtube.com/watch?v=XlLsTaJn9AQ)
+    * [Lecture 5](https://www.youtube.com/watch?v=XlLsTaJn9AQ), [slides](https://drive.google.com/file/d/1GykOKM4tsyWc2A4bT3zayK1oU0R6zEdn/view)
     * [Lecture 6](https://www.youtube.com/watch?v=xXBx8_19nyw)
     * [Lecture 7](https://www.youtube.com/watch?v=F3viANPhfD0)
     * [Lecture 8](https://www.youtube.com/watch?v=C1erB9p5414)
