@@ -161,6 +161,9 @@ title: Physics
 * [Scott Aaronson - Meaning of Life - Quantum Computing](https://www.youtube.com/watch?v=w2PXd46ExiM&list=PLypiXJdtIca7i8IrNye4IenjnUCP9LF35&index=9) (2019)
 * Roger Penrose:
   * [Quantum Theory Is Wrong, Not Einstein](https://www.youtube.com/watch?v=sGm505TFMbU), interview by Curt Jaimungal (2024)
+* [ScienceClick](https://www.youtube.com/@ScienceClicEN)
+  * [What is Spin? A Geometric explanation](https://www.youtube.com/watch?v=pYeRS5a3HbE)
+  * [The Symmetries of the Universe](https://www.youtube.com/watch?v=hF_uHfSoOGA&t=266s)
 
 #### AI in Physics
 * Silviu-Marian Udrescu, Max Tegmark: [AI Feynman: a Physics-Inspired Method for Symbolic Regression](https://arxiv.org/pdf/1905.11481.pdf) (2020)
