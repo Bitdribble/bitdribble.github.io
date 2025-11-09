@@ -165,6 +165,7 @@ title: Physics
   * [What is Spin? A Geometric explanation](https://www.youtube.com/watch?v=pYeRS5a3HbE)
   * [The Symmetries of the Universe](https://www.youtube.com/watch?v=hF_uHfSoOGA&t=266s)
   * [Supersymmetry, explained visually](https://www.youtube.com/watch?v=0GUTJQCeKBE)
+  * [M Theory - Towards a theory of everything?](https://www.youtube.com/watch?v=plU31-qtZ78)
 
 #### AI in Physics
 * Silviu-Marian Udrescu, Max Tegmark: [AI Feynman: a Physics-Inspired Method for Symbolic Regression](https://arxiv.org/pdf/1905.11481.pdf) (2020)
