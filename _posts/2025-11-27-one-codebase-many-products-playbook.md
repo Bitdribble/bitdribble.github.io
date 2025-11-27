@@ -66,25 +66,42 @@ Each product is forked and branded directly in the source code—colors, logos, 
 
 **Lesson**: Vibe coding trades abstraction for speed. When you need a new product, you fork and customize—no config frameworks to fight.
 
-### 3. **Modular AI Workflows**
+### 3. **Modular FastAPI Routes and Next.js Pages**
 
-AI logic is encapsulated in modules:
+The real modularity is in the architectural layers, not abstract AI workflows. Both products share the same foundation with product-specific additions:
 
-```python
-# workflows/document_ai.py
-async def process_document(file_path: str, schema: dict):
-    # DocRouter.AI-specific logic
-    pass
+**Shared Backend Routes** (in both products):
+- `orgs.py`, `users.py`, `oauth.py`, `tokens.py` - Authentication & teams
+- `payments.py` - Stripe billing integration
+- `llm.py` - LLM provider configuration
+- `aws.py`, `emails.py`, `redirect.py` - Core utilities
 
-# workflows/trace_ai.py
-async def analyze_traces(trace_batch: list):
-    # SigAgent.AI-specific logic
-    pass
-```
+**SigAgent-Specific Routes** (monitoring & observability):
+- `claude.py` - Claude trace storage and hooks
+- `telemetry.py` - Agent performance analytics
+- `otlp_http.py`, `otlp_server.py` - OpenTelemetry ingestion
 
-The core platform doesn't care what AI workflow runs—it just meters usage, applies credits, and logs traces. This separation means:
-- Adding a new product = adding a new workflow module.
-- Shared infra (auth, billing, telemetry) stays untouched.
+**DocRouter-Specific Routes** (document processing):
+- `documents.py` - Document upload and management
+- `ocr.py` - AWS Textract integration
+- `forms.py`, `schemas.py`, `prompts.py` - Data extraction configuration
+- `tags.py` - Document categorization
+
+**Shared Frontend Pages** (in both products):
+- `settings/organizations/page.tsx` - Team management
+- `settings/user/profile/page.tsx` - User settings
+- `auth/signin/page.tsx` - Authentication flows
+
+**SigAgent-Specific Pages** (monitoring UI):
+- `orgs/[organizationId]/claude/traces/page.tsx` - Trace viewer
+- `orgs/[organizationId]/telemetry/page.tsx` - Analytics dashboard
+
+**DocRouter-Specific Pages** (document UI):
+- `orgs/[organizationId]/docs/page.tsx` - Document library
+- `orgs/[organizationId]/upload/page.tsx` - File upload
+- `orgs/[organizationId]/forms/[formId]/page.tsx` - Form builder
+
+This modularity means adding a new product = adding new route files and pages specific to that product. The shared infrastructure (auth, billing, MongoDB) stays unchanged.
 
 ### 4. **Open-Source Core, Closed-Source Products**
 
