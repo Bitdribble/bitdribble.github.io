@@ -7,7 +7,7 @@ categories: [ai, webdev, programming]
 
 In the AI era, velocity matters. The faster you can ship products, test monetization strategies, and iterate on customer feedback, the better your odds of finding product-market fit. But building each AI product from scratch—authentication, billing, observability, LLM routing—takes months. What if there was a better way?
 
-We discovered it by accident: one open-source AI SaaS framework that runs in the cloud as paid products and doubles as a vibe-coded consulting software stack. The same codebase powers [SigAgent.AI](https://sigagent.ai) (real-time AI agent monitoring), [DocRouter.AI](https://docrouter.ai) (smart document understanding), and every internal AI portal we deploy at clients.
+Here is our approach: one open-source AI SaaS framework that runs in the cloud as paid products and doubles as a vibe-coded consulting software stack. The same codebase powers [SigAgent.AI](https://sigagent.ai) (real-time AI agent monitoring), [DocRouter.AI](https://docrouter.ai) (smart document understanding), and every internal AI portal we deploy at clients.
 
 This post shares the playbook: how we architected a reusable foundation, what makes it portable across products, and why "one codebase, many products" is the ultimate leverage for AI builders.
 
