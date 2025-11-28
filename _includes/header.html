@@ -342,7 +342,12 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Close menus when clicking outside
   document.addEventListener('click', function(e) {
-    if (!e.target.closest('.dropdown-container') && 
+    // Ignore clicks inside #app (for Excalidraw or other embedded apps)
+    if (e.target.closest('#app')) {
+      return;
+    }
+
+    if (!e.target.closest('.dropdown-container') &&
         !e.target.closest('.mobile-dropdown-container') &&
         !e.target.closest('#mobile-menu-button') &&
         !e.target.closest('#mobile-menu')) {

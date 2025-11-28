@@ -36,7 +36,23 @@ permalink: /excalidraw-demo.html
         position: relative;
         overflow: hidden;
       }
-      
+
+      /* Fix Excalidraw button clicks - SVG children should not intercept clicks */
+      #app button svg,
+      #app button svg * {
+        pointer-events: none;
+      }
+
+      /* Ensure Excalidraw dropdown menus are visible and have high z-index */
+      #app .dropdown-menu,
+      #app .dropdown-menu-container,
+      #app .Island {
+        visibility: visible !important;
+        opacity: 1 !important;
+        display: block !important;
+        pointer-events: auto !important;
+      }
+
       .loading {
         display: flex;
         align-items: center;
