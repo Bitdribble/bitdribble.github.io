@@ -151,8 +151,9 @@ permalink: /excalidraw-demo.html
             // Check if a file parameter is provided in the URL
             const urlParams = new URLSearchParams(window.location.search);
             const filePath = urlParams.get('file');
-            
+
             let initialData = null;
+            let defaultFileName = 'Untitled'; // Default filename
             
             // Helper function to calculate bounds and fit parameters
             function calculateFitToViewport(elements) {
@@ -229,16 +230,23 @@ permalink: /excalidraw-demo.html
                   if (excalidrawData.elements) {
                     const elements = excalidrawData.elements;
                     const existingAppState = excalidrawData.appState || {};
-                    
+
+                    // Extract leaf filename (without path and extension) for default save name
+                    const filePathParts = filePath.split('/');
+                    const leafFileName = filePathParts[filePathParts.length - 1];
+                    // Remove .excalidraw extension if present
+                    defaultFileName = leafFileName.replace(/\.excalidraw$/, '');
+
                     // Calculate fit parameters before creating initialData
                     const fitParams = calculateFitToViewport(elements);
-                    
+
                     // Set initial data with elements AND calculated scroll/zoom
                     initialData = {
                       elements: elements,
                       appState: {
                         ...existingAppState,
                         viewBackgroundColor: existingAppState.viewBackgroundColor || "#ffffff",
+                        name: defaultFileName, // Set default filename for save dialog
                         // Apply calculated fit if available
                         ...(fitParams && {
                           scrollX: fitParams.scrollX,
@@ -249,8 +257,8 @@ permalink: /excalidraw-demo.html
                       files: excalidrawData.files || {},
                       scrollToContent: true // Tell Excalidraw to fit content
                     };
-                    
-                    console.log("Loaded Excalidraw file:", filePath);
+
+                    console.log("Loaded Excalidraw file:", filePath, "- Default save name:", defaultFileName);
                     // Update file info banner
                     const fileInfoBanner = document.getElementById("file-info-banner");
                     const fileInfoText = document.getElementById("file-info-text");
