@@ -302,9 +302,9 @@ Launching SigAgent in 3 weeks (vs. 3 months) enabled earlier revenue, faster ite
 1. **Identify Commodities**: Auth, billing, observability, LLM routing are table stakes
 2. **Build Modular Core**: Invest upfront in reusable infrastructure
 3. **Vibe Code Branding**: Fork repos, search-replace strings, customize in source
-4. **Encapsulate AI Logic**: Keep workflows separate from infrastructure
+4. **Encapsulate UI + AI Logic**: Keep specialized UI and AI workflows separate from infrastructure
 5. **Infrastructure-ize Billing**: Wire Stripe from day one for turnkey monetization
-6. **Open Plumbing, Close AI**: Share infrastructure, protect unique workflows
+6. **Open Plumbing, Close AI**: Share infrastructure, protect unique UI + AI logic
 
 ---
 

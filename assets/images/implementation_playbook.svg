@@ -15,15 +15,6 @@
     <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="130%">
       <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.25"/>
     </filter>
-    <filter id="glowBlue">
-      <feGaussianBlur stdDeviation="2" result="blur"/>
-      <feFlood flood-color="#3b82f6" flood-opacity="0.5"/>
-      <feComposite in2="blur" operator="in"/>
-      <feMerge>
-        <feMergeNode/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
   </defs>
   
   <!-- Background -->
@@ -56,7 +47,7 @@
   </g>
   
   <!-- Arrow 1-2 -->
-  <path d="M 310 167 L 330 167" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 310 167 L 330 167" stroke="#475569" stroke-width="2" fill="none"/>
   <polygon points="328,163 336,167 328,171" fill="#475569"/>
   
   <!-- Step 2 -->
@@ -93,31 +84,32 @@
     <text x="20" y="125" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" font-style="italic">→ Skip config abstraction</text>
   </g>
   
-  <!-- Vertical connector -->
-  <path d="M 720 245 L 720 265" stroke="#475569" stroke-width="2" stroke-dasharray="4,4"/>
+  <!-- Bent arrow from Step 3 to Step 4 -->
+  <path d="M 720 245 L 720 258 Q 720 268 710 268 L 90 268 Q 80 268 80 278 L 80 265" stroke="#475569" stroke-width="2" fill="none" stroke-dasharray="4,4"/>
+  <polygon points="76,270 80,278 84,270" fill="#475569"/>
   
-  <!-- Row 2: Steps 4-6 -->
+  <!-- Row 2: Steps 4-6 (left to right) -->
   <!-- Step 4 -->
-  <g transform="translate(60, 270)" filter="url(#cardShadow)">
+  <g transform="translate(60, 280)" filter="url(#cardShadow)">
     <rect width="240" height="145" rx="12" fill="url(#cardGrad)" stroke="#475569" stroke-width="1"/>
     <rect width="240" height="4" rx="2" fill="#3b82f6"/>
     <g transform="translate(20, 30)">
       <circle cx="18" cy="0" r="16" fill="#3b82f6" opacity="0.15"/>
       <text x="18" y="6" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#3b82f6" text-anchor="middle">04</text>
-      <text x="50" y="5" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#f1f5f9">Encapsulate AI Logic</text>
+      <text x="50" y="5" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#f1f5f9">Encapsulate UI + AI</text>
     </g>
     <line x1="20" y1="55" x2="220" y2="55" stroke="#475569" stroke-width="1"/>
-    <text x="20" y="78" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Keep workflows separate</text>
-    <text x="20" y="96" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">from infrastructure code</text>
+    <text x="20" y="78" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Keep specialized UI and AI</text>
+    <text x="20" y="96" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">logic separate from infra</text>
     <text x="20" y="125" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" font-style="italic">→ Enables clean reuse</text>
   </g>
   
   <!-- Arrow 4-5 -->
-  <path d="M 310 342 L 330 342" stroke="#475569" stroke-width="2" fill="none"/>
-  <polygon points="328,338 336,342 328,346" fill="#475569"/>
+  <path d="M 310 352 L 330 352" stroke="#475569" stroke-width="2" fill="none"/>
+  <polygon points="328,348 336,352 328,356" fill="#475569"/>
   
   <!-- Step 5 -->
-  <g transform="translate(330, 270)" filter="url(#cardShadow)">
+  <g transform="translate(330, 280)" filter="url(#cardShadow)">
     <rect width="240" height="145" rx="12" fill="url(#cardGrad)" stroke="#475569" stroke-width="1"/>
     <rect width="240" height="4" rx="2" fill="#8b5cf6"/>
     <g transform="translate(20, 30)">
@@ -132,11 +124,11 @@
   </g>
   
   <!-- Arrow 5-6 -->
-  <path d="M 580 342 L 600 342" stroke="#475569" stroke-width="2" fill="none"/>
-  <polygon points="598,338 606,342 598,346" fill="#475569"/>
+  <path d="M 580 352 L 600 352" stroke="#475569" stroke-width="2" fill="none"/>
+  <polygon points="598,348 606,352 598,356" fill="#475569"/>
   
   <!-- Step 6 -->
-  <g transform="translate(600, 270)" filter="url(#cardShadow)">
+  <g transform="translate(600, 280)" filter="url(#cardShadow)">
     <rect width="240" height="145" rx="12" fill="url(#cardGrad)" stroke="#475569" stroke-width="1"/>
     <rect width="240" height="4" rx="2" fill="#ec4899"/>
     <g transform="translate(20, 30)">
@@ -146,12 +138,12 @@
     </g>
     <line x1="20" y1="55" x2="220" y2="55" stroke="#475569" stroke-width="1"/>
     <text x="20" y="78" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Share infrastructure openly,</text>
-    <text x="20" y="96" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">protect unique AI workflows</text>
+    <text x="20" y="96" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">protect unique UI + AI logic</text>
     <text x="20" y="125" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" font-style="italic">→ Best of both worlds</text>
   </g>
   
   <!-- Result Banner -->
-  <g transform="translate(60, 440)">
+  <g transform="translate(60, 450)">
     <rect width="780" height="55" rx="10" fill="#1e293b" stroke="url(#accentGrad)" stroke-width="2"/>
     <text x="100" y="33" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#94a3b8">RESULT</text>
     <line x1="160" y1="15" x2="160" y2="40" stroke="#475569" stroke-width="1"/>
