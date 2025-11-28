@@ -56,11 +56,32 @@ Each product is forked and branded directly in the source code—colors, logos, 
 - **Full Control**: No abstraction layer limiting design choices—every pixel is customizable.
 - **Stripe Integration**: Product-specific Stripe metadata tags (`product=sig_agent`, `product=doc_router`) stay in code.
 
-```javascript
-// Example: SigAgent.AI's branding vibe-coded in layout
-<header className="bg-blue-600">
-  <img src="/logos/sigagent.svg" alt="SigAgent.AI" />
-  <h1>Real-Time AI Agent Monitoring</h1>
+```typescript
+// Example: SigAgent.AI's branding vibe-coded in Layout.tsx
+export const metadata = {
+  title: 'SigAgent.AI',
+  description: 'SigAgent.AI is a comprehensive monitoring and telemetry platform...',
+};
+
+// In Layout component:
+<header className="bg-blue-600 border-b border-blue-700">
+  <Link href="/" className="text-xl font-semibold text-white">
+    SigAgent.AI
+  </Link>
+</header>
+
+// Example: DocRouter.AI's branding (same file, different strings)
+export const metadata = {
+  title: 'Smart Document Router',
+  description: 'Smart Document Router',
+};
+
+// In Layout component:
+<header className="bg-blue-600 border-b border-blue-700">
+  <Link href="/" className="text-xl font-semibold text-white">
+    <span className="block sm:hidden">DocRouter.AI</span>
+    <span className="hidden sm:block">Smart Document Router</span>
+  </Link>
 </header>
 ```
 
