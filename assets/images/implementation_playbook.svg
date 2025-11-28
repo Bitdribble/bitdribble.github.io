@@ -151,12 +151,14 @@
     <text x="60" y="30" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#94a3b8">RESULT</text>
     <line x1="120" y1="12" x2="120" y2="38" stroke="#475569" stroke-width="1"/>
     <text x="155" y="30" font-family="system-ui, sans-serif" font-size="13" fill="#f8fafc">3 months</text>
-    <text x="245" y="30" font-family="system-ui, sans-serif" font-size="13" fill="#64748b">→</text>
-    <text x="275" y="30" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#10b981">3 weeks</text>
-    <line x1="360" y1="12" x2="360" y2="38" stroke="#475569" stroke-width="1"/>
-    <text x="395" y="30" font-family="system-ui, sans-serif" font-size="13" fill="#f8fafc">90%+ code reuse</text>
-    <line x1="530" y1="12" x2="530" y2="38" stroke="#475569" stroke-width="1"/>
-    <text x="565" y="30" font-family="system-ui, sans-serif" font-size="13" fill="#f8fafc">Velocity wins in AI</text>
+    <!-- Short arrow -->
+    <line x1="232" y1="25" x2="250" y2="25" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+    <polygon points="248,22 254,25 248,28" fill="#10b981"/>
+    <text x="262" y="30" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#10b981">3 weeks</text>
+    <line x1="370" y1="12" x2="370" y2="38" stroke="#475569" stroke-width="1"/>
+    <text x="405" y="30" font-family="system-ui, sans-serif" font-size="13" fill="#f8fafc">90%+ code reuse</text>
+    <line x1="540" y1="12" x2="540" y2="38" stroke="#475569" stroke-width="1"/>
+    <text x="575" y="30" font-family="system-ui, sans-serif" font-size="13" fill="#f8fafc">Velocity wins in AI</text>
   </g>
   
   <!-- Footer -->
