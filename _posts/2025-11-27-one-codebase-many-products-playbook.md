@@ -103,6 +103,152 @@ The real modularity is in the architectural layers, not abstract AI workflows. B
 
 This modularity means adding a new product = adding new route files and pages specific to that product. The shared infrastructure (auth, billing, MongoDB) stays unchanged.
 
+#### Architecture Comparison
+
+Here's how the two products differ architecturally while sharing the same foundation. Click on either diagram to view full-size:
+
+<div class="architecture-comparison">
+  <div class="arch-diagram" onclick="openArchModal(this)">
+    <img src="/assets/images/sig_agent_architecture.png" alt="SigAgent Architecture">
+  </div>
+  <div class="arch-diagram" onclick="openArchModal(this)">
+    <img src="/assets/images/doc_router_architecture.png" alt="DocRouter Architecture">
+  </div>
+</div>
+
+<div id="archModal" class="arch-modal" onclick="closeArchModal()">
+  <span class="arch-close">&times;</span>
+  <img class="arch-modal-content" id="archModalImg">
+  <div id="archCaption"></div>
+</div>
+
+<style>
+.architecture-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.arch-diagram {
+  cursor: pointer;
+  transition: transform 0.2s;
+  text-align: center;
+}
+
+.arch-diagram:hover {
+  transform: scale(1.02);
+}
+
+.arch-diagram img {
+  width: 100%;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.arch-label {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arch-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.arch-modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 85vh;
+  object-fit: contain;
+  align-self: center;
+}
+
+.arch-close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.arch-close:hover,
+.arch-close:focus {
+  color: #bbb;
+}
+
+#archCaption {
+  margin: 20px auto 0;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+}
+
+@media (max-width: 768px) {
+  .architecture-comparison {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<script>
+function openArchModal(element) {
+  var modal = document.getElementById("archModal");
+  var modalImg = document.getElementById("archModalImg");
+  var captionText = document.getElementById("archCaption");
+
+  modal.style.display = "flex";
+  modalImg.src = element.querySelector('img').src;
+  captionText.innerHTML = element.querySelector('img').alt;
+}
+
+function closeArchModal() {
+  document.getElementById("archModal").style.display = "none";
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+  if (event.key === "Escape") {
+    closeArchModal();
+  }
+});
+</script>
+
+Both architectures share:
+- Next.js frontend with NextAuth authentication
+- FastAPI backend with organization-scoped routes
+- MongoDB for data persistence
+- Python & TypeScript SDKs for programmatic access
+- MCP Server for Claude Code integration
+- CLAUDE.md knowledge base for AI-powered help
+
+The key difference is in the specialized routes and data models:
+- **SigAgent** adds telemetry, traces, and OpenTelemetry endpoints
+- **DocRouter** adds documents, OCR, forms, schemas, and prompts
+
 ### 4. **Open-Source Core, Closed-Source Products**
 
 The platform core is open-source (Apache license), enabling:

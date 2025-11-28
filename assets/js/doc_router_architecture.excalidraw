@@ -1002,7 +1002,7 @@
       "type": "text",
       "version": 69,
       "versionNonce": 1162019407,
-      "isDeleted": false,
+      "isDeleted": true,
       "id": "subtitle",
       "fillStyle": "solid",
       "strokeWidth": 2,
