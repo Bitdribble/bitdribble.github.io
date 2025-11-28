@@ -17,6 +17,18 @@ title: Figma
 * [Vuetify UI Kit for Figma](https://store.vuetifyjs.com/collections/ui-kits/products/vuetify-ui-kit-figma)
 * [Ultimate Figma UiKit For Vuetify](https://store.vuetifyjs.com/products/ultimate-figma-uikit-for-vuetify-1?variant=43418187366622)
 
+#### Tools
+* [figma-linux](https://snapcraft.io/install/figma-linux/fedora): a wrapper around web-based figma, not a standalone app, therefore not that useful
+
+#### Blog Posts
+* [Evan Wallace](https://madebyevan.com/)
+  * [Figma](https://madebyevan.com/figma/)
+  * [WebAssembly cut Figma's load time by 3x](https://madebyevan.com/figma/webassembly-cut-figmas-load-time-by-3x/) (2017)
+  * [Building a professional design tool on the web](https://madebyevan.com/figma/building-a-professional-design-tool-on-the-web/)
+* Easy Logic: [Figma Inside — .fig file analysis](https://easylogic.medium.com/figma-inside-fig-%ED%8C%8C%EC%9D%BC-%EB%B6%84%EC%84%9D-7252bef141da)
+* [Claude Code + Figma MCP Server](https://www.builder.io/blog/claude-code-figma-mcp-server)
+* [Using Claude Code to create designs from screenshots in Figma](https://www.reddit.com/r/ClaudeAI/comments/1lc577c/using_claude_code_to_create_designs_from/)
+
 #### Features
 * Collaborative design in real-time
 * Vector graphics editing
