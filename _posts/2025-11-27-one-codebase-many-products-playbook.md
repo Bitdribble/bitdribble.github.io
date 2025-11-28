@@ -66,43 +66,6 @@ Each product is forked and branded directly in the source code—colors, logos, 
 
 **Lesson**: Vibe coding trades abstraction for speed. When you need a new product, you fork and customize—no config frameworks to fight.
 
-### 3. **Modular FastAPI Routes and Next.js Pages**
-
-The real modularity is in the architectural layers, not abstract AI workflows. Both products share the same foundation with product-specific additions:
-
-**Shared Backend Routes** (in both products):
-- `orgs.py`, `users.py`, `oauth.py`, `tokens.py` - Authentication & teams
-- `payments.py` - Stripe billing integration
-- `llm.py` - LLM provider configuration
-- `aws.py`, `emails.py`, `redirect.py` - Core utilities
-
-**SigAgent-Specific Routes** (monitoring & observability):
-- `claude.py` - Claude trace storage and hooks
-- `telemetry.py` - Agent performance analytics
-- `otlp_http.py`, `otlp_server.py` - OpenTelemetry ingestion
-
-**DocRouter-Specific Routes** (document processing):
-- `documents.py` - Document upload and management
-- `ocr.py` - AWS Textract integration
-- `forms.py`, `schemas.py`, `prompts.py` - Data extraction configuration
-- `tags.py` - Document categorization
-
-**Shared Frontend Pages** (in both products):
-- `settings/organizations/page.tsx` - Team management
-- `settings/user/profile/page.tsx` - User settings
-- `auth/signin/page.tsx` - Authentication flows
-
-**SigAgent-Specific Pages** (monitoring UI):
-- `orgs/[organizationId]/claude/traces/page.tsx` - Trace viewer
-- `orgs/[organizationId]/telemetry/page.tsx` - Analytics dashboard
-
-**DocRouter-Specific Pages** (document UI):
-- `orgs/[organizationId]/docs/page.tsx` - Document library
-- `orgs/[organizationId]/upload/page.tsx` - File upload
-- `orgs/[organizationId]/forms/[formId]/page.tsx` - Form builder
-
-This modularity means adding a new product = adding new route files and pages specific to that product. The shared infrastructure (auth, billing, MongoDB) stays unchanged.
-
 #### Architecture Comparison
 
 Here's how the two products differ architecturally while sharing the same foundation. Click on either diagram to view full-size:
@@ -249,7 +212,7 @@ The key difference is in the specialized routes and data models:
 - **SigAgent** adds telemetry, traces, and OpenTelemetry endpoints
 - **DocRouter** adds documents, OCR, forms, schemas, and prompts
 
-### 4. **Open-Source Core, Closed-Source Products**
+### 3. **Open-Source Core, Closed-Source Products**
 
 The platform core is open-source (Apache license), enabling:
 - Community contributions (e.g., new LLM providers, auth integrations).
