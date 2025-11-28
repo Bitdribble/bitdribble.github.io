@@ -34,7 +34,7 @@
         continue;
       }
       
-      // Export to SVG with padding to ensure content is centered and has breathing room
+      // Export to SVG with minimal padding to reduce white space
       const svg = await exportToSvg({
         elements: elements,
         appState: {
@@ -43,21 +43,21 @@
           viewBackgroundColor: appState.viewBackgroundColor || "#ffffff"
         },
         files: excalidrawData.files || {},
-        exportPadding: 20 // Add padding around the content
+        exportPadding: 5 // Minimal padding around the content
       });
       
       // Get the SVG's viewBox to understand the content dimensions
       const viewBox = svg.getAttribute('viewBox');
       
-      // Set SVG attributes for proper scaling and centering
+      // Set SVG attributes for proper scaling with minimal white space
       svg.setAttribute('width', '100%');
       svg.setAttribute('height', 'auto');
       svg.style.maxWidth = '100%';
       svg.style.height = 'auto';
       svg.style.display = 'block';
-      svg.style.margin = '0 auto'; // Center the SVG horizontally
+      svg.style.margin = '0'; // Remove margins to reduce white space
       
-      // If we have a viewBox, ensure preserveAspectRatio is set for proper centering
+      // If we have a viewBox, ensure preserveAspectRatio is set
       if (viewBox) {
         svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       }

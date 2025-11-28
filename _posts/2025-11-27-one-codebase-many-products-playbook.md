@@ -75,8 +75,8 @@ Here's how the two products differ architecturally while sharing the same founda
 <style>
 .architecture-comparison {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  gap: 3rem;
   margin: 2rem 0;
 }
 
@@ -96,16 +96,16 @@ Here's how the two products differ architecturally while sharing the same founda
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   background: white;
-  min-height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
+  overflow: hidden;
+  padding: 0;
 }
 
 .excalidraw-container svg {
   width: 100%;
   height: auto;
   display: block;
+  margin: 0;
 }
 
 .loading-placeholder {
