@@ -281,17 +281,121 @@ When clients need custom AI portals, we fork and customize:
 
 ## Why This Works: Key Lessons
 
-### 1. **Infrastructure is Commodity, Workflows are Unique**
-Every AI product needs auth, billing, observability. Building these repeatedly wastes time. Standardize the core to focus on AI logic and UI—the real differentiators.
+<div class="lessons-container">
 
-### 2. **Vibe Coding Beats Configuration Complexity**
-Over-engineered config systems slow development. Fork repositories and customize directly in source code for full control without abstraction overhead.
+<div class="lesson-card lesson-odd">
+<div class="lesson-header">
+<span class="lesson-num">1</span>
+<span class="lesson-title">Infrastructure is Commodity, Workflows are Unique</span>
+</div>
+<ul class="lesson-list">
+<li>Every AI product needs auth, billing, observability</li>
+<li>Building these repeatedly wastes time</li>
+<li>Standardize the core to focus on AI logic and UI—the real differentiators</li>
+</ul>
+</div>
 
-### 3. **Open Core + Closed Workflows = Perfect Balance**
-Open-source infrastructure attracts contributors and builds trust. Closed AI workflows preserve competitive advantages.
+<div class="lesson-card lesson-even">
+<div class="lesson-header">
+<span class="lesson-num">2</span>
+<span class="lesson-title">Vibe Coding Beats Configuration Complexity</span>
+</div>
+<ul class="lesson-list">
+<li>Over-engineered config systems slow development</li>
+<li>Fork repositories and customize directly in source code</li>
+<li>Full control without abstraction overhead</li>
+</ul>
+</div>
 
-### 4. **Speed Compounds in AI**
-Launching SigAgent in 3 weeks (vs. 3 months) enabled earlier revenue, faster iteration, and market advantage. Velocity is a multiplier in AI's fast-moving landscape.
+<div class="lesson-card lesson-odd">
+<div class="lesson-header">
+<span class="lesson-num">3</span>
+<span class="lesson-title">Open Core + Closed Workflows = Perfect Balance</span>
+</div>
+<ul class="lesson-list">
+<li>Open-source infrastructure attracts contributors and builds trust</li>
+<li>Closed AI workflows preserve competitive advantages</li>
+</ul>
+</div>
+
+<div class="lesson-card lesson-even">
+<div class="lesson-header">
+<span class="lesson-num">4</span>
+<span class="lesson-title">Speed Compounds in AI</span>
+</div>
+<ul class="lesson-list">
+<li>Launching SigAgent in 3 weeks (vs. 3 months) enabled earlier revenue</li>
+<li>Faster iteration and market advantage</li>
+<li>Velocity is a multiplier in AI's fast-moving landscape</li>
+</ul>
+</div>
+
+</div>
+
+<style>
+.lessons-container {
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.lesson-card {
+  padding: 1.5rem;
+}
+
+.lesson-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.lesson-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  min-width: 2rem;
+  background-color: #3b82f6;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.lesson-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.3;
+}
+
+.lesson-list {
+  margin: 0 0 0 3rem;
+  padding: 0;
+  list-style: disc;
+  color: #475569;
+}
+
+.lesson-list li {
+  margin-bottom: 0.4rem;
+  line-height: 1.5;
+}
+
+.lesson-list li:last-child {
+  margin-bottom: 0;
+}
+
+.lesson-odd {
+  background-color: #f8fafc;
+}
+
+.lesson-even {
+  background-color: #ffffff;
+}
+</style>
 
 ---
 
