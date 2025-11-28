@@ -61,7 +61,7 @@ title: Excalidraw
 * Uses ES modules and import maps (works in modern browsers)
 * Files created:
   * `packages/excalidraw/index.js` - Initialization script
-  * `excalidraw-demo.html` - Standalone demo page
+  * `excalidraw-edit.html` - Standalone editor page
 * Usage:
   ```html
   <!DOCTYPE html>
@@ -94,24 +94,24 @@ title: Excalidraw
     </body>
   </html>
   ```
-* Demo page: Visit `/excalidraw-demo.html` after deployment
+* Demo page: Visit `/excalidraw-edit` after deployment
 * Loading Excalidraw files: Add a `?file=` parameter to load existing `.excalidraw` files:
   ```html
   <!-- Load a specific Excalidraw file -->
-  <iframe 
-    src="/excalidraw-demo.html?file=/assets/js/sig_agent_architecture.excalidraw" 
-    width="100%" 
-    height="600px" 
+  <iframe
+    src="/excalidraw-edit?file=/assets/js/sig_agent_architecture.excalidraw"
+    width="100%"
+    height="600px"
     frameborder="0"
     style="border: 1px solid #e0e0e0; border-radius: 8px;">
   </iframe>
   ```
 * Embedding in Jekyll pages: Use an iframe to embed the interactive editor:
   ```html
-  <iframe 
-    src="/excalidraw-demo.html" 
-    width="100%" 
-    height="600px" 
+  <iframe
+    src="/excalidraw-edit"
+    width="100%"
+    height="600px"
     frameborder="0"
     style="border: 1px solid #e0e0e0; border-radius: 8px;">
   </iframe>

@@ -55,7 +55,7 @@ Here's how the two products differ architecturally while sharing the same founda
       <div class="loading-placeholder">Loading diagram...</div>
     </div>
     <div class="arch-label">
-      <a href="/excalidraw-demo.html?file=/assets/js/sig_agent_architecture.excalidraw" target="_blank" style="color: #2563eb; text-decoration: none; font-weight: 500;">
+      <a href="/excalidraw-edit?file=/assets/js/sig_agent_architecture.excalidraw" target="_blank" style="color: #2563eb; text-decoration: none; font-weight: 500;">
         📝 Edit in Excalidraw
       </a>
     </div>
@@ -65,7 +65,7 @@ Here's how the two products differ architecturally while sharing the same founda
       <div class="loading-placeholder">Loading diagram...</div>
     </div>
     <div class="arch-label">
-      <a href="/excalidraw-demo.html?file=/assets/js/doc_router_architecture.excalidraw" target="_blank" style="color: #2563eb; text-decoration: none; font-weight: 500;">
+      <a href="/excalidraw-edit?file=/assets/js/doc_router_architecture.excalidraw" target="_blank" style="color: #2563eb; text-decoration: none; font-weight: 500;">
         📝 Edit in Excalidraw
       </a>
     </div>
