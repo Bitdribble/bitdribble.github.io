@@ -5,9 +5,11 @@ permalink: /excalidraw-demo.html
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Excalidraw in browser - GitHub Pages Demo</title>
+    <title>Excalidraw Editor - {{ site.title | escape }}</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    {%- include head.html -%}
     
     <!-- Excalidraw CSS -->
     <link
@@ -15,48 +17,24 @@ permalink: /excalidraw-demo.html
       href="https://esm.sh/@excalidraw/excalidraw@0.18.0/dist/dev/index.css"
     />
     
-    <!-- Custom styles -->
+    <!-- Custom styles for Excalidraw page -->
     <style>
       body {
         margin: 0;
         padding: 0;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-          sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-      
-      .container {
+        height: 100vh;
         display: flex;
         flex-direction: column;
-        height: 100vh;
+        overflow: hidden;
       }
       
-      .header {
-        padding: 1rem 2rem;
-        background: #fff;
-        border-bottom: 1px solid #e0e0e0;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-      
-      .header h1 {
-        margin: 0;
-        font-size: 1.5rem;
-        color: #333;
-      }
-      
-      .header p {
-        margin: 0.5rem 0 0 0;
-        font-size: 0.9rem;
-        color: #666;
-      }
-      
+      /* Excalidraw container takes remaining space */
       #app {
         flex: 1;
         width: 100%;
         height: 100%;
         position: relative;
+        overflow: hidden;
       }
       
       .loading {
@@ -75,6 +53,20 @@ permalink: /excalidraw-demo.html
         border: 1px solid #ef5350;
         border-radius: 4px;
         margin: 2rem;
+      }
+      
+      /* File info banner - minimal, below header */
+      .file-info-banner {
+        background: #f8f9fa;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        color: #666;
+        text-align: center;
+      }
+      
+      .file-info-banner.hidden {
+        display: none;
       }
     </style>
     
@@ -103,15 +95,17 @@ permalink: /excalidraw-demo.html
       }
     </script>
   </head>
-  <body>
-    <div class="container">
-      <div class="header">
-        <h1>Excalidraw Embed Example</h1>
-        <p id="file-info"></p>
-      </div>
-      <div id="app">
-        <div class="loading">Loading Excalidraw...</div>
-      </div>
+  <body class="bg-gray-50 text-gray-700 font-sans antialiased">
+    {%- include header.html -%}
+    
+    <!-- File info banner -->
+    <div id="file-info-banner" class="file-info-banner hidden">
+      <span id="file-info-text"></span>
+    </div>
+    
+    <!-- Excalidraw canvas -->
+    <div id="app">
+      <div class="loading">Loading Excalidraw...</div>
     </div>
     
     <!-- Excalidraw initialization script -->
@@ -158,10 +152,12 @@ permalink: /excalidraw-demo.html
                       files: excalidrawData.files || {}
                     };
                     console.log("Loaded Excalidraw file:", filePath);
-                    // Update header to show loaded file
-                    const fileInfo = document.getElementById("file-info");
-                    if (fileInfo) {
-                      fileInfo.textContent = `Loaded: ${filePath}`;
+                    // Update file info banner
+                    const fileInfoBanner = document.getElementById("file-info-banner");
+                    const fileInfoText = document.getElementById("file-info-text");
+                    if (fileInfoBanner && fileInfoText) {
+                      fileInfoText.textContent = `Editing: ${filePath}`;
+                      fileInfoBanner.classList.remove("hidden");
                     }
                   } else {
                     console.warn("Excalidraw file format not recognized:", filePath);
