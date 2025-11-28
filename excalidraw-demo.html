@@ -138,6 +138,71 @@ permalink: /excalidraw-demo.html
             
             let initialData = null;
             
+            // Helper function to calculate bounds and fit parameters
+            function calculateFitToViewport(elements) {
+              const visibleElements = elements.filter(el => !el.isDeleted);
+              if (visibleElements.length === 0) return null;
+              
+              // Calculate bounding box
+              let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+              
+              visibleElements.forEach(el => {
+                const x1 = el.x || 0;
+                const y1 = el.y || 0;
+                const x2 = x1 + (el.width || 0);
+                const y2 = y1 + (el.height || 0);
+                
+                // Handle lines/arrows with points
+                if (el.points && el.points.length > 0) {
+                  el.points.forEach(p => {
+                    minX = Math.min(minX, (el.x || 0) + p[0]);
+                    minY = Math.min(minY, (el.y || 0) + p[1]);
+                    maxX = Math.max(maxX, (el.x || 0) + p[0]);
+                    maxY = Math.max(maxY, (el.y || 0) + p[1]);
+                  });
+                } else {
+                  minX = Math.min(minX, x1);
+                  minY = Math.min(minY, y1);
+                  maxX = Math.max(maxX, x2);
+                  maxY = Math.max(maxY, y2);
+                }
+              });
+              
+              // Get viewport dimensions (estimate based on window size minus header/toolbar)
+              const headerHeight = 60; // Approximate header height
+              const fileBannerHeight = 40; // File info banner
+              const toolbarHeight = 60; // Excalidraw toolbar
+              const bottomBarHeight = 50; // Bottom zoom controls
+              const viewportWidth = window.innerWidth;
+              const viewportHeight = window.innerHeight - headerHeight - fileBannerHeight - toolbarHeight - bottomBarHeight;
+              
+              // Calculate content dimensions with padding
+              const padding = 60;
+              const contentWidth = maxX - minX + padding * 2;
+              const contentHeight = maxY - minY + padding * 2;
+              const centerX = (minX + maxX) / 2;
+              const centerY = (minY + maxY) / 2;
+              
+              // Calculate zoom to fit (don't zoom past 100%)
+              const zoomX = viewportWidth / contentWidth;
+              const zoomY = viewportHeight / contentHeight;
+              const zoom = Math.min(zoomX, zoomY, 1) * 0.85; // 85% to leave margin
+              
+              // Calculate scroll to center content
+              // In Excalidraw: scrollX/Y positions the viewport relative to content
+              const scrollX = viewportWidth / (2 * zoom) - centerX;
+              const scrollY = viewportHeight / (2 * zoom) - centerY;
+              
+              console.log("Calculated fit:", {
+                bounds: { minX, minY, maxX, maxY },
+                content: { width: contentWidth, height: contentHeight, centerX, centerY },
+                viewport: { width: viewportWidth, height: viewportHeight },
+                result: { zoom, scrollX, scrollY }
+              });
+              
+              return { zoom, scrollX, scrollY };
+            }
+            
             // Load Excalidraw file if specified
             if (filePath) {
               try {
@@ -146,11 +211,29 @@ permalink: /excalidraw-demo.html
                   const excalidrawData = await response.json();
                   // Excalidraw files can have different structures
                   if (excalidrawData.elements) {
+                    const elements = excalidrawData.elements;
+                    const existingAppState = excalidrawData.appState || {};
+                    
+                    // Calculate fit parameters before creating initialData
+                    const fitParams = calculateFitToViewport(elements);
+                    
+                    // Set initial data with elements AND calculated scroll/zoom
                     initialData = {
-                      elements: excalidrawData.elements,
-                      appState: excalidrawData.appState || {},
-                      files: excalidrawData.files || {}
+                      elements: elements,
+                      appState: {
+                        ...existingAppState,
+                        viewBackgroundColor: existingAppState.viewBackgroundColor || "#ffffff",
+                        // Apply calculated fit if available
+                        ...(fitParams && {
+                          scrollX: fitParams.scrollX,
+                          scrollY: fitParams.scrollY,
+                          zoom: { value: fitParams.zoom }
+                        })
+                      },
+                      files: excalidrawData.files || {},
+                      scrollToContent: true // Tell Excalidraw to fit content
                     };
+                    
                     console.log("Loaded Excalidraw file:", filePath);
                     // Update file info banner
                     const fileInfoBanner = document.getElementById("file-info-banner");
@@ -172,11 +255,20 @@ permalink: /excalidraw-demo.html
             
             // Create React root and render Excalidraw
             const root = ReactDOM.createRoot(appElement);
+            
+            // Store ref to access Excalidraw API
+            let excalidrawAPI = null;
+            
             root.render(
               React.createElement(Excalidraw, {
+                excalidrawAPI: (api) => {
+                  excalidrawAPI = api;
+                  console.log("Excalidraw API ready");
+                },
                 initialData: initialData,
                 onChange: (elements, appState, files) => {
-                  console.log("Excalidraw changed", { elements, appState, files });
+                  // Optional: log changes for debugging
+                  // console.log("Excalidraw changed", { elements, appState, files });
                 },
                 onCollabButtonClick: () => {
                   window.alert("Collaboration feature can be implemented here");

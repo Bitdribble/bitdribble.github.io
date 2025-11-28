@@ -20,6 +20,7 @@ title: Figma
 #### Tools
 * [figma-linux](https://snapcraft.io/install/figma-linux/fedora): Unofficial Electron wrapper for Linux (Fedora, Ubuntu, etc.). Available via Snap, Flatpak, RPM, or AppImage. Requires Figma account. Provides desktop app experience but is a wrapper around the web version, not a native app. Mixed reviews on performance.
 * [Figma API](https://www.figma.com/developers/api): REST API for programmatically exporting frames as PNG/SVG, accessing file data, and automating workflows. Requires personal access token.
+* [Figma Make: Create with AI-Powered Design Tools](https://www.figma.com/make/)
 * [Export Plugins](https://www.figma.com/community): Community plugins for batch exporting (PNG/SVG) and automation
 * Conversion Tools:
   * Built-in export panel in Figma (PNG/SVG/PDF)

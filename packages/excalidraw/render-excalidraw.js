@@ -25,8 +25,8 @@
       
       const excalidrawData = await response.json();
       
-      // Extract elements and appState
-      const elements = excalidrawData.elements || [];
+      // Extract elements and appState (filter out deleted elements)
+      const elements = (excalidrawData.elements || []).filter(el => !el.isDeleted);
       const appState = excalidrawData.appState || {};
       
       if (elements.length === 0) {
@@ -34,17 +34,33 @@
         continue;
       }
       
-      // Export to SVG
+      // Export to SVG with padding to ensure content is centered and has breathing room
       const svg = await exportToSvg({
         elements: elements,
-        appState: appState,
-        files: excalidrawData.files || {}
+        appState: {
+          ...appState,
+          exportWithDarkMode: false,
+          viewBackgroundColor: appState.viewBackgroundColor || "#ffffff"
+        },
+        files: excalidrawData.files || {},
+        exportPadding: 20 // Add padding around the content
       });
       
-      // Set SVG attributes for proper scaling
+      // Get the SVG's viewBox to understand the content dimensions
+      const viewBox = svg.getAttribute('viewBox');
+      
+      // Set SVG attributes for proper scaling and centering
       svg.setAttribute('width', '100%');
       svg.setAttribute('height', 'auto');
-      svg.setAttribute('style', 'max-width: 100%; height: auto;');
+      svg.style.maxWidth = '100%';
+      svg.style.height = 'auto';
+      svg.style.display = 'block';
+      svg.style.margin = '0 auto'; // Center the SVG horizontally
+      
+      // If we have a viewBox, ensure preserveAspectRatio is set for proper centering
+      if (viewBox) {
+        svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      }
       
       // Replace the element's content with the SVG
       element.innerHTML = '';
