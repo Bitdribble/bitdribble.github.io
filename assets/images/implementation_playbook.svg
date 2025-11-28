@@ -15,6 +15,13 @@
     <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="130%">
       <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.25"/>
     </filter>
+    <!-- Arrow marker -->
+    <marker id="arrowHead" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#64748b"/>
+    </marker>
+    <marker id="arrowHeadDown" markerWidth="10" markerHeight="10" refX="5" refY="9" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 5 10 L 10 0 Z" fill="#64748b"/>
+    </marker>
   </defs>
   
   <!-- Background -->
@@ -33,117 +40,112 @@
   <!-- Row 1: Steps 1-3 -->
   <!-- Step 1 -->
   <g transform="translate(60, 95)" filter="url(#cardShadow)">
-    <rect width="240" height="145" rx="12" fill="url(#cardGrad)" stroke="#475569" stroke-width="1"/>
-    <rect width="240" height="4" rx="2" fill="#ef4444"/>
+    <rect width="230" height="140" rx="12" fill="url(#cardGrad)" stroke="#475569" stroke-width="1"/>
+    <rect width="230" height="4" rx="2" fill="#ef4444"/>
     <g transform="translate(20, 30)">
       <circle cx="18" cy="0" r="16" fill="#ef4444" opacity="0.15"/>
       <text x="18" y="6" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#ef4444" text-anchor="middle">01</text>
       <text x="50" y="5" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#f1f5f9">Identify Commodities</text>
     </g>
-    <line x1="20" y1="55" x2="220" y2="55" stroke="#475569" stroke-width="1"/>
+    <line x1="20" y1="55" x2="210" y2="55" stroke="#475569" stroke-width="1"/>
     <text x="20" y="78" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Auth, billing, observability,</text>
     <text x="20" y="96" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">LLM routing are table stakes</text>
-    <text x="20" y="125" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" font-style="italic">→ Not differentiators</text>
+    <text x="20" y="122" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" font-style="italic">→ Not differentiators</text>
   </g>
   
   <!-- Arrow 1-2 -->
-  <path d="M 310 167 L 330 167" stroke="#475569" stroke-width="2" fill="none"/>
-  <polygon points="328,163 336,167 328,171" fill="#475569"/>
+  <line x1="290" y1="165" x2="330" y2="165" stroke="#64748b" stroke-width="2" marker-end="url(#arrowHead)"/>
   
   <!-- Step 2 -->
-  <g transform="translate(330, 95)" filter="url(#cardShadow)">
-    <rect width="240" height="145" rx="12" fill="url(#cardGrad)" stroke="#475569" stroke-width="1"/>
-    <rect width="240" height="4" rx="2" fill="#f59e0b"/>
+  <g transform="translate(335, 95)" filter="url(#cardShadow)">
+    <rect width="230" height="140" rx="12" fill="url(#cardGrad)" stroke="#475569" stroke-width="1"/>
+    <rect width="230" height="4" rx="2" fill="#f59e0b"/>
     <g transform="translate(20, 30)">
       <circle cx="18" cy="0" r="16" fill="#f59e0b" opacity="0.15"/>
       <text x="18" y="6" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#f59e0b" text-anchor="middle">02</text>
       <text x="50" y="5" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#f1f5f9">Build Modular Core</text>
     </g>
-    <line x1="20" y1="55" x2="220" y2="55" stroke="#475569" stroke-width="1"/>
+    <line x1="20" y1="55" x2="210" y2="55" stroke="#475569" stroke-width="1"/>
     <text x="20" y="78" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Invest upfront in reusable</text>
     <text x="20" y="96" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">infrastructure components</text>
-    <text x="20" y="125" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" font-style="italic">→ Future products are forks</text>
+    <text x="20" y="122" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" font-style="italic">→ Future products are forks</text>
   </g>
   
   <!-- Arrow 2-3 -->
-  <path d="M 580 167 L 600 167" stroke="#475569" stroke-width="2" fill="none"/>
-  <polygon points="598,163 606,167 598,171" fill="#475569"/>
+  <line x1="565" y1="165" x2="605" y2="165" stroke="#64748b" stroke-width="2" marker-end="url(#arrowHead)"/>
   
   <!-- Step 3 -->
-  <g transform="translate(600, 95)" filter="url(#cardShadow)">
-    <rect width="240" height="145" rx="12" fill="url(#cardGrad)" stroke="#475569" stroke-width="1"/>
-    <rect width="240" height="4" rx="2" fill="#10b981"/>
+  <g transform="translate(610, 95)" filter="url(#cardShadow)">
+    <rect width="230" height="140" rx="12" fill="url(#cardGrad)" stroke="#475569" stroke-width="1"/>
+    <rect width="230" height="4" rx="2" fill="#10b981"/>
     <g transform="translate(20, 30)">
       <circle cx="18" cy="0" r="16" fill="#10b981" opacity="0.15"/>
       <text x="18" y="6" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#10b981" text-anchor="middle">03</text>
       <text x="50" y="5" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#f1f5f9">Vibe Code Branding</text>
     </g>
-    <line x1="20" y1="55" x2="220" y2="55" stroke="#475569" stroke-width="1"/>
+    <line x1="20" y1="55" x2="210" y2="55" stroke="#475569" stroke-width="1"/>
     <text x="20" y="78" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Fork repos, search-replace</text>
     <text x="20" y="96" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">strings, customize in source</text>
-    <text x="20" y="125" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" font-style="italic">→ Skip config abstraction</text>
+    <text x="20" y="122" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" font-style="italic">→ Skip config abstraction</text>
   </g>
   
-  <!-- Bent arrow from Step 3 to Step 4 -->
-  <path d="M 720 245 L 720 258 Q 720 268 710 268 L 90 268 Q 80 268 80 278 L 80 265" stroke="#475569" stroke-width="2" fill="none" stroke-dasharray="4,4"/>
-  <polygon points="76,270 80,278 84,270" fill="#475569"/>
+  <!-- Snake arrow from Step 3 to Step 4 -->
+  <path d="M 725 235 L 725 255 L 175 255 L 175 275" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrowHeadDown)"/>
   
   <!-- Row 2: Steps 4-6 (left to right) -->
   <!-- Step 4 -->
   <g transform="translate(60, 280)" filter="url(#cardShadow)">
-    <rect width="240" height="145" rx="12" fill="url(#cardGrad)" stroke="#475569" stroke-width="1"/>
-    <rect width="240" height="4" rx="2" fill="#3b82f6"/>
+    <rect width="230" height="140" rx="12" fill="url(#cardGrad)" stroke="#475569" stroke-width="1"/>
+    <rect width="230" height="4" rx="2" fill="#3b82f6"/>
     <g transform="translate(20, 30)">
       <circle cx="18" cy="0" r="16" fill="#3b82f6" opacity="0.15"/>
       <text x="18" y="6" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#3b82f6" text-anchor="middle">04</text>
       <text x="50" y="5" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#f1f5f9">Encapsulate UI + AI</text>
     </g>
-    <line x1="20" y1="55" x2="220" y2="55" stroke="#475569" stroke-width="1"/>
+    <line x1="20" y1="55" x2="210" y2="55" stroke="#475569" stroke-width="1"/>
     <text x="20" y="78" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Keep specialized UI and AI</text>
     <text x="20" y="96" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">logic separate from infra</text>
-    <text x="20" y="125" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" font-style="italic">→ Enables clean reuse</text>
+    <text x="20" y="122" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" font-style="italic">→ Enables clean reuse</text>
   </g>
   
   <!-- Arrow 4-5 -->
-  <path d="M 310 352 L 330 352" stroke="#475569" stroke-width="2" fill="none"/>
-  <polygon points="328,348 336,352 328,356" fill="#475569"/>
+  <line x1="290" y1="350" x2="330" y2="350" stroke="#64748b" stroke-width="2" marker-end="url(#arrowHead)"/>
   
   <!-- Step 5 -->
-  <g transform="translate(330, 280)" filter="url(#cardShadow)">
-    <rect width="240" height="145" rx="12" fill="url(#cardGrad)" stroke="#475569" stroke-width="1"/>
-    <rect width="240" height="4" rx="2" fill="#8b5cf6"/>
+  <g transform="translate(335, 280)" filter="url(#cardShadow)">
+    <rect width="230" height="140" rx="12" fill="url(#cardGrad)" stroke="#475569" stroke-width="1"/>
+    <rect width="230" height="4" rx="2" fill="#8b5cf6"/>
     <g transform="translate(20, 30)">
       <circle cx="18" cy="0" r="16" fill="#8b5cf6" opacity="0.15"/>
       <text x="18" y="6" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#8b5cf6" text-anchor="middle">05</text>
       <text x="50" y="5" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#f1f5f9">Infrastructure-ize Billing</text>
     </g>
-    <line x1="20" y1="55" x2="220" y2="55" stroke="#475569" stroke-width="1"/>
+    <line x1="20" y1="55" x2="210" y2="55" stroke="#475569" stroke-width="1"/>
     <text x="20" y="78" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Wire Stripe from day one</text>
     <text x="20" y="96" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">for turnkey monetization</text>
-    <text x="20" y="125" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" font-style="italic">→ Revenue-ready products</text>
+    <text x="20" y="122" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" font-style="italic">→ Revenue-ready products</text>
   </g>
   
   <!-- Arrow 5-6 -->
-  <path d="M 580 352 L 600 352" stroke="#475569" stroke-width="2" fill="none"/>
-  <polygon points="598,348 606,352 598,356" fill="#475569"/>
+  <line x1="565" y1="350" x2="605" y2="350" stroke="#64748b" stroke-width="2" marker-end="url(#arrowHead)"/>
   
   <!-- Step 6 -->
-  <g transform="translate(600, 280)" filter="url(#cardShadow)">
-    <rect width="240" height="145" rx="12" fill="url(#cardGrad)" stroke="#475569" stroke-width="1"/>
-    <rect width="240" height="4" rx="2" fill="#ec4899"/>
+  <g transform="translate(610, 280)" filter="url(#cardShadow)">
+    <rect width="230" height="140" rx="12" fill="url(#cardGrad)" stroke="#475569" stroke-width="1"/>
+    <rect width="230" height="4" rx="2" fill="#ec4899"/>
     <g transform="translate(20, 30)">
       <circle cx="18" cy="0" r="16" fill="#ec4899" opacity="0.15"/>
       <text x="18" y="6" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#ec4899" text-anchor="middle">06</text>
       <text x="50" y="5" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#f1f5f9">Open Plumbing, Close AI</text>
     </g>
-    <line x1="20" y1="55" x2="220" y2="55" stroke="#475569" stroke-width="1"/>
+    <line x1="20" y1="55" x2="210" y2="55" stroke="#475569" stroke-width="1"/>
     <text x="20" y="78" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Share infrastructure openly,</text>
     <text x="20" y="96" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">protect unique UI + AI logic</text>
-    <text x="20" y="125" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" font-style="italic">→ Best of both worlds</text>
+    <text x="20" y="122" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" font-style="italic">→ Best of both worlds</text>
   </g>
   
   <!-- Result Banner -->
-  <g transform="translate(60, 450)">
+  <g transform="translate(60, 445)">
     <rect width="780" height="55" rx="10" fill="#1e293b" stroke="url(#accentGrad)" stroke-width="2"/>
     <text x="100" y="33" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#94a3b8">RESULT</text>
     <line x1="160" y1="15" x2="160" y2="40" stroke="#475569" stroke-width="1"/>
