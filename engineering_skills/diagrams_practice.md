@@ -5,7 +5,7 @@ mathjax: true
 ---
 
 #### Tools
-* [Excalidraw](https://excalidraw.com/)
+* [Excalidraw](/webdev/excalidraw)
 * [Whiteboard Fox](https://r8.whiteboardfox.com/)
 
 #### System Diagrams

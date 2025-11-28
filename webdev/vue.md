@@ -11,8 +11,9 @@ title: Vue
 #### Books
 
 #### Tools
-* [Vuetify UI Kit for Figma](https://store.vuetifyjs.com/collections/ui-kits/products/vuetify-ui-kit-figma)
-* [Ultimate Figma UiKit For Vuetify](https://store.vuetifyjs.com/products/ultimate-figma-uikit-for-vuetify-1?variant=43418187366622)
+* [Figma](/webdev/figma)
+  * [Vuetify UI Kit for Figma](https://store.vuetifyjs.com/collections/ui-kits/products/vuetify-ui-kit-figma)
+  * [Ultimate Figma UiKit For Vuetify](https://store.vuetifyjs.com/products/ultimate-figma-uikit-for-vuetify-1?variant=43418187366622)
 
 #### Tutorials
 * Travesty Media: [Vue JS Crash Course](https://www.youtube.com/watch?v=qZXt1Aom3Cs) (2021)
@@ -31,10 +32,13 @@ title: Vue
 * [Computational Topology](/computational_topology)
 * [Webdev](/webdev)
   * [Dash](/webdev/dash)
+  * [Excalidraw](/webdev/excalidraw)
+  * [Figma](/webdev/figma)
   * [Gradio](/webdev/gradio)
   * [LabelStudio](/webdev/label_studio)
   * [Next.js](/webdev/next_js)
   * [Remix](/webdev/remix)
   * [Streamlit](/webdev/streamlit)
+  * [SVG](/webdev/svg)
   * [Tailwind](/webdev/tailwind)
   * [Vercel](/webdev/vercel)

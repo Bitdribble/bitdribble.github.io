@@ -26,7 +26,9 @@ title: Webdev
 * [pipedream](https://pipedream.com) - API integration for, e.g., being notified when a tweet with a given hashtag is sent. The tweet can be parsed, saved to a Google sheet, can be translated, etc. Can run python code; you can run langchain. Similar to [zappier](https://zappier.com).
 * [gradio](https://www.gradio.app/)
 * [streamlit](/webdev/streamlit)
-* [figma](figma.com) for web site design/planing
+* [excalidraw](/webdev/excalidraw) - virtual collaborative whiteboard for diagrams
+* [figma](/webdev/figma) - collaborative web application for interface design
+* [svg](/webdev/svg) - scalable vector graphics format
 * AWS Amplify
   * [AWS Amplify in Plain English - Getting Started Tutorial for Beginners](https://www.youtube.com/watch?v=HdCmo0a3ngMe) (2023)
 * Sencha ext.js
@@ -52,6 +54,9 @@ title: Webdev
 * [Computational Topology](/computational_topology)
 * [Webdev](/webdev)
   * [Dash](/webdev/dash)
+  * [Excalidraw](/webdev/excalidraw)
+  * [Figma](/webdev/figma)
   * [Gradio](/webdev/gradio)
   * [Streamlit](/webdev/streamlit)
+  * [SVG](/webdev/svg)
   * [Vercel](/webdev/vercel)
