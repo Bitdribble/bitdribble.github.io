@@ -50,18 +50,22 @@ Each product adds specialized workflows:
 Here's how the two products differ architecturally while sharing the same foundation. Click on either diagram to view full-size:
 
 <div class="architecture-comparison">
-  <div class="arch-diagram" onclick="openArchModal(this)">
+  <div class="arch-diagram">
     <img src="/assets/images/sig_agent_architecture.png" alt="SigAgent Architecture">
+    <div class="arch-label">
+      <a href="/excalidraw-demo.html?file=/assets/js/sig_agent_architecture.excalidraw" target="_blank" style="color: #2563eb; text-decoration: none; font-weight: 500;">
+        📝 Load in Excalidraw
+      </a>
+    </div>
   </div>
-  <div class="arch-diagram" onclick="openArchModal(this)">
+  <div class="arch-diagram">
     <img src="/assets/images/doc_router_architecture.png" alt="DocRouter Architecture">
+    <div class="arch-label">
+      <a href="/excalidraw-demo.html?file=/assets/js/doc_router_architecture.excalidraw" target="_blank" style="color: #2563eb; text-decoration: none; font-weight: 500;">
+        📝 Load in Excalidraw
+      </a>
+    </div>
   </div>
-</div>
-
-<div id="archModal" class="arch-modal" onclick="closeArchModal()">
-  <span class="arch-close">&times;</span>
-  <img class="arch-modal-content" id="archModalImg">
-  <div id="archCaption"></div>
 </div>
 
 <style>
@@ -99,54 +103,8 @@ Here's how the two products differ architecturally while sharing the same founda
   justify-content: center;
 }
 
-.arch-modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.9);
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.arch-modal-content {
-  margin: auto;
-  display: block;
-  max-width: 90%;
-  max-height: 85vh;
-  object-fit: contain;
-  align-self: center;
-}
-
-.arch-close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-  cursor: pointer;
-}
-
-.arch-close:hover,
-.arch-close:focus {
-  color: #bbb;
-}
-
-#archCaption {
-  margin: 20px auto 0;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-  text-align: center;
-  color: #ccc;
-  padding: 10px 0;
+.arch-label a:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -155,29 +113,6 @@ Here's how the two products differ architecturally while sharing the same founda
   }
 }
 </style>
-
-<script>
-function openArchModal(element) {
-  var modal = document.getElementById("archModal");
-  var modalImg = document.getElementById("archModalImg");
-  var captionText = document.getElementById("archCaption");
-
-  modal.style.display = "flex";
-  modalImg.src = element.querySelector('img').src;
-  captionText.innerHTML = element.querySelector('img').alt;
-}
-
-function closeArchModal() {
-  document.getElementById("archModal").style.display = "none";
-}
-
-// Close modal with Escape key
-document.addEventListener('keydown', function(event) {
-  if (event.key === "Escape") {
-    closeArchModal();
-  }
-});
-</script>
 
 Both architectures share:
 - **Next.js** frontend with **NextAuth** authentication
@@ -198,7 +133,7 @@ Products are forked and branded directly in source code—colors, logos, messagi
 - **Full Control**: Every pixel customizable
 - **Stripe Integration**: Product-specific metadata tags (`product=sig_agent`, `product=doc_router`)
 
-```typescript
+```tsx
 // SigAgent.AI branding in Layout.tsx
 export const metadata = {
   title: 'SigAgent.AI',

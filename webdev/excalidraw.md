@@ -10,7 +10,6 @@ title: Excalidraw
 * [GitHub Repository](https://github.com/excalidraw/excalidraw)
 
 #### Tutorials
-* [Getting Started with Excalidraw](https://docs.excalidraw.com/docs/getting-started)
 * [React Integration Guide](https://docs.excalidraw.com/docs/@excalidraw/excalidraw/integration) - Integration with React, Next.js (App Router and Pages Router), and browser usage
 * YouTube: [Excalidraw React Integration Tutorial](https://www.youtube.com/watch?v=pUv_3UmoGYM)
 * YouTube: [Building Collaborative Whiteboard with Excalidraw](https://www.youtube.com/watch?v=LXlE1y5PQsk)
@@ -49,12 +48,80 @@ title: Excalidraw
 * Supports decompression for easier editing in Markdown view
 
 #### Integration with Static Sites (Jekyll/GitHub Pages)
+
+**Option 1: Static Export (Recommended for most cases)**
 * Export diagrams as PNG (for complex visuals) or SVG (for scalable diagrams)
 * Place exports in `assets/images/` directory
 * Embed in Markdown using standard image syntax or HTML with Tailwind classes
-* Can embed interactive Excalidraw via iframe (requires external dependency)
 * JSON format allows programmatic manipulation if needed
 * Simpler integration than Figma - direct export, smaller file sizes
+
+**Option 2: Interactive Browser Integration**
+* Full interactive Excalidraw embedded directly in GitHub Pages
+* Uses ES modules and import maps (works in modern browsers)
+* Files created:
+  * `packages/excalidraw/index.js` - Initialization script
+  * `excalidraw-demo.html` - Standalone demo page
+* Usage:
+  ```html
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>Excalidraw in browser</title>
+      <meta charset="UTF-8" />
+      <link rel="stylesheet" 
+            href="https://esm.sh/@excalidraw/excalidraw@0.18.0/dist/dev/index.css" />
+      <script>
+        window.EXCALIDRAW_ASSET_PATH = "https://esm.sh/@excalidraw/excalidraw@0.18.0/dist/prod/";
+      </script>
+      <script type="importmap">
+        {
+          "imports": {
+            "react": "https://esm.sh/react@19.0.0",
+            "react/jsx-runtime": "https://esm.sh/react@19.0.0/jsx-runtime",
+            "react-dom": "https://esm.sh/react-dom@19.0.0",
+            "react-dom/client": "https://esm.sh/react-dom@19.0.0/client"
+          }
+        }
+      </script>
+    </head>
+    <body>
+      <div class="container">
+        <h1>Excalidraw Embed Example</h1>
+        <div id="app"></div>
+      </div>
+      <script type="module" src="/packages/excalidraw/index.js"></script>
+    </body>
+  </html>
+  ```
+* Demo page: Visit `/excalidraw-demo.html` after deployment
+* Loading Excalidraw files: Add a `?file=` parameter to load existing `.excalidraw` files:
+  ```html
+  <!-- Load a specific Excalidraw file -->
+  <iframe 
+    src="/excalidraw-demo.html?file=/assets/js/sig_agent_architecture.excalidraw" 
+    width="100%" 
+    height="600px" 
+    frameborder="0"
+    style="border: 1px solid #e0e0e0; border-radius: 8px;">
+  </iframe>
+  ```
+* Embedding in Jekyll pages: Use an iframe to embed the interactive editor:
+  ```html
+  <iframe 
+    src="/excalidraw-demo.html" 
+    width="100%" 
+    height="600px" 
+    frameborder="0"
+    style="border: 1px solid #e0e0e0; border-radius: 8px;">
+  </iframe>
+  ```
+* Customization: Edit `packages/excalidraw/index.js` to add features like:
+  * Loading initial drawings from JSON
+  * Saving drawings to localStorage
+  * Export functionality
+  * Collaboration features
+  * Custom event handlers
 
 #### Comparison with Figma
 * **Excalidraw**: Lightweight, hand-drawn style, faster for quick sketches. Simpler integration, smaller file sizes. Better for rapid ideation. JSON format is human-readable and editable

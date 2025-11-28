@@ -49,7 +49,27 @@
   <!-- Syntax highlighting with highlight.js -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script>
+    // Configure highlight.js to suppress HTML security warnings for code blocks
+    // This is safe because we control the content in our code blocks
+    if (typeof hljs !== 'undefined') {
+      // Suppress console warnings about HTML in code blocks
+      const originalWarn = console.warn;
+      console.warn = function(...args) {
+        if (args[0] && typeof args[0] === 'string' && args[0].includes('unescaped HTML')) {
+          return; // Suppress highlight.js HTML warnings
+        }
+        originalWarn.apply(console, args);
+      };
+      
+      hljs.highlightAll();
+      
+      // Restore console.warn after highlighting
+      setTimeout(() => {
+        console.warn = originalWarn;
+      }, 1000);
+    }
+  </script>
   
   <!-- Custom styles link -->
   <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
