@@ -36,10 +36,10 @@ Our platform is built on four principles:
 ### 1. **Shared Core, Custom Workflows**
 
 The core platform provides:
-- **Frontend**: Next.js with NextAuth, Tailwind CSS, and shadcn/ui components.
-- **Backend**: FastAPI with async endpoints, middleware for auth/billing, and webhook handlers.
-- **Database**: MongoDB with schemas for users, organizations, usage logs, and credits.
-- **AI Layer**: LiteLLM for multi-provider LLM routing, with fallbacks and retries.
+- **Frontend**: Next.js with NextAuth and Tailwind CSS.
+- **Backend**: FastAPI.
+- **Database**: MongoDB with schema migration.
+- **AI Layer**: LiteLLM for multi-provider LLM APIs.
 - **Observability**: OpenTelemetry integration for distributed tracing.
 - **Billing**: Stripe for subscriptions, one-time purchases, and usage-based invoicing.
 
@@ -222,12 +222,11 @@ document.addEventListener('keydown', function(event) {
 </script>
 
 Both architectures share:
-- Next.js frontend with NextAuth authentication
-- FastAPI backend with organization-scoped routes
-- MongoDB for data persistence
-- Python & TypeScript SDKs for programmatic access
-- MCP Server for Claude Code integration
-- CLAUDE.md knowledge base for AI-powered help
+- **Next.js** frontend with **NextAuth** authentication
+- **FastAPI** backend integrated with **Stripe** for payments
+- **MongoDB** for data persistence
+- **Rest APIs, Python & TypeScript SDKs*** for programmatic access
+- **MCP Server** and **Claude agent**
 
 The key difference is in the specialized routes and data models:
 - **SigAgent** adds telemetry, traces, and OpenTelemetry endpoints
