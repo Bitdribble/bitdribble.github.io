@@ -1,0 +1,226 @@
+---
+layout: null
+permalink: /excalidraw-demo.html
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Excalidraw in browser - GitHub Pages Demo</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Excalidraw CSS -->
+    <link
+      rel="stylesheet"
+      href="https://esm.sh/@excalidraw/excalidraw@0.18.0/dist/dev/index.css"
+    />
+    
+    <!-- Custom styles -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      .container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+      
+      .header {
+        padding: 1rem 2rem;
+        background: #fff;
+        border-bottom: 1px solid #e0e0e0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      .header h1 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: #333;
+      }
+      
+      .header p {
+        margin: 0.5rem 0 0 0;
+        font-size: 0.9rem;
+        color: #666;
+      }
+      
+      #app {
+        flex: 1;
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+      
+      .loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        font-size: 1.2rem;
+        color: #666;
+      }
+      
+      .error {
+        padding: 2rem;
+        color: #d32f2f;
+        background: #ffebee;
+        border: 1px solid #ef5350;
+        border-radius: 4px;
+        margin: 2rem;
+      }
+    </style>
+    
+    <!-- Set Excalidraw asset path -->
+    <script>
+      window.EXCALIDRAW_ASSET_PATH = "https://esm.sh/@excalidraw/excalidraw@0.18.0/dist/prod/";
+    </script>
+    
+    <!-- Import map for React - must come before any module scripts -->
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@18.3.1",
+          "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
+          "react-dom": "https://esm.sh/react-dom@18.3.1",
+          "react-dom/client": "https://esm.sh/react-dom@18.3.1/client"
+        },
+        "scopes": {
+          "https://esm.sh/": {
+            "react": "https://esm.sh/react@18.3.1",
+            "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
+            "react-dom": "https://esm.sh/react-dom@18.3.1",
+            "react-dom/client": "https://esm.sh/react-dom@18.3.1/client"
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Excalidraw Embed Example</h1>
+        <p id="file-info"></p>
+      </div>
+      <div id="app">
+        <div class="loading">Loading Excalidraw...</div>
+      </div>
+    </div>
+    
+    <!-- Excalidraw initialization script -->
+    <script type="module">
+      // Import React at module level using namespace import
+      import * as React from "react";
+      import * as ReactDOM from "react-dom/client";
+      
+      // Make React available globally immediately
+      window.React = React;
+      window.ReactDOM = ReactDOM;
+      
+      (async () => {
+        try {
+          // Import Excalidraw - the scoped import map should ensure it uses our React
+          const excalidrawModule = await import("https://esm.sh/@excalidraw/excalidraw@0.18.0?external=react,react-dom");
+          const { Excalidraw } = excalidrawModule;
+
+          const appElement = document.getElementById("app");
+          
+          if (!appElement) {
+            console.error("Excalidraw: #app element not found");
+            return;
+          }
+
+          try {
+            // Check if a file parameter is provided in the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const filePath = urlParams.get('file');
+            
+            let initialData = null;
+            
+            // Load Excalidraw file if specified
+            if (filePath) {
+              try {
+                const response = await fetch(filePath);
+                if (response.ok) {
+                  const excalidrawData = await response.json();
+                  // Excalidraw files can have different structures
+                  if (excalidrawData.elements) {
+                    initialData = {
+                      elements: excalidrawData.elements,
+                      appState: excalidrawData.appState || {},
+                      files: excalidrawData.files || {}
+                    };
+                    console.log("Loaded Excalidraw file:", filePath);
+                    // Update header to show loaded file
+                    const fileInfo = document.getElementById("file-info");
+                    if (fileInfo) {
+                      fileInfo.textContent = `Loaded: ${filePath}`;
+                    }
+                  } else {
+                    console.warn("Excalidraw file format not recognized:", filePath);
+                  }
+                } else {
+                  console.error("Failed to load Excalidraw file:", response.statusText);
+                }
+              } catch (error) {
+                console.error("Error loading Excalidraw file:", error);
+              }
+            }
+            
+            // Create React root and render Excalidraw
+            const root = ReactDOM.createRoot(appElement);
+            root.render(
+              React.createElement(Excalidraw, {
+                initialData: initialData,
+                onChange: (elements, appState, files) => {
+                  console.log("Excalidraw changed", { elements, appState, files });
+                },
+                onCollabButtonClick: () => {
+                  window.alert("Collaboration feature can be implemented here");
+                },
+              })
+            );
+            console.log("Excalidraw initialized successfully");
+          } catch (error) {
+            console.error("Error initializing Excalidraw:", error);
+            appElement.innerHTML = `
+              <div class="error">
+                <h2>Error loading Excalidraw</h2>
+                <p><strong>Error:</strong> ${error.message}</p>
+                <p>Please check the browser console (F12) for more details.</p>
+                <p><strong>Stack:</strong></p>
+                <pre style="font-size: 0.8rem; overflow: auto;">${error.stack || 'No stack trace available'}</pre>
+              </div>
+            `;
+          }
+        } catch (error) {
+          console.error("Error loading modules:", error);
+          const appElement = document.getElementById("app");
+          if (appElement) {
+            appElement.innerHTML = `
+              <div class="error">
+                <h2>Error loading Excalidraw modules</h2>
+                <p><strong>Error:</strong> ${error.message}</p>
+                <p>Failed to load required modules. Please check:</p>
+                <ul>
+                  <li>Your internet connection</li>
+                  <li>Browser console for CORS or network errors</li>
+                  <li>That you're using a modern browser with ES module and import map support</li>
+                </ul>
+                <p><strong>Stack:</strong></p>
+                <pre style="font-size: 0.8rem; overflow: auto;">${error.stack || 'No stack trace available'}</pre>
+              </div>
+            `;
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
