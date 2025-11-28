@@ -47,22 +47,26 @@ Each product adds specialized workflows:
 
 #### Architecture Comparison
 
-Here's how the two products differ architecturally while sharing the same foundation. Click on either diagram to view full-size:
+Here's how the two products differ architecturally while sharing the same foundation. These diagrams are rendered directly from Excalidraw files:
 
 <div class="architecture-comparison">
   <div class="arch-diagram">
-    <img src="/assets/images/sig_agent_architecture.png" alt="SigAgent Architecture">
+    <div data-excalidraw="/assets/js/sig_agent_architecture.excalidraw" class="excalidraw-container">
+      <div class="loading-placeholder">Loading diagram...</div>
+    </div>
     <div class="arch-label">
       <a href="/excalidraw-demo.html?file=/assets/js/sig_agent_architecture.excalidraw" target="_blank" style="color: #2563eb; text-decoration: none; font-weight: 500;">
-        📝 Load in Excalidraw
+        📝 Edit in Excalidraw
       </a>
     </div>
   </div>
   <div class="arch-diagram">
-    <img src="/assets/images/doc_router_architecture.png" alt="DocRouter Architecture">
+    <div data-excalidraw="/assets/js/doc_router_architecture.excalidraw" class="excalidraw-container">
+      <div class="loading-placeholder">Loading diagram...</div>
+    </div>
     <div class="arch-label">
       <a href="/excalidraw-demo.html?file=/assets/js/doc_router_architecture.excalidraw" target="_blank" style="color: #2563eb; text-decoration: none; font-weight: 500;">
-        📝 Load in Excalidraw
+        📝 Edit in Excalidraw
       </a>
     </div>
   </div>
@@ -86,11 +90,28 @@ Here's how the two products differ architecturally while sharing the same founda
   transform: scale(1.02);
 }
 
-.arch-diagram img {
+.excalidraw-container {
   width: 100%;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: white;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.excalidraw-container svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.loading-placeholder {
+  color: #666;
+  font-size: 0.9rem;
+  padding: 2rem;
 }
 
 .arch-label {
@@ -113,6 +134,8 @@ Here's how the two products differ architecturally while sharing the same founda
   }
 }
 </style>
+
+<script type="module" src="/packages/excalidraw/render-excalidraw.js"></script>
 
 Both architectures share:
 - **Next.js** frontend with **NextAuth** authentication
