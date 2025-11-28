@@ -237,9 +237,9 @@ export const metadata = {
 
 ## Real-World Applications
 
-### DocRouter.AI: The Foundation (3 months)
+### DocRouter.AI: The Foundation (3 months to develop)
 
-Our first product extracts structured data from documents using LLMs. Built the full infrastructure from scratch:
+Our first product extracts structured data from documents using LLMs. We built the full infrastructure from scratch in 3 months:
 
 **Monetization Model**:
 - **Free Tier**: 100 Service Processing Units (SPUs)
@@ -296,6 +296,8 @@ Launching SigAgent in 3 weeks (vs. 3 months) enabled earlier revenue, faster ite
 ---
 
 ## Your Implementation Playbook
+
+<img src="/assets/images/implementation_playbook.svg" alt="Implementation Playbook - 6 steps from identifying commodities to shipping products" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;">
 
 1. **Identify Commodities**: Auth, billing, observability, LLM routing are table stakes
 2. **Build Modular Core**: Invest upfront in reusable infrastructure
