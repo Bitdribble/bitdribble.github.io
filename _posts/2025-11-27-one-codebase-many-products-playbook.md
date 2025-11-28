@@ -321,7 +321,7 @@ We've packaged this approach into an open-source framework:
 - Multi-tenant support
 - Pre-built templates for document AI, agent monitoring, chat portals
 
-**Documentation**: Deployment guides for Kubernetes, AWS, GCP with customization tutorials
+**Documentation**: Deployment guides for AWS or Kubernetes
 
 **Why Open Source?** Every AI builder faces infrastructure challenges. By sharing the plumbing, we raise the ecosystem's bar and differentiate on AI workflows.
 
