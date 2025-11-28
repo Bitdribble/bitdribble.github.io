@@ -370,6 +370,11 @@ When clients need custom AI portals, we fork and customize:
   font-weight: 600;
   color: #1e293b;
   line-height: 1.3;
+  transition: color 0.2s ease;
+}
+
+.lesson-title:hover {
+  color: #2563eb;
 }
 
 .lesson-list {
