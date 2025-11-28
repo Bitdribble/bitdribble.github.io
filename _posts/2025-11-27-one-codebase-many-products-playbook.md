@@ -421,6 +421,8 @@ When clients need custom AI portals, we fork and customize:
 
 We've packaged this approach into an open-source framework:
 
+<img src="/assets/images/open_source_framework.svg" alt="Open-Source Framework - Reusable AI SaaS Infrastructure with Next.js, FastAPI, MongoDB, Stripe, LiteLLM, and OpenTelemetry" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;">
+
 **Tech Stack**: Next.js, FastAPI, MongoDB, Stripe, LiteLLM, OpenTelemetry
 
 **Features**:
