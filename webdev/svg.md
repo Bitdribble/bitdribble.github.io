@@ -22,6 +22,8 @@ title: SVG
 * CSS-Tricks: [Mega List of SVG Information](https://css-tricks.com/mega-list-svg-information/) - Extensive SVG resource collection
 
 #### Tools
+* **AI**
+  * [svgmaker.io](https://svgmaker.io/), $20 for a bunch of credits, has APIs and MCP Server.
 * **Editors**:
   * [Boxy SVG](https://boxy-svg.com/) - SVG editor. Paid subscription to save image.
   * [Inkscape](https://inkscape.org/) - Free and open source vector graphics editor. Was unable to install.
