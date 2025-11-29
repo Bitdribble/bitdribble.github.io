@@ -99,7 +99,7 @@ title: Excalidraw
   ```html
   <!-- Load a specific Excalidraw file -->
   <iframe
-    src="/excalidraw-edit?file=/assets/js/sig_agent_architecture.excalidraw"
+    src="/excalidraw-edit?file=/assets/excalidraw/sig_agent_architecture.excalidraw"
     width="100%"
     height="600px"
     frameborder="0"

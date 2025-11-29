@@ -51,21 +51,21 @@ Here's how the two products differ architecturally while sharing the same founda
 
 <div class="architecture-comparison">
   <div class="arch-diagram">
-    <div data-excalidraw="/assets/js/sig_agent_architecture.excalidraw" class="excalidraw-container">
+    <div data-excalidraw="/assets/excalidraw/sig_agent_architecture.excalidraw" class="excalidraw-container">
       <div class="loading-placeholder">Loading diagram...</div>
     </div>
     <div class="arch-label">
-      <a href="/excalidraw-edit?file=/assets/js/sig_agent_architecture.excalidraw" target="_blank" style="color: #2563eb; text-decoration: none; font-weight: 500;">
+      <a href="/excalidraw-edit?file=/assets/excalidraw/sig_agent_architecture.excalidraw" target="_blank" style="color: #2563eb; text-decoration: none; font-weight: 500;">
         📝 Edit in Excalidraw
       </a>
     </div>
   </div>
   <div class="arch-diagram">
-    <div data-excalidraw="/assets/js/doc_router_architecture.excalidraw" class="excalidraw-container">
+    <div data-excalidraw="/assets/excalidraw/doc_router_architecture.excalidraw" class="excalidraw-container">
       <div class="loading-placeholder">Loading diagram...</div>
     </div>
     <div class="arch-label">
-      <a href="/excalidraw-edit?file=/assets/js/doc_router_architecture.excalidraw" target="_blank" style="color: #2563eb; text-decoration: none; font-weight: 500;">
+      <a href="/excalidraw-edit?file=/assets/excalidraw/doc_router_architecture.excalidraw" target="_blank" style="color: #2563eb; text-decoration: none; font-weight: 500;">
         📝 Edit in Excalidraw
       </a>
     </div>
