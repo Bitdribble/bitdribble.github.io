@@ -111,7 +111,7 @@ site_map:
         url: "/about"
 
 # Build settings
-# theme: minima  # Removed - using Tailwind CSS instead
+theme: analytiq-pages-theme
 
 plugins:
  - jekyll-feed
