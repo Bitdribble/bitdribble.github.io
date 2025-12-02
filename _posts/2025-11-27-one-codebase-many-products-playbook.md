@@ -3,6 +3,7 @@ layout: post
 title: "The 'One Codebase, Many Products' Playbook"
 date: 2025-11-27
 categories: [ai, webdev, programming]
+image: /assets/images/blog/one-codebase-many-products.svg
 ---
 
 In the AI era, velocity matters. Building each AI product from scratch—authentication, billing, observability, LLM routing—takes months. What if you could reuse the same codebase for multiple products?
