@@ -411,6 +411,7 @@ Interested? [Contact Analytiq Hub](https://analytiqhub.com/contact) or follow [S
 - [How I Built a Reusable AI Monetization Platform with Stripe](https://analytiqhub.com/tech/programming/ai/tutorials/how-we-integrated-stripe-into-docrouter-ai/)
 - [How To Train Your AI Agent](https://analytiqhub.com/ai/programming/tutorials/how-to-train-your-ai-agent/)
 - [DocRouter.AI: An AI Backbone for Document Processing](https://analytiqhub.com/talks/#an-ai-backbone-for-document-processing)
+- [SigAgent.AI - Tracing Claude Agents](https://analytiqhub.com/talks/#sigagentai---tracing-claude-agents)
 
 ---
 
