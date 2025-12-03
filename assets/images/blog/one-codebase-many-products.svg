@@ -127,17 +127,19 @@
   </g>
 
   <!-- Title with modern typography -->
-  <text x="400" y="430" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif"
-        font-size="44" font-weight="700" fill="#f1f5f9" text-anchor="middle" letter-spacing="-0.5">
-    One Codebase, Many Products
+  <text x="400" y="415" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="32" font-weight="700" text-anchor="middle" letter-spacing="-0.5">
+    <tspan fill="#f1f5f9">The </tspan>
+    <tspan fill="#60a5fa">One Codebase, Many Products</tspan>
+    <tspan fill="#f1f5f9"> Playbook</tspan>
   </text>
 
   <!-- Subtitle -->
-  <text x="400" y="470" font-family="'SF Pro Display', -apple-system, sans-serif"
-        font-size="20" font-weight="500" fill="#94a3b8" text-anchor="middle" letter-spacing="0.3">
+  <text x="400" y="450" font-family="'SF Pro Display', -apple-system, sans-serif"
+        font-size="16" font-weight="500" fill="#94a3b8" text-anchor="middle" letter-spacing="0.3">
     Build AI SaaS at 10x Speed with Shared Infrastructure
   </text>
 
   <!-- Decorative accent line -->
-  <line x1="300" y1="485" x2="500" y2="485" stroke="url(#accentGradient)" stroke-width="2" opacity="0.6"/>
+  <line x1="300" y1="465" x2="500" y2="465" stroke="url(#accentGradient)" stroke-width="2" opacity="0.6"/>
 </svg>
