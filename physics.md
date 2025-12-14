@@ -78,6 +78,15 @@ title: Physics
   * Natalie Wolchover: [A Jewel at the Heart of Quantum Physics](https://www.quantamagazine.org/physicists-discover-geometry-underlying-particle-physics-20130917/) (2013)
   * [Nima Arkani-Hamed: The End of Space-Time](https://www.youtube.com/watch?v=GL77oOnrPzY) (2022)
 
+#### AdS-CFT and the Holographic Principle
+* Leonard Susskind: [The Quantum Origins of Gravity](https://www.youtube.com/watch?v=ruJgtjpSoPk), 2018 Oskar Klein Memorial Lecture
+* Leonard Susskind: ["ER = EPR" or "What's Behind the Horizons of Black Holes?"](https://www.youtube.com/watch?v=OBPpRqxY8Uw&t=5671s), [part 2](https://www.youtube.com/watch?v=uiG_EtVQu5o&t=64s) (2014)
+* Horatiu Nastase: [Introductory Minicourse on AdS-CFT](https://www.youtube.com/watch?v=ELPak9cyhHY), ICTP-SAIFR, São Paulo, Brazil, 2023
+  * [Lectures](https://www.youtube.com/watch?v=ELPak9cyhHY)
+  * [PDF for all classes](https://www.ictp-saifr.org/wp-content/uploads/2023/05/Holo25AdSCFT_compressed.pdf)
+* Horatiu Nastase: [Introduction to AdS-CFT](https://arxiv.org/pdf/0712.0689) (2007)
+* Veronika E. Hubeny: [The AdS/CFT Correspondence](https://arxiv.org/pdf/1501.00007) (2015)
+
 #### Lecture Notes
 * [Intermediate Classical Mechanics](http://www.physics.usu.edu/torre/3550_Fall_2013/), Charles Torre (2013)
 
