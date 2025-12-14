@@ -82,6 +82,7 @@ title: Physics
 * Leonard Susskind: [The Quantum Origins of Gravity](https://www.youtube.com/watch?v=ruJgtjpSoPk), 2018 Oskar Klein Memorial Lecture
 * Leonard Susskind: ["ER = EPR" or "What's Behind the Horizons of Black Holes?"](https://www.youtube.com/watch?v=OBPpRqxY8Uw&t=5671s), [part 2](https://www.youtube.com/watch?v=uiG_EtVQu5o&t=64s) (2014)
 * Juan Maldacena Public Lecture: [The Meaning of Spacetime](https://www.youtube.com/watch?v=DODp-ajPuU8) (2023)
+* Brian Greene, Juan Maldacena: [String Theory, Quantum Gravity and Black Holes (Or, Are We Holograms?)](https://www.youtube.com/watch?v=yNNXia9IrZs) (2023)
 * Horatiu Nastase: [Introductory Minicourse on AdS-CFT](https://www.youtube.com/watch?v=ELPak9cyhHY), ICTP-SAIFR, São Paulo, Brazil, 2023
   * [Lectures](https://www.youtube.com/watch?v=ELPak9cyhHY)
   * [PDF for all classes](https://www.ictp-saifr.org/wp-content/uploads/2023/05/Holo25AdSCFT_compressed.pdf)
