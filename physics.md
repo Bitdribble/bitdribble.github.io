@@ -180,6 +180,7 @@ title: Physics
 * Brian Greene:
   * [String Theory in 2037 - Brian Greene & Edward Witten](https://www.youtube.com/watch?v=sAbP0magTVY) (2025)
   * [Brian Greene and Leonard Susskind: Quantum Mechanics, Black Holes and String Theory](https://www.youtube.com/watch?v=xk48z8N-sl0) (2020)
+  * [Brian Greene and Juan Maldacena - String Theory, Quantum Gravity and Black Holes (Or, Are We Holograms?)](https://www.youtube.com/watch?v=yNNXia9IrZs) (2023)
 
 #### AI in Physics
 * Silviu-Marian Udrescu, Max Tegmark: [AI Feynman: a Physics-Inspired Method for Symbolic Regression](https://arxiv.org/pdf/1905.11481.pdf) (2020)
