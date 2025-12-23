@@ -93,7 +93,7 @@ title: Physics
 * [Intermediate Classical Mechanics](http://www.physics.usu.edu/torre/3550_Fall_2013/), Charles Torre (2013)
 
 #### Courses
-* Leonard Susskind: [All Stanford physics lectures in order](https://www.youtube.com/playlist?list=PL6i60qoDQhQGaGbbg-4aSwXJvxOqO6o5e)
+* Leonard Susskind: [All Stanford physics lectures in order](https://www.youtube.com/playlist?list=PL6i60qoDQhQGaGbbg-4aSwXJvxOqO6o5e), [online library](https://glenmartin.wordpress.com/home/leonard-susskinds-online-lectures/#susygut)
   * [Classical Mechanics](https://theoreticalminimum.com/courses/classical-mechanics/2011/fall) (Fall 2011)
     * [Lecture 1](https://www.youtube.com/playlist?list=PL6i60qoDQhQGaGbbg-4aSwXJvxOqO6o5e) Newton's laws
     * [Lecture 2](https://www.youtube.com/watch?v=h96SW0PfQcg&list=PL6i60qoDQhQGaGbbg-4aSwXJvxOqO6o5e&index=2) Principle of least action. Lagrangian.
@@ -113,7 +113,7 @@ title: Physics
     * [Lecture 4](https://www.youtube.com/watch?v=5vfo512fvlE&t=3220s) Probabilities between any two spin directions. There always exist a direction for which a vector is an eigenvector of measuring spin in that direction. Spin state of two electrons. They have six not four degrees of freedom. Product spins. Quantum entagled pair of electrons. How to create an entangled pair - the singlet state.
     * [Lecture 5](https://www.youtube.com/watch?v=XlLsTaJn9AQ), [slides](https://drive.google.com/file/d/1GykOKM4tsyWc2A4bT3zayK1oU0R6zEdn/view). Singlet state. Bell inequality. Violated by singlet first spin measured at 0 degrees, 45 degrees, 90 degrees in xz axis. Conclusion - no deterministic hidden variable model explains quantum mechanics.
     * [Lecture 6](https://www.youtube.com/watch?v=xXBx8_19nyw) Projections operators, Bell inequality again. Hermitian operator $$K$$ as observable, eigenvalue $$\lambda$$ as observed value. Probability postulate: For state $\ket{\psi}$ (normalized), $\text{Prob}(K=\lambda) = \bra{\psi} P_\lambda \ket{\psi} = \sum_a \lvert \langle a \lvert \psi \rangle \rvert^2$ (sum of probabilities over orthogonal ways to realize the property). Two-slit experiment, interference, how measurement creates entanglement and destroys interference.
-    * [Lecture 7](https://www.youtube.com/watch?v=F3viANPhfD0)
+    * [Lecture 7](https://www.youtube.com/watch?v=F3viANPhfD0) Double slit experiment again. Measurement causes entanglement and destroys interference.
     * [Lecture 8](https://www.youtube.com/watch?v=C1erB9p5414)
     * [Lecture 9](https://www.youtube.com/watch?v=qg-95d6OJJM)
 
