@@ -109,6 +109,7 @@ blog_posts_by_category_title: Blog Posts by Category
   * [Perl](/programming_languages/perl)
   * [Python](/programming_languages/python)
 * [Projects](/projects)
+* [Retail Stores](/retail_stores)
 * [Quantum Computers](/quantum_computers)
 * [Recommender Systems](/recommender_systems)
 * [Reinforcement Learning](/reinforcement_learning)
