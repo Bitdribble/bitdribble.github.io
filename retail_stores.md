@@ -12,6 +12,7 @@ title: Retail Stores
 
 ##### Books
 * [Becoming Trader Joe](https://www.amazon.com/Becoming-Trader-Joe-Business-Still/dp/1400225434), by Joe Coulombe (2021)
+* [The Secret Life of Groceries: The Dark Miracle of the American Supermarket](https://www.amazon.com/Secret-Life-Groceries-American-Supermarket/dp/0553459414)
 * [Trader Joe's: The Unauthorized History](https://www.amazon.com/Trader-Joes-Unauthorized-History-Success/dp/B08L9Q2L8M) by Jennifer Baldwin - Comprehensive look at Trader Joe's business model and corporate culture
 * [The Trader Joe's Adventure: Turning a Unique Approach to Business into a Retail and Cultural Phenomenon](https://www.amazon.com/Trader-Joes-Adventure-Approach-Business/dp/0988301406) by Len Lewis - Detailed analysis of Trader Joe's business philosophy
 
