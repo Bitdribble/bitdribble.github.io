@@ -47,9 +47,9 @@
 
   <!-- Title -->
   <text x="400" y="360" font-family="Arial, sans-serif" font-size="42" font-weight="bold"
-        fill="white" text-anchor="middle">AI Consulting Market</text>
+        fill="white" text-anchor="middle">PE Partnerships in</text>
 
   <!-- Subtitle -->
   <text x="400" y="400" font-family="Arial, sans-serif" font-size="22"
-        fill="rgba(255,255,255,0.9)" text-anchor="middle">Companies Analysis</text>
+        fill="rgba(255,255,255,0.9)" text-anchor="middle">AI Consulting Firms</text>
 </svg>
