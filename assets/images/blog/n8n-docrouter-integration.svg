@@ -38,21 +38,21 @@
     <!-- Left node: n8n -->
     <g>
       <rect x="120" y="150" width="210" height="120" rx="18" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.45)" stroke-width="2"/>
-      <circle cx="155" cy="190" r="18" fill="rgba(255,255,255,0.85)"/>
-      <circle cx="155" cy="190" r="7" fill="#ff6b35"/>
+      <circle cx="155" cy="190" r="18" fill="rgba(255,255,255,0.88)"/>
+      <text x="155" y="197" font-family="Arial, sans-serif" font-size="18" font-weight="700"
+            fill="#ff6b35" text-anchor="middle">⛓</text>
       <text x="225" y="198" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#ffffff" text-anchor="middle">n8n</text>
-      <text x="225" y="232" font-family="Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.9)" text-anchor="middle">Trigger " Orchestrate</text>
+      <text x="225" y="232" font-family="Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.9)" text-anchor="middle">Trigger • Orchestrate</text>
     </g>
 
     <!-- Right node: DocRouter.AI -->
     <g>
       <rect x="470" y="150" width="210" height="120" rx="18" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.45)" stroke-width="2"/>
-      <path d="M505 175 h34 a10 10 0 0 1 10 10 v34 a10 10 0 0 1-10 10 h-34 a10 10 0 0 1-10-10 v-34 a10 10 0 0 1 10-10 z" fill="rgba(255,255,255,0.85)"/>
-      <path d="M512 195 h20" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round"/>
-      <path d="M512 206 h28" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" opacity="0.9"/>
-      <path d="M512 217 h24" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
-      <text x="575" y="192" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff" text-anchor="middle">DocRouter.AI</text>
-      <text x="575" y="226" font-family="Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.9)" text-anchor="middle">Extract " Classify " Route</text>
+      <circle cx="500" cy="190" r="18" fill="rgba(255,255,255,0.9)"/>
+      <text x="500" y="197" font-family="Arial, sans-serif" font-size="18" font-weight="700"
+            fill="#0ea5e9" text-anchor="middle">📄</text>
+      <text x="528" y="198" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#ffffff" text-anchor="start">DocRouter.AI</text>
+      <text x="528" y="232" font-family="Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.9)" text-anchor="start">Extract • Classify</text>
     </g>
 
     <!-- Document icon in the middle -->
@@ -87,8 +87,8 @@
 
       <g>
         <rect x="465" y="356" width="120" height="78" rx="14" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
-        <text x="525" y="401" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">Drive</text>
-        <text x="525" y="423" font-family="Arial, sans-serif" font-size="12" fill="rgba(255,255,255,0.9)" text-anchor="middle">Archive</text>
+        <text x="525" y="401" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">Database</text>
+        <text x="525" y="423" font-family="Arial, sans-serif" font-size="12" fill="rgba(255,255,255,0.9)" text-anchor="middle">Store</text>
       </g>
     </g>
 
