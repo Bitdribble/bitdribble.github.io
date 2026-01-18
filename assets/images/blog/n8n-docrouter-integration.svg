@@ -40,7 +40,7 @@
       <rect x="120" y="150" width="210" height="120" rx="18" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.45)" stroke-width="2"/>
       <circle cx="155" cy="190" r="18" fill="rgba(255,255,255,0.88)"/>
       <text x="155" y="197" font-family="Arial, sans-serif" font-size="18" font-weight="700"
-            fill="#ff6b35" text-anchor="middle">⛓</text>
+            fill="#ff6b35" text-anchor="middle">🧩</text>
       <text x="225" y="198" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#ffffff" text-anchor="middle">n8n</text>
       <text x="225" y="232" font-family="Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.9)" text-anchor="middle">Trigger • Orchestrate</text>
     </g>
@@ -50,7 +50,7 @@
       <rect x="470" y="150" width="210" height="120" rx="18" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.45)" stroke-width="2"/>
       <circle cx="500" cy="190" r="18" fill="rgba(255,255,255,0.9)"/>
       <text x="500" y="197" font-family="Arial, sans-serif" font-size="18" font-weight="700"
-            fill="#0ea5e9" text-anchor="middle">📄</text>
+            fill="#ff6b35" text-anchor="middle">📄</text>
       <text x="528" y="198" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#ffffff" text-anchor="start">DocRouter.AI</text>
       <text x="528" y="232" font-family="Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.9)" text-anchor="start">Extract • Classify</text>
     </g>
