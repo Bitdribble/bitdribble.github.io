@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Integrate n8n with DocRouter.AI</title>
+  <desc id="desc">A workflow diagram showing documents flowing from n8n to DocRouter.AI and onward to downstream systems.</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" stop-opacity="1"/>
+      <stop offset="55%" stop-color="#0ea5e9" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="1"/>
+    </linearGradient>
+
+    <radialGradient id="glow" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="#ffffff" opacity="0.18"/>
+    </pattern>
+
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#0b1020" flood-opacity="0.35"/>
+    </filter>
+
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#ffffff" opacity="0.9"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <rect width="800" height="600" fill="url(#glow)"/>
+  <rect width="800" height="600" fill="url(#dots)" opacity="0.8"/>
+
+  <!-- Central illustration -->
+  <g transform="translate(0,0)" filter="url(#shadow)">
+    <!-- Left node: n8n -->
+    <g>
+      <rect x="120" y="150" width="210" height="120" rx="18" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.45)" stroke-width="2"/>
+      <circle cx="155" cy="190" r="18" fill="rgba(255,255,255,0.85)"/>
+      <circle cx="155" cy="190" r="7" fill="#ff6b35"/>
+      <text x="225" y="198" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#ffffff" text-anchor="middle">n8n</text>
+      <text x="225" y="232" font-family="Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.9)" text-anchor="middle">Trigger " Orchestrate</text>
+    </g>
+
+    <!-- Right node: DocRouter.AI -->
+    <g>
+      <rect x="470" y="150" width="210" height="120" rx="18" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.45)" stroke-width="2"/>
+      <path d="M505 175 h34 a10 10 0 0 1 10 10 v34 a10 10 0 0 1-10 10 h-34 a10 10 0 0 1-10-10 v-34 a10 10 0 0 1 10-10 z" fill="rgba(255,255,255,0.85)"/>
+      <path d="M512 195 h20" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round"/>
+      <path d="M512 206 h28" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" opacity="0.9"/>
+      <path d="M512 217 h24" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+      <text x="575" y="192" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff" text-anchor="middle">DocRouter.AI</text>
+      <text x="575" y="226" font-family="Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.9)" text-anchor="middle">Extract " Classify " Route</text>
+    </g>
+
+    <!-- Document icon in the middle -->
+    <g>
+      <path d="M372 178 h52 l24 24 v80 a14 14 0 0 1-14 14 h-62 a14 14 0 0 1-14-14 v-90 a14 14 0 0 1 14-14 z"
+            fill="rgba(255,255,255,0.92)"/>
+      <path d="M424 178 v24 a10 10 0 0 0 10 10 h24" fill="rgba(255,255,255,0.62)"/>
+      <path d="M382 226 h58" stroke="#0b1020" stroke-opacity="0.28" stroke-width="4" stroke-linecap="round"/>
+      <path d="M382 244 h52" stroke="#0b1020" stroke-opacity="0.22" stroke-width="4" stroke-linecap="round"/>
+      <path d="M382 262 h40" stroke="#0b1020" stroke-opacity="0.18" stroke-width="4" stroke-linecap="round"/>
+    </g>
+
+    <!-- Arrows -->
+    <path d="M330 210 C 350 210, 355 210, 365 210" stroke="#ffffff" stroke-width="4" stroke-linecap="round" fill="none" marker-end="url(#arrow)" opacity="0.9"/>
+    <path d="M458 210 C 448 210, 442 210, 438 210" stroke="#ffffff" stroke-width="4" stroke-linecap="round" fill="none" marker-end="url(#arrow)" opacity="0.9"/>
+
+    <!-- Downstream destinations -->
+    <g opacity="0.95">
+      <rect x="180" y="320" width="440" height="150" rx="20" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+
+      <g>
+        <rect x="215" y="356" width="120" height="78" rx="14" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+        <text x="275" y="401" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">CRM</text>
+        <text x="275" y="423" font-family="Arial, sans-serif" font-size="12" fill="rgba(255,255,255,0.9)" text-anchor="middle">Lead / Ticket</text>
+      </g>
+
+      <g>
+        <rect x="340" y="356" width="120" height="78" rx="14" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+        <text x="400" y="401" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">Slack</text>
+        <text x="400" y="423" font-family="Arial, sans-serif" font-size="12" fill="rgba(255,255,255,0.9)" text-anchor="middle">Notify / Review</text>
+      </g>
+
+      <g>
+        <rect x="465" y="356" width="120" height="78" rx="14" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+        <text x="525" y="401" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">Drive</text>
+        <text x="525" y="423" font-family="Arial, sans-serif" font-size="12" fill="rgba(255,255,255,0.9)" text-anchor="middle">Archive</text>
+      </g>
+    </g>
+
+    <!-- Connector to downstream -->
+    <path d="M575 270 C 575 292, 520 306, 470 320" stroke="#ffffff" stroke-width="4" stroke-linecap="round" fill="none" marker-end="url(#arrow)" opacity="0.85"/>
+  </g>
+
+  <!-- Title & subtitle -->
+  <text x="400" y="520" font-family="Arial, sans-serif" font-size="40" font-weight="800"
+        fill="#ffffff" text-anchor="middle">Integrate n8n + DocRouter.AI</text>
+  <text x="400" y="555" font-family="Arial, sans-serif" font-size="22"
+        fill="rgba(255,255,255,0.92)" text-anchor="middle">End-to-end document intake, extraction, and routing</text>
+</svg>
