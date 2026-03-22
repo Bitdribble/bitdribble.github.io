@@ -14,7 +14,6 @@ title: Robotics Process Automation (RPA) and Intelligent Process Automation (IPA
 
 #### Also see
 * [AI Computer Use](/ai_computer_use)
-* [Web scrapers](/web_scrapers)
 
 #### Other
 * [AI Code Editors](/ai_code_editors)
