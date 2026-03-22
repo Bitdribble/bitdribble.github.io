@@ -9,23 +9,12 @@ title: Robotics Process Automation (RPA) and Intelligent Process Automation (IPA
 #### Agents
 * [Browser Use](https://github.com/browser-use/browser-use)
 
-#### Web Scraping Tools
-* [Selenium](https://www.selenium.dev/)
-  * [Selenium Base](https://github.com/seleniumbase/SeleniumBase)
-* [Appium](https://appium.io/)
-* [Puppeteer](https://pptr.dev/)
-* [Playwright](https://playwright.dev/)
-* [Cypress](https://www.cypress.io/)
-* [AgentQL](https://www.agentql.com/)
-  * [Playground](https://dev.agentql.com/playground)
-  * [Github](https://github.com/tinyfish-io/agentql/tree/main)
-  * Execute Automation: [AgentQL: How Deepseek & OpenAI Supercharge AI Agents for Web Scraping](https://www.youtube.com/watch?v=XzmkFSqTgtM)
-
-#### Blog Posts
-* [Playwright vs Selenium vs Puppeteer vs Cypress](https://betterstack.com/community/comparisons/playwright-cypress-puppeteer-selenium-comparison/)
+#### Web scraping
+* [Web scrapers](/web_scrapers)
 
 #### Also see
 * [AI Computer Use](/ai_computer_use)
+* [Web scrapers](/web_scrapers)
 
 #### Other
 * [AI Code Editors](/ai_code_editors)

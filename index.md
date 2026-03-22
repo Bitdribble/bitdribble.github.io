@@ -118,6 +118,7 @@ blog_posts_by_category_title: Blog Posts by Category
 * [Robotics](/robotics)
   * [Grasp](/robotics/grasping)
 * [Robotics Process Automation (RPA) and Intelligent Process Automation (IPA)](/robotics_process_automation)
+  * [Web scrapers](/web_scrapers)
 * [Romania](/romania)
   * [Environment in Romania](/romania/environment)
 * [Science-Fiction](/science_fiction)
