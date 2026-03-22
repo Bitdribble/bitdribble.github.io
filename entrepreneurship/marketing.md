@@ -18,4 +18,5 @@ title: Marketing for Entrepreneurship
   * [Paul Graham](/entrepreneurship/paul_graham)
   * [Marketing](/entrepreneurship/marketing)
   * [Sales](/entrepreneurship/sales)
+  * [Sales tools](/entrepreneurship/sales_tools)
   * [Trends To Watch](/entrepreneurship/trends_to_watch)

@@ -52,6 +52,7 @@ blog_posts_by_category_title: Blog Posts by Category
   * [Marketing](/entrepreneurship/marketing)
   * [Paul Graham](/entrepreneurship/paul_graham)
   * [Sales](/entrepreneurship/sales)
+  * [Sales tools](/entrepreneurship/sales_tools)
   * [Trends To Watch](/entrepreneurship/trends_to_watch)
 * [ERP Integration](/erp_integration)
 * [Film](/film)
