@@ -27,7 +27,6 @@ Libraries and frameworks for driving browsers, extracting page data, and buildin
 #### Other
 * [AI Agents](/ai_agents)
 * [Artificial Intelligence](/artificial_intelligence)
-* [Robotics Process Automation (RPA) and Intelligent Process Automation (IPA)](/robotics_process_automation)
 * [Webdev](/webdev)
   * [Dash](/webdev/dash)
   * [Gradio](/webdev/gradio)
