@@ -51,7 +51,9 @@ title: Yoga and Pilates
 * Caroline Girvan: [EPIC Program](https://www.youtube.com/playlist?list=PLhu1QCKrfgPW3VAMHM-wefcO4ZyXf6cwt) (2022)
 * Full body
   * [40m dancer workout](https://www.youtube.com/watch?v=CxfAULXP8SM), [35m full body barre](https://www.youtube.com/watch?v=TC3HV61YoOg)
-  * Vera Kurochkina: [60m full body fat burning hiit workout](https://www.youtube.com/watch?v=rmYlpTD-4iQ)
+  * Vera Kurochkina: 
+    * [60m full body fat burning hiit workout](https://www.youtube.com/watch?v=rmYlpTD-4iQ)
+    * [HIIT Workout, 30 MIN TABATA, No Repeats, Intense](https://www.youtube.com/watch?v=HXSVUl3zP0k)
 * Stretch
   * [30m pilates yoga workout - full body stretch and strengthen](https://www.youtube.com/watch?v=lytHuRfbKdg)
   * [Marie Steffen](https://www.youtube.com/@MarieSteffen)
