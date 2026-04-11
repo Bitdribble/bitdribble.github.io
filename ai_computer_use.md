@@ -14,6 +14,7 @@ title: AI Computer Use
 
 Also see:
 * [Robotics Process Automation (RPA) and Intelligent Process Automation (IPA)](/robotics_process_automation)
+* [Web scrapers](/web_scrapers)
 
 #### Other
 * [AI Code Editors](/ai_code_editors)
@@ -36,5 +37,6 @@ Also see:
 * [Probabilities and Statistics](/probabilities_and_statistics)
 * [Robotics](/robotics)
 * [Robotics Process Automation (RPA) and Intelligent Process Automation (IPA)](/robotics_process_automation)
+* [Web scrapers](/web_scrapers)
 * [Self Driving Cars](/self_driving_cars)
 * [Computational Topology](/computational_topology)
