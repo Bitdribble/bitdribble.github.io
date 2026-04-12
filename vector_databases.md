@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Vector Databases
+mathjax: true
 ---
 
 This page collects how **embeddings**, **lexical search**, and **vector databases** fit together for retrieval (RAG, semantic search, recommenders), plus how major **search engines** and **databases** implement similar ideas.
@@ -26,7 +27,7 @@ Example geometry (intuition only): phrases about pets cluster away from vehicles
 * **Masked / causal language modeling** — predict missing or next tokens; useful representations arise in transformer layers even though the head is generative. Pooling often uses `[CLS]`, mean pooling over tokens, or a dedicated projection head.
 * **Contrastive learning** — positive pairs (query, relevant passage) should have high similarity; hard negatives (same domain, wrong answer) teach fine distinctions. Central to modern **sentence / passage** encoders and retrieval.
 * **Supervised classification with a bottleneck** — encoder → embedding → classifier; the bottleneck vector is reused for search or clustering.
-* **Triplet loss** — anchor, positive, negative; enforce *distance(anchor, positive) ≪ distance(anchor, negative)*.
+* **Triplet loss** — anchor, positive, negative; enforce $d(\text{anchor}, \text{positive}) \ll d(\text{anchor}, \text{negative})$.
 
 For retrieval-focused encoders, **hard negatives** (e.g. “Python list comprehension” vs “Python for loops tutorial” instead of vs “banana smoothie”) usually matter more than easy random negatives.
 
@@ -54,15 +55,11 @@ All labeled data
 
 **Precision** — among returned hits, how many are relevant?
 
-```text
-precision = |relevant ∩ returned| / |returned|
-```
+$$\text{precision} = \frac{|\text{relevant} \cap \text{returned}|}{|\text{returned}|}$$
 
 **Recall** — among all relevant items in the corpus, how many appear in the result set?
 
-```text
-recall = |relevant ∩ returned| / |relevant|
-```
+$$\text{recall} = \frac{|\text{relevant} \cap \text{returned}|}{|\text{relevant}|}$$
 
 Usually **tension** with precision: stricter thresholds ↑ precision, ↓ recall.
 
@@ -82,7 +79,13 @@ Recipe order that often pays off before exotic training: eval set → chunking �
 
 #### BM25 (lexical relevance)
 
-BM25 ranks documents for a **keyword** query using, per query term: **IDF** (rare terms matter more), **saturated term frequency** (repeating a word helps with diminishing returns), and **length normalization** (long docs do not win only by bulk). Default **similarity** in Elasticsearch and OpenSearch for classic full‑text fields is BM25; parameters **k1** (term frequency saturation, often ~1.2–2.0) and **b** (length norm, often ~0.75) are tunable.
+BM25 ranks documents for a **keyword** query. For each query term $t$ in document $d$:
+
+$$\text{BM25}(q,d) = \sum_{t \,\in\, q} \underbrace{\ln\!\frac{N - n_t + 0.5}{n_t + 0.5}}_{\text{IDF}} \cdot \frac{f(t,d)\,(k_1+1)}{f(t,d) + k_1\!\left(1 - b + b\,\dfrac{|d|}{\text{avgdl}}\right)}$$
+
+where $N$ = corpus size, $n_t$ = number of docs containing $t$, $f(t,d)$ = term frequency in $d$, $|d|$ = document length, and $\text{avgdl}$ = average document length. Parameters: **$k_1$** (term-frequency saturation, often 1.2–2.0) and **$b$** (length normalization, often 0.75).
+
+Default **similarity** in Elasticsearch and OpenSearch for classic full‑text fields is BM25.
 
 **BM25 vs embeddings** — BM25: exact tokens and statistics. Embeddings: paraphrase and meaning (“flat tire” vs “punctured wheel”). **Hybrid** systems sum or fuse both scores; [Weaviate](/vector_databases/weaviate) documents parallel **vector + BM25** hybrid search and fusion in product docs.
 
