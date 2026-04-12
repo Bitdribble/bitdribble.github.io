@@ -8,21 +8,22 @@ The **AI retrieval stack** is the pipeline that takes a query and returns releva
 
 * What is the **unit of retrieval**? (sentences, paragraphs, chunks, files, documents)
 * Does the application need **semantic similarity**, **exact-match search**, or both?
-* What **metadata filters** matter? (tenant, date, repo, workflow state)
+* What **metadata filters** matter? (tenant, date, repo, workflow state, permissions)
 * Is the product fundamentally a **search engine**, a **database with search**, or a **retrieval substrate**?
-* Is the workload closer to **consumer AI search**, **enterprise document retrieval**, or **codebase chunk retrieval**?
+* Is the workload closer to **consumer AI search**, **enterprise document retrieval**, **codebase chunk retrieval**, or **multimodal retrieval**?
 
 A typical stack looks like:
 
 ```text
 content
   ↓
-chunking / parsing / field selection
+parsing / chunking / field selection
   ↓
 embeddings
   ↓
-vector retrieval
+retrieval
   + lexical retrieval
+  + vector retrieval
   + metadata filters
   + reranking
   + application logic
@@ -30,7 +31,7 @@ vector retrieval
 final results
 ```
 
-Each layer has its own choices. The sections below cover each in turn.
+Each layer has its own decisions. In practice, the right architecture depends less on the phrase **“vector database”** and more on the shape of the workload.
 
 ---
 
@@ -47,7 +48,7 @@ A **vector database** stores and indexes those vectors so that approximate neare
 * multitenancy or namespace isolation
 * replication, scaling, and operations
 
-That makes a vector database more than an in-process library but less than a complete search product. It handles one stage of the pipeline well. The rest — chunking, lexical search, reranking, application logic — lives outside it.
+That makes a vector database more than an in-process nearest-neighbor library but less than a complete search product. It handles one stage of the pipeline well. The rest — chunking, lexical search, reranking, and application logic — lives outside it.
 
 For many applications, the decisions around chunking, hybrid retrieval, filters, and reranking matter more than the specific ANN backend.
 
@@ -72,6 +73,17 @@ You rarely inspect the coordinates directly. What matters is **relative position
 
 Training usually tries to make this geometry useful for the task by **pulling** related examples together and **pushing** unrelated examples apart.
 
+### Common training patterns
+
+* **Masked / causal language modeling** — predict missing or next tokens; useful representations emerge in the hidden states
+* **Contrastive learning** — positive pairs should be close, negatives far apart
+* **Supervised classification with an embedding bottleneck** — encoder → embedding → classifier
+* **Triplet loss** — anchor, positive, negative; enforce $d(\text{anchor}, \text{positive}) \ll d(\text{anchor}, \text{negative})$
+
+For retrieval-focused models, **hard negatives** usually matter a lot more than easy random negatives. For example, “Python list comprehension” vs “Python for loops tutorial” teaches a retrieval model much more than “Python list comprehension” vs “banana smoothie”.
+
+---
+
 ## Choosing an embedding model
 
 Choosing an embedding model is not just a benchmark exercise. It depends on the shape of the retrieval problem.
@@ -82,20 +94,19 @@ The main decision axes are:
 * **Task** — is the goal retrieval, clustering, classification, recommendation, or reranking support?
 * **Query/document asymmetry** — should queries and stored documents use different embedding modes?
 * **Domain** — is the corpus general text, code, legal, finance, biomedical, or something else with specialized language?
-* **Dimension and storage cost** — higher-dimensional vectors may improve quality, but they also increase storage, bandwidth, and retrieval cost.
+* **Language coverage** — is the corpus multilingual, or is cross-lingual retrieval important?
+* **Dimension and storage cost** — higher-dimensional vectors may improve quality, but they also increase storage, bandwidth, and retrieval cost
 * **Latency, privacy, and deployment constraints** — can the embeddings be generated through a hosted API, or do they need to run in a private environment?
 
 A practical sequence is:
 
 ```text
-modality → task → domain → query/document asymmetry → cost/latency → provider choice
+modality → task → domain → language coverage → query/document asymmetry → cost/latency → provider choice
 ```
 
 For many teams, the right first move is to start with a strong general-purpose retrieval embedding model, measure it on a realistic evaluation set, and only then decide whether a domain-specific or multimodal model is justified.
 
-One subtle but important point: query embeddings are not always the same as document embeddings. Some providers explicitly optimize different embedding modes for **search queries** and **search documents**, which can improve retrieval quality.
-
-Providers like Cohere explicitly distinguish `search_query` and `search_document`, Voyage distinguishes `query` and `document` input types, and Vertex AI supports task-type-aware embeddings for retrieval and related use cases. 
+One subtle but important point: query embeddings are not always the same as document embeddings. [Cohere’s Embed API](https://docs.cohere.com/reference/embed) explicitly distinguishes `search_query` and `search_document`. [Voyage](https://docs.voyageai.com/docs/embeddings) distinguishes `query` and `document` input types for retrieval. [Vertex AI](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/embeddings/task-types) supports task-type-aware embeddings for document retrieval, question answering, fact verification, clustering, and more.
 
 ### Domain-specific and task-specific embeddings
 
@@ -114,20 +125,18 @@ general retrieval model
 → domain-specific or task-specific model if needed
 ```
 
-That sequence is usually better than prematurely fine-tuning or choosing a niche model before understanding the retrieval workload.
+That sequence is usually better than prematurely fine-tuning or choosing a niche model before understanding the retrieval workload. [Voyage](https://docs.voyageai.com/docs/faq) explicitly recommends domain-specific models for areas like law, finance, and code, while [Cohere](https://docs.cohere.com/docs/embeddings) and [Vertex AI](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/embeddings/task-types) expose task-aware embedding modes for retrieval and related use cases.
 
-Voyage explicitly recommends different models for domains like legal, finance, and code, while Cohere and Vertex both expose task-aware embedding modes for retrieval and related use cases. 
-
-## Embedding provider cheat sheet
+### Embedding provider cheat sheet
 
 The choice of vector database is only half the story. The embedding provider matters just as much.
 
 | Provider | Strengths | Best fit |
 | :--- | :--- | :--- |
-| **OpenAI** | Strong general-purpose text embeddings; simple API; good default for many retrieval tasks | teams that want a straightforward hosted baseline |
-| **Cohere** | Retrieval-oriented embedding stack; explicit `search_query` and `search_document` modes; strong RAG tooling | semantic search and RAG systems that want query/document-aware embeddings |
-| **Voyage AI** | Retrieval-focused models; query/document modes; domain-specific models for code, law, and finance; multimodal support | teams optimizing retrieval quality in specialized domains |
-| **Google Vertex AI** | Task-type-aware embeddings; configurable output dimensionality for text embeddings; multimodal embeddings for text, image, and video | teams already in GCP, or teams needing task-specific and multimodal support |
+| **[OpenAI](https://platform.openai.com/docs/api-reference/embeddings)** | Strong general-purpose text embeddings; simple API; good default for many retrieval tasks | teams that want a straightforward hosted baseline |
+| **[Cohere](https://docs.cohere.com/docs/embeddings)** | Retrieval-oriented embedding stack; explicit query/document modes; strong semantic search and RAG ergonomics | semantic search and RAG systems that want query/document-aware embeddings |
+| **[Voyage AI](https://docs.voyageai.com/docs/embeddings)** | Retrieval-focused models; query/document modes; domain-specific models for code, law, and finance; contextualized chunk embeddings; multimodal support | teams optimizing retrieval quality in specialized domains |
+| **[Google Vertex AI](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings)** | Task-type-aware embeddings; configurable output dimensionality for text embeddings; multimodal embeddings for text, image, and video | teams already in GCP, or teams needing task-specific and multimodal support |
 
 A useful way to think about providers is:
 
@@ -135,18 +144,8 @@ A useful way to think about providers is:
 * **Cohere** — retrieval-first and RAG-friendly
 * **Voyage** — retrieval specialist, especially for domain-specific workloads
 * **Vertex AI** — task-aware and multimodal, especially attractive inside Google Cloud
-````
 
-OpenAI’s embeddings API exposes `text-embedding-3-small` and `text-embedding-3-large`. Cohere’s Embed API requires an `input_type` for newer models, including `search_document` and `search_query`. Voyage documents query/document input types and domain-specific families such as finance, law, and code. Vertex AI documents task types for embeddings and configurable output dimensionality for text embeddings, alongside a separate multimodal embeddings API. 
-
-### Common training patterns
-
-* **Masked / causal language modeling** — predict missing or next tokens; useful representations emerge in the hidden states
-* **Contrastive learning** — positive pairs should be close, negatives far apart
-* **Supervised classification with an embedding bottleneck** — encoder → embedding → classifier
-* **Triplet loss** — anchor, positive, negative; enforce $d(\text{anchor}, \text{positive}) \ll d(\text{anchor}, \text{negative})$
-
-For retrieval-focused models, **hard negatives** usually matter a lot more than easy random negatives (e.g. "Python list comprehension" vs "Python for loops tutorial" instead of vs "banana smoothie").
+Provider choice is not only about benchmark quality. It also depends on deployment model, privacy requirements, batch throughput, dimensionality control, multimodal support, and compliance constraints.
 
 ---
 
@@ -164,9 +163,11 @@ Vectors support several kinds of applications:
 
 In many systems, vectors are the **first-stage retriever**, not the final answer generator.
 
+---
+
 ## Multimodal retrieval: when OCR is not enough
 
-Many retrieval systems are described as “multimodal,” but there are really three different cases:
+Many retrieval systems are described as “multimodal,” but there are really three different cases.
 
 ### 1. Text-only retrieval
 
@@ -212,7 +213,36 @@ if the meaning survives text extraction → OCR-first may be enough
 if the meaning depends on layout, figures, or images → consider multimodal embeddings
 ```
 
-Vertex AI says its multimodal embeddings generate vectors from image, text, and video in a shared semantic space, and Voyage documents multimodal models for text plus content-rich images such as slide decks, screenshots, tables, and figures. Cohere also documents embedding support for text, images, and mixed text/image inputs, including PDFs.
+[Vertex AI multimodal embeddings](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-multimodal-embeddings) generate vectors from image, text, and video in a shared semantic space. [Voyage multimodal embeddings](https://docs.voyageai.com/docs/multimodal-embeddings) support text and content-rich images such as figures, screenshots, slide decks, and document images. [Cohere embeddings](https://docs.cohere.com/reference/embed) also support text, image, and mixed inputs for newer embedding models.
+
+---
+
+## Chunking and indexing strategy
+
+Retrieval quality is often dominated by **what** gets indexed and **how** it gets chunked.
+
+Questions to answer early:
+
+* What is the **retrieval unit**? A sentence, paragraph, page, section, table, file, or whole document?
+* Should chunks **overlap**, or should they be strictly disjoint?
+* Should metadata such as title, section name, page number, repo path, or document type be copied into every chunk?
+* Should some structures — tables, forms, headers, footnotes, captions, code blocks — be indexed separately?
+* Is there a parent-child relationship between chunks and larger source documents?
+
+The right strategy depends on the workload:
+
+* **enterprise document retrieval** often benefits from section-aware, field-aware, or table-aware chunking
+* **code retrieval** often benefits from symbol-aware or file-aware chunking
+* **slide decks and screenshots** may require page-level or multimodal chunking
+* **RAG** often benefits from chunks that are small enough to retrieve precisely but large enough to preserve local context
+
+A useful heuristic is:
+
+```text
+chunk for the unit you want to retrieve, not the unit you happen to store
+```
+
+This is one reason why the retrieval stack is broader than the vector database. The database stores the vectors, but chunking determines what those vectors mean.
 
 ---
 
@@ -220,11 +250,11 @@ Vertex AI says its multimodal embeddings generate vectors from image, text, and 
 
 **Precision** — among returned hits, how many are relevant?
 
-$$\text{precision} = \frac{|\text{relevant} \cap \text{returned}|}{|\text{returned}|}$$
+$$\text{precision} = \frac{\lvert\text{relevant} \cap \text{returned}\rvert}{\lvert\text{returned}\rvert}$$
 
 **Recall** — among all relevant items in the corpus, how many appear in the result set?
 
-$$\text{recall} = \frac{|\text{relevant} \cap \text{returned}|}{|\text{relevant}|}$$
+$$\text{recall} = \frac{\lvert\text{relevant} \cap \text{returned}\rvert}{\lvert\text{relevant}\rvert}$$
 
 Usually there is tension between them:
 
@@ -262,9 +292,16 @@ BM25 ranks documents for a **keyword** query. It rewards:
 
 For each query term $t$ in document $d$:
 
-$$\text{BM25}(q,d) = \sum_{t ,\in, q} \underbrace{\ln!\frac{N - n_t + 0.5}{n_t + 0.5}}_{\text{IDF}} \cdot \frac{f(t,d),(k_1+1)}{f(t,d) + k_1!\left(1 - b + b,\dfrac{|d|}{\text{avgdl}}\right)}$$
+$$
+\text{BM25}(q,d) =
+\sum_{t \in q}
+\underbrace{\ln \frac{N - n_t + 0.5}{n_t + 0.5}}_{\text{IDF}}
+\cdot
+\frac{f(t,d)(k_1+1)}
+{f(t,d) + k_1\left(1 - b + b\frac{\lvert d \rvert}{\text{avgdl}}\right)}
+$$
 
-where $N$ is corpus size, $n_t$ is the number of documents containing $t$, $f(t,d)$ is term frequency, $\lvert d\rvert$ is document length, $\text{avgdl}$ is average document length across the corpus, and $k_1 \approx 1.2$–$2.0$ (term-frequency saturation) and $b \approx 0.75$ (length normalization) are the tunable parameters.
+where $N$ is corpus size, $n_t$ is the number of documents containing $t$, $f(t,d)$ is term frequency, $\lvert d \rvert$ is document length, $\text{avgdl}$ is average document length across the corpus, and $k_1 \approx 1.2$–$2.0$ (term-frequency saturation) and $b \approx 0.75$ (length normalization) are the tunable parameters.
 
 ### BM25 vs vectors
 
@@ -317,6 +354,29 @@ retriever → top-K candidates → reranker → final results
 
 The retriever may be lexical, vector, or hybrid; the reranker adds precision.
 
+Not all modern retrieval is just “dense vectors vs BM25.” Some systems also use **sparse learned retrieval**, **late-interaction models** such as ColBERT-style designs, or dedicated **rerankers** when ranking quality matters more than keeping the first-stage index simple.
+
+---
+
+## ANN index choices and tradeoffs
+
+Approximate nearest-neighbor search speeds up retrieval by giving up some exactness for much lower latency and cost.
+
+The central tradeoffs are:
+
+* **exact vs approximate search** — exact search gives maximum recall but can be too slow or expensive at scale
+* **recall vs latency** — more aggressive ANN settings are faster but may miss some true nearest neighbors
+* **memory vs compression** — some index types are memory-heavy, others compress vectors more aggressively
+* **update cost vs query cost** — some ANN structures are friendlier to frequent updates than others
+
+A few common patterns:
+
+* **HNSW** — strong quality and very common in production vector search systems
+* **IVF / PQ-style compression approaches** — attractive when memory efficiency matters more than maximum recall
+* **exact search** — still useful for smaller corpora, evaluation, and some latency-insensitive workflows
+
+In practice, the right ANN choice depends on corpus size, update rate, latency budget, and the acceptable recall loss.
+
 ---
 
 ## The vector database landscape
@@ -327,10 +387,10 @@ The term **vector database** is used loosely, but the landscape actually has thr
 
 These are built primarily around vector storage and similarity search:
 
-* Pinecone
+* [Pinecone](https://docs.pinecone.io/guides/get-started/overview)
 * Milvus
 * Qdrant
-* Weaviate
+* [Weaviate](https://docs.weaviate.io/weaviate/concepts/search)
 * Turbopuffer
 * Chroma
 * LanceDB
@@ -341,8 +401,8 @@ These vary in maturity, operational model, and how strongly they also support le
 
 These are broader search/ranking systems that also handle vectors well:
 
-* Vespa
-* OpenSearch
+* [Vespa](https://docs.vespa.ai/en/querying/nearest-neighbor-search-guide.html)
+* [OpenSearch](https://docs.opensearch.org/latest/search-plugins/keyword-search/)
 * Elasticsearch
 
 These often make more sense when search, ranking, and serving are core to the product.
@@ -351,7 +411,7 @@ These often make more sense when search, ranking, and serving are core to the pr
 
 These keep vectors close to operational data:
 
-* MongoDB Vector Search
+* [MongoDB Vector Search](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-overview/)
 * Postgres + pgvector
 
 These are attractive when data locality and operational simplicity matter more than having a specialized search stack.
@@ -424,8 +484,8 @@ They are especially strong when traditional search features matter alongside vec
 
 MongoDB provides both:
 
-* **Atlas Search** for Lucene-backed lexical search
-* **Atlas Vector Search** for semantic nearest-neighbor retrieval
+* [Atlas Search](https://www.mongodb.com/docs/atlas/atlas-search/) for Lucene-backed lexical search
+* [Atlas Vector Search](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-overview/) for semantic nearest-neighbor retrieval
 
 These are strongest when MongoDB is already the system of record and the goal is to keep retrieval close to application data and aggregation pipelines.
 
@@ -448,7 +508,7 @@ The best way to understand the landscape is by application shape.
 
 ### Perplexity: search and ranking are the product
 
-Perplexity publicly describes using **Vespa** to power AI search at scale.
+Perplexity publicly describes using [Vespa](https://blog.vespa.ai/perplexity-builds-ai-search-at-scale-on-vespa-ai/) to power AI search at scale.
 
 That makes sense because Perplexity’s problem is not just semantic retrieval. It is closer to:
 
@@ -462,7 +522,7 @@ This is a natural fit for a search-and-ranking engine rather than a pure vector 
 
 ### Cursor: code retrieval is a chunked nearest-neighbor problem
 
-Cursor publicly documents using **Turbopuffer** for codebase indexing: chunk files, embed them, store vectors plus obfuscated metadata, then perform nearest-neighbor search at inference time.
+[Cursor publicly documents](https://cursor.com/security) using Turbopuffer for codebase indexing: chunk files, embed them, store vectors plus obfuscated metadata, then perform nearest-neighbor search at inference time.
 
 This also makes sense. Cursor’s problem looks like:
 
@@ -520,29 +580,30 @@ not just “pick a vector DB.”
 
 ## Workload tilt: DocRouter-style vs code-editor retrieval
 
-| Dimension                     | Document / workflow retrieval                        | Code-editor style retrieval                        |
-| :---------------------------- | :--------------------------------------------------- | :------------------------------------------------- |
-| **Unit**                      | sections, tables, form regions, document families    | small code chunks, symbols, files                  |
-| **Churn**                     | moderate; often batch ingest + reprocessing          | very high incremental updates                      |
-| **Metadata**                  | doc type, tenant, date, workflow state, vendor, case | repo, branch, path, language, symbol type          |
-| **Exact-match need**          | very high                                            | high                                               |
-| **Hybrid need**               | very high                                            | high                                               |
-| **Typical stack lean**        | MongoDB / Weaviate / Vespa                           | Turbopuffer / Weaviate / Qdrant / Pinecone         |
-| **When ranking is strategic** | Vespa becomes especially attractive                  | Vespa can matter, but is often heavier than needed |
+| Dimension | Document / workflow retrieval | Code-editor style retrieval |
+| :--- | :--- | :--- |
+| **Unit** | sections, tables, form regions, document families | small code chunks, symbols, files |
+| **Churn** | moderate; often batch ingest + reprocessing | very high incremental updates |
+| **Metadata** | doc type, tenant, date, workflow state, vendor, case | repo, branch, path, language, symbol type |
+| **Permissions** | often critical | often critical |
+| **Exact-match need** | very high | high |
+| **Hybrid need** | very high | high |
+| **Typical stack lean** | MongoDB / Weaviate / Vespa | Turbopuffer / Weaviate / Qdrant / Pinecone |
+| **When ranking is strategic** | Vespa becomes especially attractive | Vespa can matter, but is often heavier than needed |
 
 ---
 
 ## Feature matrix (high level)
 
-|                               | MongoDB Atlas Search / Vector Search | Weaviate                      | Vespa                          | Turbopuffer            | Pinecone / Qdrant / Milvus |
-| :---------------------------- | :----------------------------------- | :---------------------------- | :----------------------------- | :--------------------- | :------------------------- |
-| **Core identity**             | document DB + embedded search        | vector / AI database + hybrid | search + ranking + serving     | retrieval substrate    | dedicated vector DB        |
-| **Lexical search**            | strong                               | strong                        | strong                         | some / hybrid-friendly | varies                     |
-| **Vector search**             | yes                                  | yes                           | yes                            | yes                    | yes                        |
-| **Hybrid search**             | composable                           | first-class                   | composable and powerful        | supported              | varies                     |
-| **Custom ranking depth**      | moderate                             | moderate                      | very strong                    | lower                  | lower to moderate          |
-| **Namespace-heavy workloads** | moderate                             | strong                        | possible                       | very strong            | strong                     |
-| **Best fit**                  | app data already in MongoDB          | semantic + hybrid RAG         | search/ranking as product core | code/chunk retrieval   | dedicated ANN workloads    |
+| | MongoDB Atlas Search / Vector Search | Weaviate | Vespa | Turbopuffer | Pinecone / Qdrant / Milvus |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Core identity** | document DB + embedded search | vector / AI database + hybrid | search + ranking + serving | retrieval substrate | dedicated vector DB |
+| **Lexical search** | strong | strong | strong | some / hybrid-friendly | varies |
+| **Vector search** | yes | yes | yes | yes | yes |
+| **Hybrid search** | composable | first-class | composable and powerful | supported | varies |
+| **Custom ranking depth** | moderate | moderate | very strong | lower | lower to moderate |
+| **Namespace-heavy workloads** | moderate | strong | possible | very strong | strong |
+| **Best fit** | app data already in MongoDB | semantic + hybrid RAG | search/ranking as product core | code/chunk retrieval | dedicated ANN workloads |
 
 ---
 
@@ -601,11 +662,11 @@ Beyond raw ANN benchmarks, what actually matters depends on the application.
 
 ### Retrieval metrics
 
-* **Precision@K** — of the top K results returned, what fraction are actually relevant? Measures how much noise the user sees.
-* **Recall@K** — of all relevant items in the corpus, what fraction appear in the top K? Measures how much the system misses.
-* **MRR (Mean Reciprocal Rank)** — averages the reciprocal of the rank of the first relevant result across queries. Rewards systems that surface a correct answer near the top.
-* **MAP (Mean Average Precision)** — averages precision across all recall levels for each query, then averages across queries. A single number that captures both ranking quality and coverage.
-* **NDCG (Normalized Discounted Cumulative Gain)** — rewards highly relevant results appearing early, with a logarithmic discount for lower ranks. Handles graded relevance, not just binary relevant/not-relevant.
+* **Precision@K** — of the top K results returned, what fraction are actually relevant?
+* **Recall@K** — of all relevant items in the corpus, what fraction appear in the top K?
+* **MRR (Mean Reciprocal Rank)** — averages the reciprocal of the rank of the first relevant result across queries
+* **MAP (Mean Average Precision)** — summarizes ranking quality and coverage across recall levels
+* **NDCG (Normalized Discounted Cumulative Gain)** — rewards highly relevant results appearing early and supports graded relevance
 
 ### System metrics
 
@@ -687,16 +748,3 @@ For most real systems, the better question is:
 * [Probabilities and Statistics](/probabilities_and_statistics)
 * [Robotics](/robotics)
 * [Self Driving Cars](/self_driving_cars)
-
----
-
-## External references
-
-* Cursor — Security: [https://cursor.com/security](https://cursor.com/security)
-* Vespa blog — Perplexity builds AI search at scale on Vespa: [https://blog.vespa.ai/perplexity-builds-ai-search-at-scale-on-vespa-ai/](https://blog.vespa.ai/perplexity-builds-ai-search-at-scale-on-vespa-ai/)
-* MongoDB Atlas Search docs: [https://www.mongodb.com/docs/atlas/atlas-search/](https://www.mongodb.com/docs/atlas/atlas-search/)
-* MongoDB Atlas Vector Search docs: [https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-overview/](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-overview/)
-* Weaviate search concepts: [https://docs.weaviate.io/weaviate/concepts/search](https://docs.weaviate.io/weaviate/concepts/search)
-* Weaviate hybrid search: [https://docs.weaviate.io/weaviate/search/hybrid](https://docs.weaviate.io/weaviate/search/hybrid)
-* OpenSearch keyword search: [https://docs.opensearch.org/latest/search-plugins/keyword-search/](https://docs.opensearch.org/latest/search-plugins/keyword-search/)
-* Pinecone overview: [https://docs.pinecone.io/guides/get-started/overview](https://docs.pinecone.io/guides/get-started/overview)
