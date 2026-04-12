@@ -151,7 +151,7 @@ A useful way to think about providers is:
 
 Provider choice is not only about benchmark quality. It also depends on deployment model, privacy requirements, batch throughput, dimensionality control, multimodal support, and compliance constraints.
 
-On [Hugging Face](https://huggingface.co/models), a useful open-model shortlist includes [BAAI/bge-m3](https://huggingface.co/BAAI/bge-m3) for broad multilingual retrieval, [intfloat/multilingual-e5-large-instruct](https://huggingface.co/intfloat/multilingual-e5-large-instruct) for cross-lingual retrieval, [Qwen/Qwen3-Embedding-4B](https://huggingface.co/Qwen/Qwen3-Embedding-4B) as a strong newer large embedding model, [jinaai/jina-embeddings-v4](https://huggingface.co/jinaai/jina-embeddings-v4) for multimodal and visual-document retrieval, and [jinaai/jina-clip-v2](https://huggingface.co/jinaai/jina-clip-v2) or the [nomic-embed-text-v1.5](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5) / [nomic-embed-vision-v1.5](https://huggingface.co/nomic-ai/nomic-embed-vision-v1.5) pair for text-image retrieval.
+Embedding models are additionally available as **open weights** on [Hugging Face](https://huggingface.co/models) for self-hosted inference, fine-tuning, or experimentation alongside the hosted providers above; which checkpoint to use still depends on modality, languages, license, and your own retrieval evaluation rather than any universal pick.
 
 ---
 
