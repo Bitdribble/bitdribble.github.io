@@ -4,11 +4,87 @@ title: Vector Databases
 mathjax: true
 ---
 
-This page collects how **embeddings**, **lexical search**, and **vector databases** fit together for retrieval (RAG, semantic search, recommenders), plus how major **search engines** and **databases** implement similar ideas.
+This page explains what a **vector database** is, what it is **not**, how it fits into a modern retrieval stack, and how to choose among the major systems depending on the application.
 
-#### Embeddings: inputs, outputs, geometry
+The main idea is simple:
 
-Think of an embedding model as a function that maps a **raw object** (sentence, paragraph, image, chunk of code) to a **point in d-dimensional space** (often **d** is one of 384, 768, 1024, 1536, …). You rarely inspect coordinates directly; you care about **relative position**: similar meaning → nearby vectors.
+A vector database is not the whole retrieval system. It is one component in a broader stack that usually includes:
+
+```text
+content
+  ↓
+chunking / parsing / field selection
+  ↓
+embeddings
+  ↓
+vector retrieval
+  + lexical retrieval
+  + metadata filters
+  + reranking
+  + application logic
+  ↓
+final results
+````
+
+In practice, the right choice depends less on the words **“vector database”** and more on the **shape of the workload**:
+
+* Is the application primarily **semantic retrieval**?
+* Does it need **exact-match lexical search** too?
+* Are there strong **metadata filters**?
+* Is the product fundamentally a **search engine**, a **database with search**, or a **retrieval substrate**?
+* Is the workload closer to **consumer AI search**, **enterprise document retrieval**, or **codebase chunk retrieval**?
+
+---
+
+## What a vector database is
+
+An embedding model maps a raw object such as a sentence, paragraph, image, or code chunk into a point in a high-dimensional space. Nearby points correspond to similar meaning.
+
+```text
+raw object → encoder → vector
+query vector → nearest neighbors → candidate results
+```
+
+A vector database exists to make this practical at production scale. Typically, it provides:
+
+* storage for vectors and IDs
+* approximate nearest-neighbor (ANN) indexes
+* metadata filters
+* updates and deletes
+* multitenancy or namespace isolation
+* replication, scaling, and operations
+
+That is why a vector database is more than an in-process nearest-neighbor library, but less than a complete search product.
+
+---
+
+## What a vector database is not
+
+A vector database is **not**:
+
+* an embedding model
+* a full ranking system
+* a replacement for lexical search
+* the same thing as a search engine
+* the same thing as a general-purpose database
+
+This distinction matters because many real-world systems do **not** use a “pure vector DB” by itself.
+
+Instead, they combine:
+
+* **embeddings** for semantic similarity
+* **BM25** or related lexical search for exact tokens
+* **filters** for tenant, product, date, repo, workflow state, or permissions
+* **reranking** for precision
+* **application-specific logic** for grouping, freshness, permissions, and serving
+
+For many applications, these choices matter more than the specific ANN backend.
+
+---
+
+## Embeddings: inputs, outputs, geometry
+
+Think of an embedding model as a function that maps a **raw object** to a **point in d-dimensional space**.
 
 Typical pipeline:
 
@@ -18,24 +94,25 @@ Raw input → tokenizer / preprocessing → neural encoder → embedding vector
                     search · clustering · classification · recommendation · RAG
 ```
 
-**Library vs database** — in-process embedding + search vs persisted, replicated, multi-tenant services: [Vector Library versus Vector Database](https://weaviate.io/blog/vector-library-vs-vector-database) (Weaviate blog, 2023).
+You rarely inspect the coordinates directly. What matters is **relative position**:
 
-Example geometry (intuition only): phrases about pets cluster away from vehicles. Training **pulls** positive pairs together and **pushes** negatives apart so that geometry matches your notion of relevance.
+* similar meaning → nearby vectors
+* unrelated meaning → distant vectors
 
-#### How embedding models are trained (common patterns)
+Training usually tries to make this geometry useful for the task by **pulling** related examples together and **pushing** unrelated examples apart.
 
-* **Masked / causal language modeling** — predict missing or next tokens; useful representations arise in transformer layers even though the head is generative. Pooling often uses `[CLS]`, mean pooling over tokens, or a dedicated projection head.
-* **Contrastive learning** — positive pairs (query, relevant passage) should have high similarity; hard negatives (same domain, wrong answer) teach fine distinctions. Central to modern **sentence / passage** encoders and retrieval.
-* **Supervised classification with a bottleneck** — encoder → embedding → classifier; the bottleneck vector is reused for search or clustering.
-* **Triplet loss** — anchor, positive, negative; enforce $d(\text{anchor}, \text{positive}) \ll d(\text{anchor}, \text{negative})$.
+### Common training patterns
 
-For retrieval-focused encoders, **hard negatives** (e.g. “Python list comprehension” vs “Python for loops tutorial” instead of vs “banana smoothie”) usually matter more than easy random negatives.
+* **Masked / causal language modeling** — predict missing or next tokens; useful representations emerge in the hidden states
+* **Contrastive learning** — positive pairs should be close, negatives far apart
+* **Supervised classification with an embedding bottleneck** — encoder → embedding → classifier
+* **Triplet loss** — anchor, positive, negative
 
-#### Train, validation, and test
+For retrieval-focused models, **hard negatives** usually matter a lot more than easy random negatives.
 
-* **Train** — parameters are updated on this data.
-* **Validation** — choose architecture, early stopping, thresholds, and hyperparameters; not used for gradient updates, but you **do** make decisions from it.
-* **Test** — **one** honest benchmark at the end; if you repeatedly tune using the test set, it stops measuring generalization.
+---
+
+## Train, validation, and test
 
 ```text
 All labeled data
@@ -44,14 +121,31 @@ All labeled data
 └── test       (final report only)
 ```
 
-#### After training: how vectors are used
+* **Train** — update parameters
+* **Validation** — choose hyperparameters, thresholds, and stopping points
+* **Test** — one honest benchmark at the end
 
-* **Semantic search** — query and documents embedded; nearest neighbors by cosine or dot product.
-* **Classification / clustering** — linear probe or clustering in embedding space.
-* **Recommendation** — user and item vectors aligned in a shared space.
-* **RAG** — retrieve chunks, then feed them to an LLM; quality depends on chunking, negatives, and reranking as much as on the backbone model.
+If the test set is repeatedly used for tuning, it stops measuring generalization.
 
-#### Precision, recall, and practical knobs
+---
+
+## After training: how vectors are used
+
+Vectors support several kinds of applications:
+
+* **semantic search** — nearest-neighbor retrieval
+* **classification** — linear probes or downstream heads
+* **clustering** — grouping similar items
+* **recommendation** — users and items embedded in a shared space
+* **RAG** — retrieve chunks to condition an LLM
+* **code retrieval** — retrieve relevant files, symbols, or chunks
+* **multimodal search** — align text and images or other modalities
+
+In many systems, vectors are the **first-stage retriever**, not the final answer generator.
+
+---
+
+## Precision, recall, and the practical knobs
 
 **Precision** — among returned hits, how many are relevant?
 
@@ -61,106 +155,451 @@ $$\text{precision} = \frac{|\text{relevant} \cap \text{returned}|}{|\text{return
 
 $$\text{recall} = \frac{|\text{relevant} \cap \text{returned}|}{|\text{relevant}|}$$
 
-Usually **tension** with precision: stricter thresholds ↑ precision, ↓ recall.
+Usually there is tension between them:
 
-**Levers** that often improve **precision** (especially in production RAG):
+* stricter thresholds ↑ precision, ↓ recall
+* broader retrieval ↑ recall, ↓ precision
 
-1. Strong **evaluation sets** (hard queries, near-misses, real user phrasing).
-2. **Chunking** at semantic boundaries; avoid one vector spanning unrelated topics.
-3. **Hard negatives** and cleaner relevance labels in training.
-4. **Domain fine-tuning** when jargon dominates (legal, medical, code).
-5. **Loss / objective** suited to ranking (contrastive, multiple negatives ranking, etc.).
-6. **Similarity threshold** and **top‑K** — cheap operational tradeoff curve.
-7. **Reranking** — bi-encoder retrieval for recall + cross-encoder (or dedicated reranker) on the top‑*K* candidates for precision.
-8. **Metadata filters** — restrict by time, tenant, product line, etc.
-9. **Hybrid retrieval** — combine dense vectors with **BM25** when SKUs, APIs, or exact phrases matter.
+In practice, the biggest quality levers are often:
 
-Recipe order that often pays off before exotic training: eval set → chunking → hard negatives → stronger embedding model → filters → reranker → threshold / K → domain tuning → hybrid search.
+1. strong evaluation sets
+2. good chunking
+3. metadata modeling
+4. hard negatives
+5. hybrid lexical + vector retrieval
+6. reranking
+7. threshold and top-*K* tuning
+8. domain fine-tuning
 
-#### BM25 (lexical relevance)
+A good production recipe is usually:
 
-BM25 ranks documents for a **keyword** query. For each query term $t$ in document $d$:
+```text
+eval set → chunking → stronger embeddings → filters → reranker → threshold / K → domain tuning
+```
 
-$$\text{BM25}(q,d) = \sum_{t \,\in\, q} \underbrace{\ln\!\frac{N - n_t + 0.5}{n_t + 0.5}}_{\text{IDF}} \cdot \frac{f(t,d)\,(k_1+1)}{f(t,d) + k_1\!\left(1 - b + b\,\dfrac{|d|}{\text{avgdl}}\right)}$$
+before exotic modeling.
 
-where $N$ = corpus size, $n_t$ = number of docs containing $t$, $f(t,d)$ = term frequency in $d$, $\lvert d\rvert$ = document length, and $\text{avgdl}$ = average document length. Parameters: **$k_1$** (term-frequency saturation, often 1.2–2.0) and **$b$** (length normalization, often 0.75).
+---
 
-Default **similarity** in Elasticsearch and OpenSearch for classic full‑text fields is BM25.
+## BM25 and lexical search
 
-**BM25 vs embeddings** — BM25: exact tokens and statistics. Embeddings: paraphrase and meaning (“flat tire” vs “punctured wheel”). **Hybrid** systems sum or fuse both scores; [Weaviate](/vector_databases/weaviate) documents parallel **vector + BM25** hybrid search and fusion in product docs.
+BM25 ranks documents for a **keyword** query. It rewards:
 
-#### Elasticsearch, OpenSearch, and Lucene
+* rare terms more than common terms
+* multiple mentions, but with diminishing returns
+* shorter, more focused documents over long noisy ones
 
-At a high level, **Elasticsearch** and **OpenSearch** are distributed **Java** servers around **Apache Lucene**: each **shard** is a Lucene index made of **immutable segments**; **indexing** goes through analyzers, **translog**, **refresh** (searchable segments), **flush/commit**; **search** fans out from a coordinating node to shards, runs Lucene queries per segment, then merges hits and aggregations. **BM25 scoring** executes inside Lucene; the server handles routing, replication, query DSL, and plugins (for example **k‑NN** in OpenSearch). OpenSearch adds distinct product choices (governance, plugins, features such as segment replication) on top of the same Lucene core.
+For each query term $t$ in document $d$:
 
-**Lucene** itself (per segment): inverted **postings** (term → doc ids), **stored fields**, **doc values** (sorting, facets), **points** (numeric/geo), **norms**, soft deletes; **IndexWriter** / **IndexSearcher** / **Collector** APIs; **codec** layer encodes on-disk formats. Mental model: **Lucene = per‑shard engine**; **OpenSearch / Elasticsearch = distributed OS around that engine**.
+$$\text{BM25}(q,d) = \sum_{t ,\in, q} \underbrace{\ln!\frac{N - n_t + 0.5}{n_t + 0.5}}_{\text{IDF}} \cdot \frac{f(t,d),(k_1+1)}{f(t,d) + k_1!\left(1 - b + b,\dfrac{|d|}{\text{avgdl}}\right)}$$
 
-#### MongoDB Atlas Search and Vector Search
+where $N$ is corpus size, $n_t$ is the number of documents containing $t$, $f(t,d)$ is term frequency, and $|d|$ is document length.
 
-MongoDB documents **Atlas Search** as Lucene‑backed full‑text search and runs a separate **`mongot`** process (with **`mongod`**) that owns search indexes. **<code>$search</code>** and **<code>$searchMeta</code>** aggregation stages run lexical search; explain output can surface **Lucene** query details. **Atlas Vector Search** (**<code>$vectorSearch</code>**) performs **ANN** retrieval (documented default index structure **HNSW** in many deployments) with optional **pre‑filtering**; both paths are typically served via **`mongot`**, then the rest of the aggregation pipeline continues in **`mongod`**.
+### BM25 vs vectors
 
-#### Weaviate, Vespa, MongoDB (search “shape”)
+* **BM25** is strong on exact terms, IDs, names, and phrases
+* **vectors** are strong on semantic similarity and paraphrase
+* **hybrid** often works best in production
 
-* **[Weaviate](/vector_databases/weaviate)** — vector‑native database with **keyword (BM25), vector, and hybrid** search as first‑class APIs; hybrid runs lexical and dense retrieval in parallel then **fuses** scores. Good default when retrieval (especially RAG) is the product focus.
-* **MongoDB Search / Vector Search** — strongest when **MongoDB is already the system of record** and you want **<code>$search</code>** / **<code>$vectorSearch</code>** inside aggregation with minimal extra infrastructure.
-* **Vespa** — open‑source **search + ranking + serving** engine; excels at **multi‑stage retrieval**, **rank profiles**, and combining lexical, vector, and business signals in one serving stack. Often chosen when **relevance engineering** is central (e.g. large consumer search).
+This is especially true in enterprise systems where both exact identifiers and fuzzy semantic matches matter.
 
-#### Feature matrix (high level)
+---
 
-| | MongoDB Atlas Search / Vector Search | Weaviate | Vespa |
-| :--- | :--- | :--- | :--- |
-| **Core identity** | Document DB + embedded search | Vector / AI database + hybrid | Search + ranking + serving |
-| **Lexical default** | Lucene analyzers, <code>$search</code> (aggregation stage) | BM25 keyword search | BM25 / text in rank profiles |
-| **Vector / ANN** | <code>$vectorSearch</code>, HNSW-style indexes | Native vector search | <code>nearestNeighbor</code> and related APIs |
-| **Hybrid** | Composable in app / pipeline | Named hybrid + fusion | Composed via queries + rank phases |
-| **Custom ranking depth** | Moderate | Moderate; reranking supported | Very strong (rank profiles, phases) |
-| **Best fit** | Data already in MongoDB | Semantic + hybrid RAG | Large-scale tuned retrieval |
+## The real retrieval stack: lexical, vector, hybrid, reranking
 
-#### Workload tilt: DocRouter-style vs code-editor retrieval
+Modern retrieval systems usually fit one of four patterns.
 
-| Dimension | Document / workflow retrieval | Code-editor style chunk retrieval |
-| :--- | :--- | :--- |
-| **Unit** | Sections, tables, form regions | Small chunks, symbols, files |
-| **Churn** | Often batch + reprocess | Very high incremental updates |
-| **Metadata** | Doc type, dates, workflow state | Repo, branch, path, language |
-| **Typical stack lean** | MongoDB or Vespa if ranking is strategic | Dedicated ANN store (e.g. Turbopuffer-class) or Weaviate |
+### 1. Pure lexical search
 
-Scores in chat notes are subjective; treat them as **heuristics**, not benchmarks. For **AI coding assistants**, some vendors document a dedicated vector / search tier for chunked code (namespaces per user or repo) plus local or obfuscated metadata; see for example [Cursor — Security](https://cursor.com/security) for how that product describes its stack.
+Best when exact token matching dominates:
 
-#### Landscape: names to keep in mind
+* product codes
+* case IDs
+* SQL keywords
+* API names
+* legal citations
 
-**Dedicated vector / ANN products (illustrative):** Pinecone, Milvus, Qdrant, Weaviate, Chroma, LanceDB, Turbopuffer, …  
+### 2. Pure vector search
 
-**Search engines with strong vectors:** Vespa, OpenSearch (and Elasticsearch), …  
+Best when semantic similarity dominates and exact tokens matter less:
 
-**Vectors inside general databases:** **pgvector** on Postgres, **MongoDB** Vector Search, …  
+* recommendations
+* some semantic FAQ lookup
+* some multimodal applications
 
-For a longer curated link list (pgvector, Unstructured, Chroma Docker, etc.), see the [Vector Database Examples](/machine_learning/2023/08/13/vector-database-examples/) post.
+### 3. Hybrid search
 
-#### Retrieval metrics (beyond binary precision)
+Best when both matter:
 
-* **Precision@K**, **Recall@K**, **MRR**, **MAP**, **NDCG** — standard IR metrics on ranked lists.
-* **Classification** — accuracy, precision/recall per class, F1, ROC / PR AUC.
-* **Embedding quality** — silhouette, kNN label purity, or downstream task performance.
+* enterprise documents
+* code search
+* support knowledge bases
+* RAG over heterogeneous corpora
 
-#### Failure modes (checklist)
+### 4. Two-stage retrieval
 
-Bad or easy negatives; **domain mismatch**; **multi‑topic chunks**; **train/test leakage**; uncalibrated similarity threshold; ignoring **exact‑match** needs (SKUs, legal cites); benchmarks that are **too easy**.
+Often best in serious systems:
 
-#### Systems and stacks (this site)
+```text
+retriever → top-K candidates → reranker → final results
+```
 
-* **Postgres + pgvector** — [Google Cloud: pgvector, LLMs, and LangChain](https://cloud.google.com/blog/products/databases/using-pgvector-llms-and-langchain-with-google-cloud-databases), [video](https://www.youtube.com/watch?v=FDBnyJu_Ndg).
-* **Chroma** — [Chromadb software stack](/software_stacks/chromadb).
-* **Weaviate** — [Weaviate software stack](/vector_databases/weaviate).
-* **Surveys** — Dmitry Kan: [Not All Vector Databases Are Made Equal](https://towardsdatascience.com/milvus-pinecone-vespa-weaviate-vald-gsi-what-unites-these-buzz-words-and-what-makes-each-9c65a3bd0696) (2023); [12 Vector Databases For 2023](https://lakefs.io/blog/12-vector-databases-2023/); Duncan Blythe: [overview of vector search libraries and databases](https://www.linkedin.com/pulse/overview-vector-search-libraries-databases-duncan-blythe/) (2023).
+The retriever may be lexical, vector, or hybrid; the reranker adds precision.
 
-#### Articles and posts
+---
 
-* Hacker News: [Vector search just got up to 10x faster…](https://news.ycombinator.com/item?id=32487856).
-* Reddit: [Open source vector databases?](https://www.reddit.com/r/ChatGPTCoding/comments/14112ol/open_source_vector_databases/) (2023).
-* Dmitry Kan (Haystack 2022): [Where Vector Search is Taking Us](https://haystackconf.com/files/slides/haystack2022/Dmitry-Haystack-Keynote.pdf) (PDF).
+## The vector database landscape
 
-#### Other
+The term **vector database** is used loosely, but the landscape actually has three broad categories.
+
+### 1. Dedicated vector databases / vector engines
+
+These are built primarily around vector storage and similarity search:
+
+* Pinecone
+* Milvus
+* Qdrant
+* Weaviate
+* Turbopuffer
+* Chroma
+* LanceDB
+
+These vary in maturity, operational model, and how strongly they also support lexical or hybrid search.
+
+### 2. Search engines with strong vector support
+
+These are broader search/ranking systems that also handle vectors well:
+
+* Vespa
+* OpenSearch
+* Elasticsearch
+
+These often make more sense when search, ranking, and serving are core to the product.
+
+### 3. General databases with vector support
+
+These keep vectors close to operational data:
+
+* MongoDB Vector Search
+* Postgres + pgvector
+
+These are attractive when data locality and operational simplicity matter more than having a specialized search stack.
+
+---
+
+## A conceptual map of the major systems
+
+### Pinecone, Milvus, Qdrant
+
+These are easiest to think of as **dedicated vector database products**.
+
+They are often chosen when the main need is:
+
+* vector similarity search
+* metadata filtering
+* scalable ANN
+* production operational support
+
+### Weaviate
+
+Weaviate is best thought of as a **vector-native / AI database** with strong built-in support for:
+
+* vector search
+* keyword search
+* hybrid search
+
+That makes it a strong middle ground between “pure vector DB” and “full search engine.”
+
+See also: [Weaviate software stack](/vector_databases/weaviate)
+
+### Turbopuffer
+
+Turbopuffer is best thought of as a **retrieval substrate** optimized for large-scale search over vectors and metadata, with support for full-text and hybrid behavior as well.
+
+It is especially interesting for workloads with:
+
+* many isolated namespaces
+* high update rates
+* lots of small chunks
+* low-latency nearest-neighbor retrieval
+
+### Vespa
+
+Vespa is not best understood as a vector database. It is an open-source **search + ranking + serving engine**.
+
+Its strength is not just storing vectors, but combining:
+
+* lexical retrieval
+* vector retrieval
+* filters
+* business logic
+* multi-stage ranking
+* serving logic
+
+Vespa is a strong choice when **relevance engineering** is central.
+
+### OpenSearch and Elasticsearch
+
+OpenSearch and Elasticsearch are not “pure vector DBs” either. They are Lucene-based distributed search engines that support:
+
+* BM25 full-text search
+* filters and aggregations
+* vector search
+* hybrid search patterns
+
+They are especially strong when traditional search features matter alongside vectors.
+
+### MongoDB Atlas Search and Vector Search
+
+MongoDB provides both:
+
+* **Atlas Search** for Lucene-backed lexical search
+* **Atlas Vector Search** for semantic nearest-neighbor retrieval
+
+These are strongest when MongoDB is already the system of record and the goal is to keep retrieval close to application data and aggregation pipelines.
+
+### Postgres + pgvector
+
+This is often the simplest option when:
+
+* the app already uses Postgres
+* scale is moderate
+* operational simplicity matters
+* vector retrieval is important, but not the entire product
+
+It is frequently a very good default for early-stage products.
+
+---
+
+## How different products use different retrieval systems
+
+The best way to understand the landscape is by application shape.
+
+### Perplexity: search and ranking are the product
+
+Perplexity publicly describes using **Vespa** to power AI search at scale.
+
+That makes sense because Perplexity’s problem is not just semantic retrieval. It is closer to:
+
+* search engine retrieval
+* ranking
+* freshness
+* structured filtering
+* serving at scale
+
+This is a natural fit for a search-and-ranking engine rather than a pure vector DB.
+
+### Cursor: code retrieval is a chunked nearest-neighbor problem
+
+Cursor publicly documents using **Turbopuffer** for codebase indexing: chunk files, embed them, store vectors plus obfuscated metadata, then perform nearest-neighbor search at inference time.
+
+This also makes sense. Cursor’s problem looks like:
+
+* lots of small code chunks
+* high churn
+* many user/repo namespaces
+* metadata filters such as path and line range
+* extremely fast retrieval
+
+That shape favors a fast retrieval substrate over a heavy search-engine stack.
+
+### MongoDB: integrated database + search
+
+MongoDB’s model is different. It says: keep your operational data in MongoDB, and add lexical and vector retrieval in the same platform.
+
+This is strongest when the system already needs:
+
+* document storage
+* app data
+* workflow state
+* search
+* vector retrieval
+* filters and aggregation
+
+with minimal extra infrastructure.
+
+### DocRouter-style document retrieval
+
+A DocRouter-style workload is usually **not** just a vector search problem. It is a **document retrieval and workflow problem**.
+
+Typical needs include:
+
+* exact IDs and exact phrases
+* semantic similarity
+* metadata filters
+* grouped or field-aware retrieval
+* hybrid search
+* reranking
+* explainability
+* workflow and permission logic
+
+That usually means the right architecture is:
+
+```text
+lexical retrieval
++ vector retrieval
++ metadata filters
++ reranking
++ application logic
+```
+
+not just “pick a vector DB.”
+
+---
+
+## Workload tilt: DocRouter-style vs code-editor retrieval
+
+| Dimension                     | Document / workflow retrieval                        | Code-editor style retrieval                        |
+| :---------------------------- | :--------------------------------------------------- | :------------------------------------------------- |
+| **Unit**                      | sections, tables, form regions, document families    | small code chunks, symbols, files                  |
+| **Churn**                     | moderate; often batch ingest + reprocessing          | very high incremental updates                      |
+| **Metadata**                  | doc type, tenant, date, workflow state, vendor, case | repo, branch, path, language, symbol type          |
+| **Exact-match need**          | very high                                            | high                                               |
+| **Hybrid need**               | very high                                            | high                                               |
+| **Typical stack lean**        | MongoDB / Weaviate / Vespa                           | Turbopuffer / Weaviate / Qdrant / Pinecone         |
+| **When ranking is strategic** | Vespa becomes especially attractive                  | Vespa can matter, but is often heavier than needed |
+
+---
+
+## Feature matrix (high level)
+
+|                               | MongoDB Atlas Search / Vector Search | Weaviate                      | Vespa                          | Turbopuffer            | Pinecone / Qdrant / Milvus |
+| :---------------------------- | :----------------------------------- | :---------------------------- | :----------------------------- | :--------------------- | :------------------------- |
+| **Core identity**             | document DB + embedded search        | vector / AI database + hybrid | search + ranking + serving     | retrieval substrate    | dedicated vector DB        |
+| **Lexical search**            | strong                               | strong                        | strong                         | some / hybrid-friendly | varies                     |
+| **Vector search**             | yes                                  | yes                           | yes                            | yes                    | yes                        |
+| **Hybrid search**             | composable                           | first-class                   | composable and powerful        | supported              | varies                     |
+| **Custom ranking depth**      | moderate                             | moderate                      | very strong                    | lower                  | lower to moderate          |
+| **Namespace-heavy workloads** | moderate                             | strong                        | possible                       | very strong            | strong                     |
+| **Best fit**                  | app data already in MongoDB          | semantic + hybrid RAG         | search/ranking as product core | code/chunk retrieval   | dedicated ANN workloads    |
+
+---
+
+## Choosing the right system by application need
+
+### Choose MongoDB Search / Vector Search when
+
+* MongoDB is already the system of record
+* you want minimal infrastructure sprawl
+* metadata-heavy filtering and app integration matter
+* retrieval is important, but not a standalone serving product
+
+### Choose Weaviate when
+
+* retrieval is central to the application
+* you want strong keyword + vector + hybrid search
+* you want a dedicated retrieval database without going all the way to a search-engine platform
+
+### Choose Vespa when
+
+* search and ranking are core differentiators
+* you want multi-stage ranking and richer relevance engineering
+* the product looks more like search/recommendation/serving than a CRUD app with vectors
+
+### Choose Turbopuffer when
+
+* the workload is mostly fast chunk retrieval
+* there are many namespaces or tenants
+* metadata filters matter
+* the application looks like a code assistant, retrieval substrate, or large-scale vector index
+
+### Choose Pinecone, Qdrant, or Milvus when
+
+* you want a dedicated vector database
+* the main need is vector retrieval plus filtering
+* you do not need the full complexity of a search-engine platform
+
+### Choose pgvector when
+
+* you already use Postgres
+* scale is moderate
+* simplicity matters
+* vector retrieval is important, but not the center of the platform
+
+### Choose OpenSearch or Elasticsearch when
+
+* you already need classic search-engine features
+* lexical search remains central
+* vectors are an addition to a search stack, not the entire product
+
+---
+
+## Metrics that matter
+
+Beyond raw ANN benchmarks, what actually matters depends on the application.
+
+### Retrieval metrics
+
+* Precision@K
+* Recall@K
+* MRR
+* MAP
+* NDCG
+
+### System metrics
+
+* latency
+* throughput
+* freshness
+* update cost
+* filter correctness
+* multitenancy behavior
+* operational burden
+
+### Application-specific metrics
+
+* document systems: exact identifier retrieval, section relevance, workflow correctness
+* code assistants: chunk relevance, namespace isolation, freshness after edits
+* consumer search: ranking quality, freshness, personalization, serving latency
+
+---
+
+## Failure modes
+
+Common retrieval failures include:
+
+* easy negatives instead of hard negatives
+* bad chunking
+* poor metadata modeling
+* domain mismatch
+* ignoring lexical exact-match needs
+* too much faith in vector similarity alone
+* evaluating only on easy benchmarks
+* no reranking
+* no permission or tenant filtering
+
+Many disappointing “vector database” results are actually failures of the surrounding retrieval design.
+
+---
+
+## Practical takeaway
+
+The most important conceptual point is:
+
+A **vector database** is usually not the right abstraction to optimize first.
+
+For most real systems, the better question is:
+
+**What retrieval architecture does this application need?**
+
+* For **consumer AI search**, search and ranking engines like **Vespa** may be the right center of gravity.
+* For **code retrieval**, fast namespace-heavy ANN systems like **Turbopuffer** may be a better fit.
+* For **application-integrated retrieval**, **MongoDB Search / Vector Search** or **pgvector** may be simplest.
+* For **semantic + hybrid retrieval as a product**, **Weaviate**, **Qdrant**, **Pinecone**, or **Milvus** may be the right class.
+* For **enterprise document retrieval**, the answer is often **hybrid lexical + vector + filters + reranking**, not just “choose a vector DB.”
+
+---
+
+## Systems and stacks (this site)
+
+* **Postgres + pgvector** — [Google Cloud: pgvector, LLMs, and LangChain](https://cloud.google.com/blog/products/databases/using-pgvector-llms-and-langchain-with-google-cloud-databases), [video](https://www.youtube.com/watch?v=FDBnyJu_Ndg)
+* **Chroma** — [Chromadb software stack](/software_stacks/chromadb)
+* **Weaviate** — [Weaviate software stack](/vector_databases/weaviate)
+* **Vector DB examples** — [Vector Database Examples](/machine_learning/2023/08/13/vector-database-examples/)
+
+---
+
+## Related
 
 * [AI Agents](/ai_agents)
 * [Artificial Intelligence](/artificial_intelligence)
@@ -177,3 +616,16 @@ Bad or easy negatives; **domain mismatch**; **multi‑topic chunks**; **train/te
 * [Probabilities and Statistics](/probabilities_and_statistics)
 * [Robotics](/robotics)
 * [Self Driving Cars](/self_driving_cars)
+
+---
+
+## External references
+
+* Cursor — Security: [https://cursor.com/security](https://cursor.com/security)
+* Vespa blog — Perplexity builds AI search at scale on Vespa: [https://blog.vespa.ai/perplexity-builds-ai-search-at-scale-on-vespa-ai/](https://blog.vespa.ai/perplexity-builds-ai-search-at-scale-on-vespa-ai/)
+* MongoDB Atlas Search docs: [https://www.mongodb.com/docs/atlas/atlas-search/](https://www.mongodb.com/docs/atlas/atlas-search/)
+* MongoDB Atlas Vector Search docs: [https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-overview/](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-overview/)
+* Weaviate search concepts: [https://docs.weaviate.io/weaviate/concepts/search](https://docs.weaviate.io/weaviate/concepts/search)
+* Weaviate hybrid search: [https://docs.weaviate.io/weaviate/search/hybrid](https://docs.weaviate.io/weaviate/search/hybrid)
+* OpenSearch keyword search: [https://docs.opensearch.org/latest/search-plugins/keyword-search/](https://docs.opensearch.org/latest/search-plugins/keyword-search/)
+* Pinecone overview: [https://docs.pinecone.io/guides/get-started/overview](https://docs.pinecone.io/guides/get-started/overview)
