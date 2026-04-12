@@ -72,6 +72,73 @@ You rarely inspect the coordinates directly. What matters is **relative position
 
 Training usually tries to make this geometry useful for the task by **pulling** related examples together and **pushing** unrelated examples apart.
 
+## Choosing an embedding model
+
+Choosing an embedding model is not just a benchmark exercise. It depends on the shape of the retrieval problem.
+
+The main decision axes are:
+
+* **Modality** — is the corpus text-only, image-heavy, or truly multimodal?
+* **Task** — is the goal retrieval, clustering, classification, recommendation, or reranking support?
+* **Query/document asymmetry** — should queries and stored documents use different embedding modes?
+* **Domain** — is the corpus general text, code, legal, finance, biomedical, or something else with specialized language?
+* **Dimension and storage cost** — higher-dimensional vectors may improve quality, but they also increase storage, bandwidth, and retrieval cost.
+* **Latency, privacy, and deployment constraints** — can the embeddings be generated through a hosted API, or do they need to run in a private environment?
+
+A practical sequence is:
+
+```text
+modality → task → domain → query/document asymmetry → cost/latency → provider choice
+```
+
+For many teams, the right first move is to start with a strong general-purpose retrieval embedding model, measure it on a realistic evaluation set, and only then decide whether a domain-specific or multimodal model is justified.
+
+One subtle but important point: query embeddings are not always the same as document embeddings. Some providers explicitly optimize different embedding modes for **search queries** and **search documents**, which can improve retrieval quality.
+
+Providers like Cohere explicitly distinguish `search_query` and `search_document`, Voyage distinguishes `query` and `document` input types, and Vertex AI supports task-type-aware embeddings for retrieval and related use cases. 
+
+### Domain-specific and task-specific embeddings
+
+A strong general-purpose embedding model is often the right place to start. But it is not always the right place to stop.
+
+Some retrieval problems benefit from **domain-specific embeddings** because the meaning of similarity is different in different fields. Code, legal documents, financial text, and biomedical corpora often contain specialized language, structure, and relevance criteria that a generic model may not represent as well.
+
+Task-specific behavior matters too. A model optimized for **document retrieval** may not be ideal for clustering, and a model optimized for **queries** may not be ideal for stored corpus documents.
+
+In practice, the progression often looks like this:
+
+```text
+general retrieval model
+→ realistic evaluation set
+→ identify failure cases
+→ domain-specific or task-specific model if needed
+```
+
+That sequence is usually better than prematurely fine-tuning or choosing a niche model before understanding the retrieval workload.
+
+Voyage explicitly recommends different models for domains like legal, finance, and code, while Cohere and Vertex both expose task-aware embedding modes for retrieval and related use cases. 
+
+## Embedding provider cheat sheet
+
+The choice of vector database is only half the story. The embedding provider matters just as much.
+
+| Provider | Strengths | Best fit |
+| :--- | :--- | :--- |
+| **OpenAI** | Strong general-purpose text embeddings; simple API; good default for many retrieval tasks | teams that want a straightforward hosted baseline |
+| **Cohere** | Retrieval-oriented embedding stack; explicit `search_query` and `search_document` modes; strong RAG tooling | semantic search and RAG systems that want query/document-aware embeddings |
+| **Voyage AI** | Retrieval-focused models; query/document modes; domain-specific models for code, law, and finance; multimodal support | teams optimizing retrieval quality in specialized domains |
+| **Google Vertex AI** | Task-type-aware embeddings; configurable output dimensionality for text embeddings; multimodal embeddings for text, image, and video | teams already in GCP, or teams needing task-specific and multimodal support |
+
+A useful way to think about providers is:
+
+* **OpenAI** — strong general-purpose baseline
+* **Cohere** — retrieval-first and RAG-friendly
+* **Voyage** — retrieval specialist, especially for domain-specific workloads
+* **Vertex AI** — task-aware and multimodal, especially attractive inside Google Cloud
+````
+
+OpenAI’s embeddings API exposes `text-embedding-3-small` and `text-embedding-3-large`. Cohere’s Embed API requires an `input_type` for newer models, including `search_document` and `search_query`. Voyage documents query/document input types and domain-specific families such as finance, law, and code. Vertex AI documents task types for embeddings and configurable output dimensionality for text embeddings, alongside a separate multimodal embeddings API. 
+
 ### Common training patterns
 
 * **Masked / causal language modeling** — predict missing or next tokens; useful representations emerge in the hidden states
@@ -96,6 +163,56 @@ Vectors support several kinds of applications:
 * **multimodal search** — align text and images or other modalities
 
 In many systems, vectors are the **first-stage retriever**, not the final answer generator.
+
+## Multimodal retrieval: when OCR is not enough
+
+Many retrieval systems are described as “multimodal,” but there are really three different cases:
+
+### 1. Text-only retrieval
+
+This is the simplest case. The corpus is already text, or can be reduced to text without losing much meaning.
+
+Examples:
+
+* plain documents
+* knowledge bases
+* contracts
+* source code
+* emails
+
+### 2. OCR-first retrieval
+
+This is common for scanned PDFs and forms. The retrieval pipeline extracts text with OCR, then treats the result as ordinary text retrieval.
+
+This works well when most of the important information is still captured in words.
+
+### 3. True multimodal retrieval
+
+This is needed when the **visual structure itself carries meaning**, not just the text.
+
+Examples:
+
+* screenshots
+* slide decks
+* diagrams
+* tables where layout matters
+* charts and figures
+* image-heavy PDFs
+* document page images
+* search by screenshot or image
+
+In these settings, OCR alone can lose important information. A multimodal embedding model can place text, images, and mixed inputs into a shared retrieval space.
+
+This matters in practice because many enterprise corpora are only partially textual. A text-heavy invoice workflow may be well served by OCR plus text embeddings. A slide deck, dashboard screenshot, or visually complex form may require true multimodal retrieval.
+
+A useful rule of thumb is:
+
+```text
+if the meaning survives text extraction → OCR-first may be enough
+if the meaning depends on layout, figures, or images → consider multimodal embeddings
+```
+
+Vertex AI says its multimodal embeddings generate vectors from image, text, and video in a shared semantic space, and Voyage documents multimodal models for text plus content-rich images such as slide decks, screenshots, tables, and figures. Cohere also documents embedding support for text, images, and mixed text/image inputs, including PDFs.
 
 ---
 
