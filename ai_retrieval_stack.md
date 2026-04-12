@@ -484,11 +484,11 @@ Beyond raw ANN benchmarks, what actually matters depends on the application.
 
 ### Retrieval metrics
 
-* Precision@K
-* Recall@K
-* MRR
-* MAP
-* NDCG
+* **Precision@K** — of the top K results returned, what fraction are actually relevant? Measures how much noise the user sees.
+* **Recall@K** — of all relevant items in the corpus, what fraction appear in the top K? Measures how much the system misses.
+* **MRR (Mean Reciprocal Rank)** — averages the reciprocal of the rank of the first relevant result across queries. Rewards systems that surface a correct answer near the top.
+* **MAP (Mean Average Precision)** — averages precision across all recall levels for each query, then averages across queries. A single number that captures both ranking quality and coverage.
+* **NDCG (Normalized Discounted Cumulative Gain)** — rewards highly relevant results appearing early, with a logarithmic discount for lower ranks. Handles graded relevance, not just binary relevant/not-relevant.
 
 ### System metrics
 
