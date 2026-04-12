@@ -50,6 +50,8 @@ A **vector database** stores and indexes those vectors so that approximate neare
 
 That makes a vector database more than an in-process nearest-neighbor library but less than a complete search product. It handles one stage of the pipeline well. The rest — chunking, lexical search, reranking, and application logic — lives outside it.
 
+An **ANN index** (approximate nearest-neighbor index) is the data structure that makes vector lookup fast at scale. Given a query embedding, the goal is to retrieve the **top-k** vectors closest under a distance metric (often cosine distance or L2). Doing that **exactly** would require comparing the query to every stored vector, which is too slow and too memory-heavy when there are millions or billions of points in hundreds or thousands of dimensions. ANN indexes **avoid scanning the full corpus** by organizing vectors (for example via clustering, graphs, hashing, or compressed representations) so the engine visits only a small candidate set. The tradeoff is explicit: **recall** (how often the true nearest neighbors appear in the top-*k*) versus **latency**, memory, and ingest cost — tuned with index parameters and revisited as data and traffic grow.
+
 For many applications, the decisions around chunking, hybrid retrieval, filters, and reranking matter more than the specific ANN backend.
 
 ---
