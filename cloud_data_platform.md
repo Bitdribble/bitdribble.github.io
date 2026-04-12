@@ -32,7 +32,7 @@ title: Cloud Data Platform
   * [MongoDB's GenAI Showcase](https://github.com/mongodb-developer/GenAI-Showcase)
 * [Ray](/software_stacks/ray)
 * [Uber](/software_stacks/uber)
-* [Weaviate](/software_stacks/weaviate)
+* [Weaviate](/vector_databases/weaviate)
 
 #### ETL (Extract, Transform, Load)
 * [Airbyte](/software_stacks/airbyte)

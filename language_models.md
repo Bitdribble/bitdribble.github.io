@@ -300,7 +300,7 @@ gradient for the vast majority of the parameters
   * AssemblyAI: [Getting Started With Hugging Face in 15 Minutes: Transformers, Pipeline, Tokenizer, Models](https://www.youtube.com/watch?v=QEaBAZQCtwE) (2022)
   * 1littecoder: [What is Hugging Face - Crash Course (No Coding): ML Products for Beginners](https://www.youtube.com/watch?v=x8gdOPO35HA) (2022)
 * Llamaindes: see [LlamaIndex](/software_stacks/llamaindex)
-* Weaviate: see [Weaviate Software Stack](/software_stacks/weaviate)
+* Weaviate: see [Weaviate Software Stack](/vector_databases/weaviate)
 
 #### Medtech
 * [ChatGPT: Will it transform the world of healthcare?](https://www.youtube.com/watch?v=j-aOCuzfxUI&t=779s)

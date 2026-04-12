@@ -29,4 +29,3 @@ title: Weaviate Software Stack
 * [Language Models](/language_models)
 * [Machine Learning](/machine_learning)
 * [Vector Databases](/vector_databases)
-
