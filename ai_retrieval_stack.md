@@ -4,11 +4,15 @@ title: The AI Retrieval Stack
 mathjax: true
 ---
 
-This page explains what a **vector database** is, what it is **not**, how it fits into a modern retrieval stack, and how to choose among the major systems depending on the application.
+The **AI retrieval stack** is the pipeline that takes a query and returns relevant results. Getting it right requires answering a set of workload questions before choosing any particular tool:
 
-The main idea is simple:
+* What is the **unit of retrieval**? (sentences, paragraphs, chunks, files, documents)
+* Does the application need **semantic similarity**, **exact-match search**, or both?
+* What **metadata filters** matter? (tenant, date, repo, workflow state)
+* Is the product fundamentally a **search engine**, a **database with search**, or a **retrieval substrate**?
+* Is the workload closer to **consumer AI search**, **enterprise document retrieval**, or **codebase chunk retrieval**?
 
-A vector database is not the whole retrieval system. It is one component in a broader stack that usually includes:
+A typical stack looks like:
 
 ```text
 content
@@ -26,39 +30,24 @@ vector retrieval
 final results
 ```
 
-In practice, the right choice depends less on the words **“vector database”** and more on the **shape of the workload**:
-
-* Is the application primarily **semantic retrieval**?
-* Does it need **exact-match lexical search** too?
-* Are there strong **metadata filters**?
-* Is the product fundamentally a **search engine**, a **database with search**, or a **retrieval substrate**?
-* Is the workload closer to **consumer AI search**, **enterprise document retrieval**, or **codebase chunk retrieval**?
+Each layer has its own choices. The sections below cover each in turn.
 
 ---
 
-## What a vector database is
+## Vector databases: role in the stack
 
-An embedding model maps a raw object such as a sentence, paragraph, image, or code chunk into a point in a high-dimensional space. Nearby points correspond to similar meaning.
+An embedding model maps a raw object — a sentence, paragraph, image, or code chunk — into a point in high-dimensional space. Nearby points correspond to similar meaning.
 
-```text
-raw object → encoder → vector
-query vector → nearest neighbors → candidate results
-```
-
-A vector database exists to make this practical at production scale. Typically, it provides:
+A **vector database** stores and indexes those vectors so that approximate nearest-neighbor (ANN) search is practical at production scale. It typically provides:
 
 * storage for vectors and IDs
-* approximate nearest-neighbor (ANN) indexes
+* ANN indexes
 * metadata filters
 * updates and deletes
 * multitenancy or namespace isolation
 * replication, scaling, and operations
 
-That is why a vector database is more than an in-process nearest-neighbor library, but less than a complete search product.
-
----
-
-## What a vector database is not
+That makes a vector database more than an in-process library but less than a complete search product. It handles one stage of the pipeline well. The rest — chunking, lexical search, reranking, application logic — lives outside it.
 
 A vector database is **not**:
 
@@ -68,17 +57,7 @@ A vector database is **not**:
 * the same thing as a search engine
 * the same thing as a general-purpose database
 
-This distinction matters because many real-world systems do **not** use a “pure vector DB” by itself.
-
-Instead, they combine:
-
-* **embeddings** for semantic similarity
-* **BM25** or related lexical search for exact tokens
-* **filters** for tenant, product, date, repo, workflow state, or permissions
-* **reranking** for precision
-* **application-specific logic** for grouping, freshness, permissions, and serving
-
-For many applications, these choices matter more than the specific ANN backend.
+For many applications, the decisions around chunking, hybrid retrieval, filters, and reranking matter more than the specific ANN backend.
 
 ---
 
