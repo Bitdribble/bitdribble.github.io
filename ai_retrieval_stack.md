@@ -264,8 +264,8 @@ $$\text{recall} = \frac{\lvert\text{relevant} \cap \text{returned}\rvert}{\lvert
 
 Usually there is tension between them:
 
-* stricter thresholds ↑ precision, ↓ recall
-* broader retrieval ↑ recall, ↓ precision
+* stricter thresholds means: ↑ precision, ↓ recall
+* broader retrieval means: ↑ recall, ↓ precision
 
 In practice, the biggest quality levers are often:
 
