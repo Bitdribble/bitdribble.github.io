@@ -19,10 +19,11 @@ blog_posts_by_category_title: Blog Posts by Category
 
 ## Things I read, watch or follow
 
+* [AI Agents](/ai_agents)
 * [AI Code Editors](/ai_code_editors)
 * [AI Computer Use](/ai_computer_use)
+* [AI Retrieval Stack](/ai_retrieval_stack)
 * [Artificial Intelligence](/artificial_intelligence)
-* [AI Agents](/ai_agents)
 * [Healthcare](/healthcare)
   * [Biotech](/biotech)
     * [Cell Simulations](/biotech/cell_simulations)
@@ -61,7 +62,6 @@ blog_posts_by_category_title: Blog Posts by Category
 * [GPUs](/gpus)
 * [GraphQL](/graph_ql)
 * [Graph Databases](/graph_databases)
-* [The AI Retrieval Stack](/ai_retrieval_stack)
 * [History](/history)
 * [Information Theory](/information_theory)
 * [Intelligent Process Automation](/intelligent_process_automation)
