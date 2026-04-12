@@ -37,6 +37,7 @@ title: AI Agents
 * Latent Space: [Codium demo](https://www.youtube.com/watch?v=9tPKJPqVqLs) (2023)
 
 #### Tools
+* [Vector Databases](/vector_databases)
 * [Langchain](https://python.langchain.com/en/latest/getting_started/getting_started.html)
   * Tutorials
     * Misbah Syed: [Build a Langchain agent in under 30m](https://twitter.com/MisbahSy/status/1655587763679289351), [youtube](https://www.youtube.com/watch?v=jDJIIVWTZDE) (2023)
@@ -87,14 +88,14 @@ title: AI Agents
 * [Pop! Automation](https://www.popautomation.com/)
 
 #### Other
-* [Artificial Intelligence](/artificial_intelligence)
 * [AI Agents](/ai_agents)
+* [Artificial Intelligence](/artificial_intelligence)
 * [Cognitive Science](/cognitive_science)
 * [Computation Theory](/computation_theory)
+* [Computational Topology](/computational_topology)
 * [Finance](/finance)
 * [Language Models](/language_models)
 * [Meta Learning](/meta_learning)
 * [Probabilities and Statistics](/probabilities_and_statistics)
 * [Robotics](/robotics)
 * [Self Driving Cars](/self_driving_cars)
-* [Computational Topology](/computational_topology)

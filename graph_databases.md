@@ -14,10 +14,11 @@ title: Graph Databases
   * [Kalmaraj M M](https://www.youtube.com/@insightbuilder): [Leveraging Knowledge Graph With Langchain & Neo4J: Primer On Neo4J & KnowledgeGraph](https://www.youtube.com/watch?v=YDojtOjoEzY&list=PLbzjzOKeYPCoHRX30whyu0Re-YfOsJZlt&index=13) (2023)
 
 #### Other
-* [Artificial Intelligence](/artificial_intelligence)
 * [AI Agents](/ai_agents)
-* [Graph QL](/graph_ql)
+* [Artificial Intelligence](/artificial_intelligence)
 * [Graph Databases](/graph_databases)
+* [Graph QL](/graph_ql)
 * [Language Models](/language_models)
 * [Robotics](/robotics)
 * [Self Driving Cars](/self_driving_cars)
+* [Vector Databases](/vector_databases)

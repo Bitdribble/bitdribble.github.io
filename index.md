@@ -61,6 +61,7 @@ blog_posts_by_category_title: Blog Posts by Category
 * [GPUs](/gpus)
 * [GraphQL](/graph_ql)
 * [Graph Databases](/graph_databases)
+* [Vector Databases](/vector_databases)
 * [History](/history)
 * [Information Theory](/information_theory)
 * [Intelligent Process Automation](/intelligent_process_automation)

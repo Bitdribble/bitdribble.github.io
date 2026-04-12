@@ -224,6 +224,7 @@ gradient for the vast majority of the parameters
 * Qingyun Wu et al: [AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation](https://arxiv.org/pdf/2308.08155) (2023)
 
 #### Tools
+* [Vector Databases](/vector_databases)
 * [Langchain](https://python.langchain.com/en/latest/getting_started/getting_started.html), see [Langchain](/software_stacks/langchain)
 * [LLamaHub](https://llamahub.ai/), [github](https://github.com/emptycrown/llama-hub)
 * [Chromadb](https://www.trychroma.com/), see [Chromadb](/software_stacks/chromadb)
@@ -313,8 +314,8 @@ gradient for the vast majority of the parameters
 
 
 #### Other
-* [Artificial Intelligence](/artificial_intelligence)
 * [AI Agents](/ai_agents)
+* [Artificial Intelligence](/artificial_intelligence)
 * [Cognitive Science](/cognitive_science)
 * [Computation Theory](/computation_theory)
 * [Computational Topology](/computational_topology)
