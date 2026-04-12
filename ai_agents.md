@@ -37,7 +37,7 @@ title: AI Agents
 * Latent Space: [Codium demo](https://www.youtube.com/watch?v=9tPKJPqVqLs) (2023)
 
 #### Tools
-* [Vector Databases](/vector_databases)
+* [The AI Retrieval Stack](/ai_retrieval_stack)
 * [Langchain](https://python.langchain.com/en/latest/getting_started/getting_started.html)
   * Tutorials
     * Misbah Syed: [Build a Langchain agent in under 30m](https://twitter.com/MisbahSy/status/1655587763679289351), [youtube](https://www.youtube.com/watch?v=jDJIIVWTZDE) (2023)

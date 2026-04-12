@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Vector Databases
+title: The AI Retrieval Stack
 mathjax: true
 ---
 

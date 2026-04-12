@@ -21,4 +21,4 @@ title: Graph Databases
 * [Language Models](/language_models)
 * [Robotics](/robotics)
 * [Self Driving Cars](/self_driving_cars)
-* [Vector Databases](/vector_databases)
+* [The AI Retrieval Stack](/ai_retrieval_stack)

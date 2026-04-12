@@ -18,5 +18,5 @@ title: ChromaDb Software Stack
 * [Cloud Data Platform](/cloud_data_platform)
 * [Language Models](/language_models)
 * [Machine Learning](/machine_learning)
-* [Vector Databases](/vector_databases)
+* [The AI Retrieval Stack](/ai_retrieval_stack)
 

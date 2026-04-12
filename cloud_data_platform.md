@@ -7,7 +7,7 @@ title: Cloud Data Platform
 * [DevOps-Roadmap](https://github.com/milanm/DevOps-Roadmap)
 
 #### Software Stacks
-* [Vector Databases](/vector_databases)
+* [The AI Retrieval Stack](/ai_retrieval_stack)
 * [Azure](/software_stacks/azure)
 * [BDAS, the Berkeley Data Analytics Stack](https://amplab.cs.berkeley.edu/software/)
 * [Chromadb](/software_stacks/chromadb)
