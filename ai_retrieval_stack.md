@@ -24,7 +24,7 @@ vector retrieval
   + application logic
   ↓
 final results
-````
+```
 
 In practice, the right choice depends less on the words **“vector database”** and more on the **shape of the workload**:
 
@@ -106,9 +106,9 @@ Training usually tries to make this geometry useful for the task by **pulling** 
 * **Masked / causal language modeling** — predict missing or next tokens; useful representations emerge in the hidden states
 * **Contrastive learning** — positive pairs should be close, negatives far apart
 * **Supervised classification with an embedding bottleneck** — encoder → embedding → classifier
-* **Triplet loss** — anchor, positive, negative
+* **Triplet loss** — anchor, positive, negative; enforce $d(\text{anchor}, \text{positive}) \ll d(\text{anchor}, \text{negative})$
 
-For retrieval-focused models, **hard negatives** usually matter a lot more than easy random negatives.
+For retrieval-focused models, **hard negatives** usually matter a lot more than easy random negatives (e.g. "Python list comprehension" vs "Python for loops tutorial" instead of vs "banana smoothie").
 
 ---
 
@@ -193,7 +193,7 @@ For each query term $t$ in document $d$:
 
 $$\text{BM25}(q,d) = \sum_{t ,\in, q} \underbrace{\ln!\frac{N - n_t + 0.5}{n_t + 0.5}}_{\text{IDF}} \cdot \frac{f(t,d),(k_1+1)}{f(t,d) + k_1!\left(1 - b + b,\dfrac{|d|}{\text{avgdl}}\right)}$$
 
-where $N$ is corpus size, $n_t$ is the number of documents containing $t$, $f(t,d)$ is term frequency, and $|d|$ is document length.
+where $N$ is corpus size, $n_t$ is the number of documents containing $t$, $f(t,d)$ is term frequency, $\lvert d\rvert$ is document length, $\text{avgdl}$ is average document length across the corpus, and $k_1 \approx 1.2$–$2.0$ (term-frequency saturation) and $b \approx 0.75$ (length normalization) are the tunable parameters.
 
 ### BM25 vs vectors
 
