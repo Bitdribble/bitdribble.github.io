@@ -108,7 +108,9 @@ modality → task → domain → language coverage → query/document asymmetry 
 
 For many teams, the right first move is to start with a strong general-purpose retrieval embedding model, measure it on a realistic evaluation set, and only then decide whether a domain-specific or multimodal model is justified.
 
-One subtle but important point: query embeddings are not always the same as document embeddings. [Cohere’s Embed API](https://docs.cohere.com/reference/embed) explicitly distinguishes `search_query` and `search_document`. [Voyage](https://docs.voyageai.com/docs/embeddings) distinguishes `query` and `document` input types for retrieval. [Vertex AI](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/embeddings/task-types) supports task-type-aware embeddings for document retrieval, question answering, fact verification, clustering, and more.
+One subtle but important point: query embeddings are not always the same as document embeddings. [Cohere’s Embed API](https://docs.cohere.com/reference/embed) explicitly distinguishes `search_query` and `search_document`. [Vertex AI](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/embeddings/task-types) supports task-type-aware embeddings for document retrieval, question answering, fact verification, clustering, and more.
+
+[Voyage AI’s Voyage 4 announcement](https://blog.voyageai.com/2026/01/15/voyage-4/) describes **asymmetric retrieval**: the Voyage 4 models share one **compatible embedding space**, so vectors produced by different models (for example, queries with `voyage-4-lite` against documents indexed with `voyage-4-large`) still match under the same similarity search. That is useful when **embedding the corpus is a one-time or infrequent cost** but **embedding queries is continuous at serving time**—you can favor a larger model for stored documents and a smaller, faster model for live queries, trading a little operational complexity for better accuracy per dollar and lower query latency. The Voyage embeddings API still exposes `query` vs. `document` `input_type` for retrieval-oriented behavior. 
 
 ### Domain-specific and task-specific embeddings
 
