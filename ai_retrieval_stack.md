@@ -49,14 +49,6 @@ A **vector database** stores and indexes those vectors so that approximate neare
 
 That makes a vector database more than an in-process library but less than a complete search product. It handles one stage of the pipeline well. The rest — chunking, lexical search, reranking, application logic — lives outside it.
 
-A vector database is **not**:
-
-* an embedding model
-* a full ranking system
-* a replacement for lexical search
-* the same thing as a search engine
-* the same thing as a general-purpose database
-
 For many applications, the decisions around chunking, hybrid retrieval, filters, and reranking matter more than the specific ANN backend.
 
 ---
