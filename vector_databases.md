@@ -83,7 +83,7 @@ BM25 ranks documents for a **keyword** query. For each query term $t$ in documen
 
 $$\text{BM25}(q,d) = \sum_{t \,\in\, q} \underbrace{\ln\!\frac{N - n_t + 0.5}{n_t + 0.5}}_{\text{IDF}} \cdot \frac{f(t,d)\,(k_1+1)}{f(t,d) + k_1\!\left(1 - b + b\,\dfrac{|d|}{\text{avgdl}}\right)}$$
 
-where $N$ = corpus size, $n_t$ = number of docs containing $t$, $f(t,d)$ = term frequency in $d$, $|d|$ = document length, and $\text{avgdl}$ = average document length. Parameters: **$k_1$** (term-frequency saturation, often 1.2–2.0) and **$b$** (length normalization, often 0.75).
+where $N$ = corpus size, $n_t$ = number of docs containing $t$, $f(t,d)$ = term frequency in $d$, $\lvert d\rvert$ = document length, and $\text{avgdl}$ = average document length. Parameters: **$k_1$** (term-frequency saturation, often 1.2–2.0) and **$b$** (length normalization, often 0.75).
 
 Default **similarity** in Elasticsearch and OpenSearch for classic full‑text fields is BM25.
 
