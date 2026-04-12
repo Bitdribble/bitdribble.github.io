@@ -83,23 +83,6 @@ For retrieval-focused models, **hard negatives** usually matter a lot more than 
 
 ---
 
-## Train, validation, and test
-
-```text
-All labeled data
-├── train      (fit weights)
-├── validation (choose settings)
-└── test       (final report only)
-```
-
-* **Train** — update parameters
-* **Validation** — choose hyperparameters, thresholds, and stopping points
-* **Test** — one honest benchmark at the end
-
-If the test set is repeatedly used for tuning, it stops measuring generalization.
-
----
-
 ## After training: how vectors are used
 
 Vectors support several kinds of applications:
