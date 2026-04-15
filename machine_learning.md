@@ -77,6 +77,7 @@ title: Machine Learning
   * C. Huen: [A survivor's guide to AI courses at Stanford](https://huyenchip.com/2018/03/30/guide-to-Artificial-Intelligence-Stanford.html) (2020)
   * [CME295](https://cme295.stanford.edu/syllabus/): Transformers & LLMs, Autumn 2025 [video](https://www.youtube.com/watch?v=Ub3GoFaUcds), Afshine Amidi and Shervine Amidi
   * [CME296](https://cme296.stanford.edu/syllabus/): Diffusion & Large Vision Models, Spring 2026 [video](https://www.youtube.com/watch?v=tr-CUpw--ck), Afshine Amidi and Shervine Amidi
+  * Nathan Lambert: [Reinforcement Learning from Human Feedback](https://rlhfbook.com/course) (2026)
 
 #### Conferences
 * [CVPR '20](https://cvpr2020.thecvf.com/)
