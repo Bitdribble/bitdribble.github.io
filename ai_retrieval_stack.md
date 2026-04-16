@@ -362,7 +362,9 @@ The retriever may be lexical, vector, or hybrid; the reranker adds precision.
 
 Not all modern retrieval is just “dense vectors vs BM25.” Some systems also use **sparse learned retrieval**, **late-interaction models** such as ColBERT-style designs, or dedicated **rerankers** when ranking quality matters more than keeping the first-stage index simple.
 
-* **Late interaction (sometimes called late retrieval)** — Multi-vector models score query–document relevance at retrieval time (late interaction over token- or patch-level vectors) instead of comparing a single pooled embedding per object. Foundational papers are [ColBERT](https://arxiv.org/abs/2004.12832), [ColBERT v2](https://arxiv.org/abs/2112.01488), and for vision–language multi-vector retrieval [ColPali](https://arxiv.org/abs/2407.01449). Weaviate's [Multi-vector embeddings](https://docs.weaviate.io/weaviate/tutorials/multi-vector-embeddings) tutorial covers indexing and queries in Weaviate. Storing such **multi-vector embeddings** is a distinct operational pattern from one-vector-per-object ANN search.
+* **Late interaction (sometimes called late retrieval)** — Multi-vector models score query–document relevance at retrieval time (late interaction over token- or patch-level vectors) instead of comparing a single pooled embedding per object. Foundational papers are [ColBERT](https://arxiv.org/abs/2004.12832), [ColBERT v2](https://arxiv.org/abs/2112.01488), and for vision–language multi-vector retrieval [ColPali](https://arxiv.org/abs/2407.01449). 
+** Weaviate's [Multi-vector embeddings](https://docs.weaviate.io/weaviate/tutorials/multi-vector-embeddings) tutorial covers indexing and queries in Weaviate. Storing such **multi-vector embeddings** is a distinct operational pattern from one-vector-per-object ANN search.
+** [Vespa](https://docs.vespa.ai/en/rag/embedding.html?utm_source=chatgpt.com#colbert-embedder), [Qdrant](https://qdrant.tech/documentation/fastembed/fastembed-colbert/) also support multi-vector embeddings.  Qdrant recommends it to only be used as reranker. OpenSearch supports it as reranking.
 
 ---
 
