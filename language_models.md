@@ -15,6 +15,7 @@ title: Language Models
     * [Prompt Engineering](https://fullstackdeeplearning.com/llm-bootcamp/spring-2023/prompt-engineering/)
     * [LLMOps](https://fullstackdeeplearning.com/llm-bootcamp/spring-2023/llmops/)
   * Harrison Chase: [Agents](https://fullstackdeeplearning.com/llm-bootcamp/spring-2023/chase-agents/)
+* Nathan Lambert: [Reinforcement Learning from Human Feedback](https://rlhfbook.com/course) (2026), accompanying [rlhfbook.com](https://rlhfbook.com) / [arXiv](https://arxiv.org/abs/2504.12501)
 * Maxime Labonne: [Large Language Model Course](https://github.com/mlabonne/llm-course), [blog](https://mlabonne.github.io/blog/)
   * Inspired by [DevOps-Roadmap](https://github.com/milanm/DevOps-Roadmap)
   * Based on [gists from younesbelkada](https://gist.github.com/younesbelkada)
@@ -285,6 +286,7 @@ gradient for the vast majority of the parameters
 * Maxime Labonne: [Fine-Tune Your Own Llama 2 Model in a Colab Notebook](https://mlabonne.github.io/blog/posts/Fine_Tune_Your_Own_Llama_2_Model_in_a_Colab_Notebook.html) (2023)
 
 #### RLHF, DPO
+* Nathan Lambert: [Reinforcement Learning from Human Feedback](https://rlhfbook.com/course) (2026), accompanying [rlhfbook.com](https://rlhfbook.com) / [arXiv](https://arxiv.org/abs/2504.12501)
 * HuggingFace: [Reinforcement Learning from Human Feedback: From Zero to chatGPT ](https://www.youtube.com/watch?v=2MBJOuVq380) (2023), [blog post](https://huggingface.co/blog/rlhf), [slides](https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbUMxOHpGR3JyS29iS1Z4YjF6X2ZfRDAxamNaQXxBQ3Jtc0ttZ3hWX1lFRFJjOFZrXzhOVmZRQUlhcXA5VnNpVGt1Zkw0SkVNTEhJRWg3WTBLZC15SGZ6NDdCdlZBX1ZrbEU4eVp4Zmp1U2N5M185NDZRLTNkWVRPOGVTV2dBeU9tREktMlpSUnRUWEpSVlRqSkNzbw&q=https%3A%2F%2Fdocs.google.com%2Fpresentation%2Fd%2F1eI9PqRJTCFOIVihkig1voRM4MHDpLpCicX9lX1J2fqk%2Fedit%3Fusp%3Dsharing&v=2MBJOuVq380)
 * HuggingFace: [Aligning LLMs with Direct Preference Optimization](https://www.youtube.com/watch?v=QXVCqtAZAn4) (2024)
 
