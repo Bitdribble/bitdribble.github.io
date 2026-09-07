@@ -65,6 +65,7 @@ title: Yoga and Pilates
     * [20 Min. Full Body Mobility Workout, with Julia Reppel](https://www.youtube.com/watch?v=JCVZS_3FQXE) (2025)
     * [25 Min Mobility & Core Workout at Home](https://www.youtube.com/watch?v=2HjaUTInIq8)
     * [30 Min. Full Body Pilates x Mobility Workout](https://www.youtube.com/watch?v=-XAJ25OufpE) (2025)
+    * [30 Min. Mobility x Core Workout](https://www.youtube.com/watch?v=w4B2NbCRJjs) (2025)
 * Strength & Stretch
   * Boho Beautiful: [Morning Yoga Workout](https://www.youtube.com/watch?v=oX6I6vs1EFs)
   * [Julia Reppel](https://www.youtube.com/@julia.reppel): [25 Min. Full Body Mobility Workout - Circuit Training](https://www.youtube.com/watch?v=jPdft5H34C8) (2022)
