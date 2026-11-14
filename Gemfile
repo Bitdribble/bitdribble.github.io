@@ -9,6 +9,10 @@ gem "analytiq-pages-theme", git: "https://github.com/analytiq-hub/analytiq-pages
 # Use GitHub Pages compatible Jekyll version
 gem "github-pages", group: :jekyll_plugins
 
+# 0.23.11 does not compile on GCC 15 (GitHub-hosted Ubuntu). 0.23.12 adds that support
+# and still satisfies jekyll-commonmark-ghpages (< 1.1.0).
+gem "commonmarker", "0.23.12"
+
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
