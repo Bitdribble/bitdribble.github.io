@@ -91,6 +91,7 @@ blog_posts_by_category_title: Blog Posts by Category
   * [High School Problem Hints and Solutions](/math/high_school_solutions)
   * [Mathematical Physics](/math/mathematical_physics)
   * [Philosophy of Math](/math/philosophy_of_math.md)
+  * [Proof Assistants and Proof Checkers](/math/proof_assistants)
   * [Representation Theory](/math/representation_theory)
   * [Topology](/math/topology)
 * [MCP](/mcp)

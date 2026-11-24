@@ -8,22 +8,7 @@ title: Automated Theorem Proving
 * Egbert Rijke: [Introduction to Homotopy Type Theory](https://raw.githubusercontent.com/martinescardo/HoTTEST-Summer-School/main/HoTT/hott-intro.pdf) (2022)
 
 #### Languages
-* [Coq](https://coq.inria.fr/)
-  * [Coq in a hurry](https://cel.archives-ouvertes.fr/inria-00001173v6/document), Yves Bertot (2017)
-  * [Spartan Martin-Löf Type Theory](https://unimath.github.io/Schools/2019-04-Birmingham/Part1_Spartan_Type_Theory/Spartan-Type-Theory.pdf), Andrej Bauer (2019)
-  * Video
-    * [How to use Coq with Proof General](https://www.youtube.com/watch?v=l6zqLJQCnzo), Andrej Bauer (2011). I [installed UniMath Coq](https://unimath.github.io/Schools/installation.html) on MacBook, had to create `pierce_lem.v` in a subfolder under `UniMath/UniMath`, and had to `Require Export UniMath.Foundations.Propositions.` at the top. Also, I had to place `etags` in the `PATH`.
-* [Lean](https://en.wikipedia.org/wiki/Lean_(proof_assistant))
-  * [Lean for the Curious Mathematician '20](https://www.youtube.com/watch?v=8mVOIGW5US4&list=PLlF-CfQhukNlxexiNJErGJd2dte_J1t1N&index=1)
-    * [Mathematics in Lean introduction - Patrick Massot](https://www.youtube.com/watch?v=lw8EfTmWzRU&list=PLlF-CfQhukNlxexiNJErGJd2dte_J1t1N&index=4)
-  * Leonardo de Moura & Sebastian Ullrich: [The Lean 4 Theorem Prover and Programming Language](https://link.springer.com/chapter/10.1007/978-3-030-79876-5_37) (2021)
-* [Metamath](http://us.metamath.org/downloads/metamath.pdf), by Norman Megill, revised by David A. Wheeler (2019)
-* [HOL Light](https://www.cl.cam.ac.uk/~jrh13/hol-light/)
-* [Isabelle](https://isabelle.in.tum.de/)
-  * [Comparison of Two Theorem Provers: Isabelle/HOL and Coq](https://arxiv.org/pdf/1808.09701.pdf)
-  * [Isabelle Theorem Prover tutorial](https://www.youtube.com/watch?v=1nEpUoVopT0)
-* [Homotopy Type Theory](https://homotopytypetheory.org) [Code](https://homotopytypetheory.org/coq/): COQ and AGDA
-* AGDA [wiki](https://en.wikipedia.org/wiki/Agda_(programming_language))
+* See [Proof Assistants and Proof Checkers](/math/proof_assistants): Lean, Rocq (Coq), Isabelle, Agda, HOL Light, Metamath, Mizar
 
 #### Posts
 * [Building the Mathematical Library of the Future](https://www.quantamagazine.org/building-the-mathematical-library-of-the-future-20201001/), Kevin Hartnett (2020)
@@ -94,6 +79,7 @@ title: Automated Theorem Proving
 
 
 #### Other
+* [Proof Assistants and Proof Checkers](/math/proof_assistants)
 * [Computation Theory](/computation_theory)
 * [Engineering Math](/math/engineering_math)
 * [Philosophy of Math](/math/philosophy_of_math.md)
