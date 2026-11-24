@@ -8,7 +8,7 @@ title: Automated Theorem Proving
 * Egbert Rijke: [Introduction to Homotopy Type Theory](https://raw.githubusercontent.com/martinescardo/HoTTEST-Summer-School/main/HoTT/hott-intro.pdf) (2022)
 
 #### Languages
-* See [Proof Assistants and Proof Checkers](/math/proof_assistants): Lean, Rocq (Coq), Isabelle, Agda, HOL Light, Metamath, Mizar
+* See [Proof Assistants](/math/proof_assistants): Lean, Rocq (Coq), Isabelle, Agda, HOL Light, Metamath, Mizar
 
 #### Posts
 * [Building the Mathematical Library of the Future](https://www.quantamagazine.org/building-the-mathematical-library-of-the-future-20201001/), Kevin Hartnett (2020)
@@ -79,7 +79,7 @@ title: Automated Theorem Proving
 
 
 #### Other
-* [Proof Assistants and Proof Checkers](/math/proof_assistants)
+* [Proof Assistants](/math/proof_assistants)
 * [Computation Theory](/computation_theory)
 * [Engineering Math](/math/engineering_math)
 * [Philosophy of Math](/math/philosophy_of_math.md)

@@ -1,7 +1,7 @@
 ---
 layout: page
 mathjax: true
-title: Proof Assistants and Proof Checkers
+title: Proof Assistants
 ---
 #### Overview
 * A **proof checker** verifies that a complete formal proof is correct, step by step, against the rules of a logic. A **proof assistant** (interactive theorem prover) helps you *build* that proof, usually through tactics, automation and an editor that shows the current goals.
