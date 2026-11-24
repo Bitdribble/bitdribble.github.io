@@ -26,7 +26,8 @@ title: Proof Assistants and Proof Checkers
   * [Theorem Proving in Lean 4](https://lean-lang.org/theorem_proving_in_lean4/)
   * [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/)
   * [Functional Programming in Lean](https://lean-lang.org/functional_programming_in_lean/)
-* Leonardo de Moura & Sebastian Ullrich: [The Lean 4 Theorem Prover and Programming Language](https://link.springer.com/chapter/10.1007/978-3-030-79876-5_37) (2021)
+* Leonardo de Moura & Sebastian Ullrich: [The Lean 4 Theorem Prover and Programming Language](https://lean-lang.org/papers/lean4.pdf) (2021), [Springer](https://link.springer.com/chapter/10.1007/978-3-030-79876-5_37) - see [How They Are Built](#how-they-are-built)
+* Sebastian Ullrich: [An Extensible Theorem Proving Frontend](https://pp.ipd.kit.edu/uploads/publikationen/ullrich23thesis.pdf) (2023), PhD thesis
 * Videos
   * [Lean for the Curious Mathematician '20](https://www.youtube.com/watch?v=8mVOIGW5US4&list=PLlF-CfQhukNlxexiNJErGJd2dte_J1t1N&index=1)
     * [Mathematics in Lean introduction - Patrick Massot](https://www.youtube.com/watch?v=lw8EfTmWzRU&list=PLlF-CfQhukNlxexiNJErGJd2dte_J1t1N&index=4)
@@ -54,6 +55,7 @@ title: Proof Assistants and Proof Checkers
 * [Agda documentation](https://agda.readthedocs.io/), [Wikipedia](https://en.wikipedia.org/wiki/Agda_(programming_language))
 * Cubical Agda: computational univalence, for [Homotopy Type Theory](https://homotopytypetheory.org) ([Coq-HoTT library](https://github.com/HoTT/Coq-HoTT))
 * P. Wadler et al: [Programming Language Foundations in Agda](https://plfa.github.io/)
+* Ulf Norell: [Towards a Practical Programming Language Based on Dependent Type Theory](https://www.cse.chalmers.se/~ulfn/papers/thesis.pdf) (2007), PhD thesis - the design of Agda 2
 
 ##### HOL family
 * [HOL Light](https://www.cl.cam.ac.uk/~jrh13/hol-light/), John Harrison - tiny kernel, used for Flyspeck
@@ -81,6 +83,25 @@ title: Proof Assistants and Proof Checkers
 | HOL Light | Higher-order logic | Tiny | Moderate | Multivariate analysis | Flyspeck, floating point verification |
 | Metamath | Set theory (ZFC) | Tiny verifier | Minimal | set.mm | Foundations, fully explicit proofs |
 | Mizar | Set theory (Tarski–Grothendieck) | Checker | Moderate | MML | Classical mathematics |
+
+#### How They Are Built
+How does each system turn a partially written proof into something it can trust? A user writes convenient syntax with details left out. The **elaborator** fills them in, using **metavariables** (placeholders for terms the system must infer), and produces a fully explicit term. The small **kernel** then checks that term.
+
+Suggested reading order
+1. Leonardo de Moura & Sebastian Ullrich: [The Lean 4 Theorem Prover and Programming Language](https://lean-lang.org/papers/lean4.pdf) (2021), 11 pages - why Lean was redesigned, and how its parser, elaborator, macros, tactics and compiler fit together
+2. Ulf Norell: [Towards a Practical Programming Language Based on Dependent Type Theory](https://www.cse.chalmers.se/~ulfn/papers/thesis.pdf) (2007), PhD thesis, Chalmers - the foundations of Agda 2. Read Ch. 1 (Introduction), then Ch. 2 (Pattern Matching) and Ch. 3 (Metavariables). A historical foundation, not a description of every feature in present-day Agda
+3. Sebastian Ullrich: [An Extensible Theorem Proving Frontend](https://pp.ipd.kit.edu/uploads/publikationen/ullrich23thesis.pdf) (2023), PhD thesis, KIT - the deeper Lean counterpart to Norell. Read Ch. 3 (An Overview of Lean 4: kernel, parser, elaborator, compiler), then Ch. 4 (A Macro System for Theorem Provers)
+
+Kernels and type theory
+* Mario Carneiro: [The Type Theory of Lean](https://github.com/digama0/lean-type-theory/releases/download/v1.0/main.pdf) (2019), MSc thesis - the formal logic checked by Lean's kernel
+* [Type Checking in Lean 4](https://ammkrn.github.io/type_checking_in_lean4/) - a short book on how Lean's kernel works, for people writing their own checkers
+* T. Coquand & G. Huet: [The Calculus of Constructions](https://www.sciencedirect.com/science/article/pii/0890540188900053) (1988) - the type theory underneath Rocq and Lean
+* Andrej Bauer: [How to implement dependent type theory](https://math.andrej.com/2012/11/08/how-to-implement-dependent-type-theory-i/) (2012) - blog series building a small checker step by step
+
+The LCF tradition
+* Mike Gordon: [From LCF to HOL: a short history](https://www.cl.cam.ac.uk/archive/mjcg/papers/HolHistory.pdf) - Robin Milner's LCF (1972) introduced the small trusted kernel: theorems form an abstract type that only the inference rules can construct
+* Larry Paulson: [Isabelle: The Next 700 Theorem Provers](https://arxiv.org/abs/cs/9301106) (1989) - Isabelle as a generic framework for many logics
+* John Harrison: [HOL Light: an overview](https://www.cl.cam.ac.uk/~jrh13/papers/hollight.pdf) (2009) - a kernel of a few hundred lines of OCaml
 
 #### Landmark Formalizations
 * Four Color Theorem, Coq, G. Gonthier (2005) - see the Notices article above
