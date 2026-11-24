@@ -17,7 +17,7 @@ title: Webdev
 
 #### Tools
 * [render](https://render.com) - point to github repo and render web site
-* [three.js](https://threejs.org/) - more modern WebGL wrapper
+* [three.js](/webdev/three_js) - more modern WebGL wrapper
 * [deck.gl](http://deck.gl/) - WebGL wrapper used by xviz
 * [bubble.io](https://bubble.io) - WYSIWYG nohtml web editor
   * Tutorials

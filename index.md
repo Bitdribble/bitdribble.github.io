@@ -147,6 +147,7 @@ blog_posts_by_category_title: Blog Posts by Category
   * [Streamlit](/webdev/streamlit)
   * [SVG](/webdev/svg)
   * [Tailwind](/webdev/tailwind)
+  * [Three.js](/webdev/three_js)
   * [Vercel](/webdev/vercel)
   * [Vue](/webdev/vue)
 * [Writing Blog Posts](/writing_blog_posts)
