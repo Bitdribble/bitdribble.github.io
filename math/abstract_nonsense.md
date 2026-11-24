@@ -8,6 +8,8 @@ title: Math (Abstract Nonsense)
 * [The universal six-functor formalism](https://arxiv.org/abs/2009.13610)
 
 #### Books
+* Category Theory
+  * Denis-Charles Cisinski: [Synthetic Category Theory, Volume I: Foundations](https://drive.google.com/file/d/1lKaq7watGGl3xvjqw9qHjm6SDPFJ2-0o/view) (book in progress)
 * Complex Analysis
   * Nicu Boboc: Functii Complexe
   * S. Lang: [Complex Analysis](https://www.amazon.com/Complex-Analysis-Graduate-Texts-Mathematics/dp/0387985921)

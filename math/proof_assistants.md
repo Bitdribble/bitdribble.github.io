@@ -10,6 +10,8 @@ title: Proof Assistants
   * Dependent type theory (Curry–Howard: propositions are types, proofs are programs): Lean, Rocq (Coq), Agda
   * Higher-order logic: Isabelle/HOL, HOL Light, HOL4
   * Set theory on first-order logic: Metamath (set.mm), Mizar
+* Synthetic mathematics: developing a theory from axioms about its objects, rather than building them from sets
+  * Denis-Charles Cisinski: [Synthetic Category Theory, Volume I: Foundations](https://drive.google.com/file/d/1lKaq7watGGl3xvjqw9qHjm6SDPFJ2-0o/view) (book in progress), see [Abstract Nonsense](/math/abstract_nonsense)
 * Freek Wiedijk: [The Seventeen Provers of the World](https://www.cs.ru.nl/~freek/comparison/comparison.pdf) (2006) - the same proof ($\sqrt{2}$ is irrational) in seventeen systems
 * Notices of the AMS special issue on formal proof (2008)
   * Thomas Hales: [Formal Proof](https://www.ams.org/notices/200811/tx081101370p.pdf)
